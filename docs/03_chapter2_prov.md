@@ -90,10 +90,8 @@ pie title Input Datasets Quality Measurements
     "without quality measurements" : 2
 ```
 
-The supply chain analysis provides insights into:
-- **Quality Coverage**: Percentage of upstream datasets that have quality measurements
-- **Quality Metrics**: Aggregated quality scores from source datasets
-- **Risk Assessment**: Identification of datasets lacking quality documentation
+The supply chain analysis provides insights into **Quality Coverage**. It shows the percentage of upstream datasets that have quality measurements
+
 
 #### Implementation Example
 
@@ -109,7 +107,8 @@ datasets:
       - climate-index
     hasQualityAnnotation: true
     qualityMeasurements:
-      - metric: completeness
+      - metric: com
+      pleteness
         value: 0.95
         method: automated_check
 
@@ -127,7 +126,6 @@ datasets:
     title: "Cleaned Weather Station Data"
     wasDerivedFrom:
       - raw-sensor-data
-    # No quality measurements - will be reflected in supply chain analysis
 ```
 
 When processed by the simple-data-catalog-generator, this configuration will:
