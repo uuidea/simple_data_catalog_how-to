@@ -1,5 +1,6 @@
 # Chapter 3: Data Quality (DQV)
 
+
 ## 3.1 Theory and Concepts
 
 Data quality represents the cornerstone of trustworthy data ecosystems. While previous chapters explored how to describe datasets and trace their provenance, this chapter addresses the critical question of how good that data actually is. The Data Quality Vocabulary (DQV) provides a standardized framework for assessing, documenting, and communicating data quality information in a way that enables data consumers to make informed decisions about data usage.
