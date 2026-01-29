@@ -14,17 +14,20 @@ PROV is built around three fundamental concepts that work together to create a c
 
 ```mermaid
 graph TD
-    A[Entity] -->|wasDerivedFrom| B[Entity]
+    A[Entity] -->|wasDerivedFrom| A[Entity]
+    D[Activity] -->|used| A
+    A -->|wasGeneratedBy| D
     A -->|wasAttributedTo| C[Agent]
-    C -->|actedOnBehalfOf| D[Agent]
+    C -->|actedOnBehalfOf| C
+    D -->|wasAssociatedWith| C
+
     
     style A fill:#e8f5e8
-    style B fill:#e8f5e8
     style C fill:#e1f5fe
     style D fill:#e1f5fe
 ```
 
-The current simple_data_catalog_model implements a subset of PROV concepts, focusing on entity-to-entity relationships. The `wasDerivedFrom` relationship captures how one dataset was transformed into another, even when the specific transformation activity is unknown. This forms the foundation of provenance tracking in our data catalog, enabling the reconstruction of data processing histories.
+The current simple_data_catalog_model implements a subset of PROV concepts, focusing on entity-to-entity relationships. The `wasDerivedFrom` relationship captures how one dataset relied on another, even when the specific transformation activity is unknown. Think of this as references and the bibliography in scientific literature. This forms the foundation of provenance tracking in our data catalog, enabling the reconstruction of data processing histories.
 
 ### Provenance for Data Trust
 
@@ -54,6 +57,95 @@ The implementation focuses on the most common provenance use case: tracking how 
 ### Integration with DCAT
 
 The PROV properties extend the DCAT dataset definitions from Chapter 1. Every dataset can optionally include provenance information that traces its derivation chain. This provenance information is stored alongside the descriptive metadata, creating a comprehensive view of each dataset that includes both what it contains and where it came from.
+
+### 2.2.1 Lineage Visualization and Supply Chain Analysis
+
+The simple_data_catalog integrates with the [simple-data-catalog-generator](https://github.com/uuidea/simple-data-catalog-generator/) library to automatically generate lineage visualizations and supply chain analysis from PROV relationships. These visualizations help users understand data dependencies and assess data quality across the entire data supply chain.
+
+#### Lineage Diagrams
+
+When datasets include `wasDerivedFrom` relationships, the generator creates Mermaid flowchart diagrams that visualize the complete data lineage. These diagrams show how datasets are connected through derivation relationships, making it easy to trace data transformations and identify upstream dependencies.
+
+```mermaid
+
+graph TD
+    B[cleaned-sensor-data] --> A[raw-sensor-data]
+    C[aggregated-climate-data] --> B[cleaned-sensor-data]
+    D[climate-trends-analysis] --> C[aggregated-climate-data]
+    F[climate-index] --> E[temperature-series]
+    F[climate-index] --> G[precipitation-series]
+    D[climate-trends-analysis] --> F[climate-index]
+```
+
+
+The lineage diagrams are automatically generated from the YAML provenance relationships and displayed on dataset detail pages. Each node represents a dataset, and arrows indicate derivation relationships following the `wasDerivedFrom` property.
+
+#### Supply Chain Analysis
+
+The generator also performs supply chain analysis by examining upstream data quality annotations. This analysis helps users understand the quality landscape of their data dependencies by aggregating quality measurements from all source datasets.
+
+```mermaid
+pie title Input Datasets Quality Measurements
+    "with quality measurements" : 3
+    "without quality measurements" : 2
+```
+
+The supply chain analysis provides insights into:
+- **Quality Coverage**: Percentage of upstream datasets that have quality measurements
+- **Quality Metrics**: Aggregated quality scores from source datasets
+- **Risk Assessment**: Identification of datasets lacking quality documentation
+
+#### Implementation Example
+
+To enable lineage visualization and supply chain analysis, simply include `wasDerivedFrom` relationships in your dataset definitions:
+
+```yaml
+datasets:
+  - id: climate-trends-analysis
+    title: "Climate Trends Analysis Report"
+    description: "Statistical analysis of long-term climate trends"
+    wasDerivedFrom:
+      - aggregated-climate-data
+      - climate-index
+    hasQualityAnnotation: true
+    qualityMeasurements:
+      - metric: completeness
+        value: 0.95
+        method: automated_check
+
+  - id: aggregated-climate-data
+    title: "Monthly Aggregated Climate Data"
+    wasDerivedFrom:
+      - cleaned-sensor-data
+    hasQualityAnnotation: true
+    qualityMeasurements:
+      - metric: accuracy
+        value: 0.88
+        method: manual_validation
+
+  - id: cleaned-sensor-data
+    title: "Cleaned Weather Station Data"
+    wasDerivedFrom:
+      - raw-sensor-data
+    # No quality measurements - will be reflected in supply chain analysis
+```
+
+When processed by the simple-data-catalog-generator, this configuration will:
+1. Generate a lineage diagram showing the derivation chain
+2. Create a supply chain analysis showing that 2 out of 3 upstream datasets have quality measurements
+3. Provide clickable navigation between related datasets
+
+#### Benefits for Data Governance
+
+The lineage visualization and supply chain analysis capabilities provide several benefits for data governance:
+
+- **Transparency**: Clear visualization of data dependencies and transformations
+- **Quality Assessment**: Quick identification of data quality gaps in the supply chain
+- **Impact Analysis**: Understanding how changes in upstream datasets affect downstream products
+- **Compliance Support**: Documentation of data provenance for regulatory requirements
+- **Trust Building**: Visual evidence of data processing and quality controls
+
+These features make the simple_data_catalog particularly valuable for organizations that need to demonstrate data governance, track data quality across complex data ecosystems, and provide stakeholders with clear understanding of data origins and reliability.
 
 ## 2.3 Practical Examples
 
@@ -390,21 +482,11 @@ The current simple_data_catalog_model implements a focused subset of PROV that p
 
 The simple_data_catalog_model roadmap includes plans for progressive PROV enhancement:
 
-**Phase 1 - Enhanced Derivation Support**:
-- Support for `hadPrimarySource`, `wasRevisionOf`, `wasQuotedFrom`
-- Temporal properties for entities (`generatedAtTime`, `invalidatedAtTime`)
-- Multi-level derivation chains with relationship types
 
-**Phase 2 - Activity and Agent Support**:
 - Import of full LinkML PROV schema
 - Activity definitions with temporal properties
 - Agent classes (Person, Organization, SoftwareAgent)
-- Qualified relationships for detailed provenance
 
-**Phase 3 - Advanced Provenance Features**:
-- Bundle support for provenance of provenance
-- Collection and specialization relationships
-- Influence relationships for complex workflows
 
 ### Migration Strategy
 
