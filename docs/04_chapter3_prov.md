@@ -1,6 +1,6 @@
-# Chapter 2: Data Lineage (PROV)
+# Chapter 3: Data Lineage (PROV)
 
-## 2.1 Theory and Concepts
+## 3.1 Theory and Concepts
 
 Data lineage tells the story of how datasets come into existence, how they transform over time, and how they relate to one another through derivation chains. The Provenance Ontology (PROV-O) provides a standardized framework for capturing this narrative, enabling data consumers to understand the origins and transformations of datasets.
 
@@ -39,7 +39,7 @@ PROV can be combined DCAT to provide comprehensive metadata about datasets. Whil
 
 In the previous chapter, we explored how to create datasets with rich descriptive metadata. Now we extend those datasets with provenance information that shows their place in the broader data ecosystem. A dataset that describes temperature readings might be derived from raw sensor data, which itself might be derived from weather station logs. This derivation chain helps users understand the processing history and assess data quality.
 
-## 2.2 PROV in Simple Data Catalog
+## 3.2 PROV in Simple Data Catalog
 
 Simple Data Catalog implements a focused subset of PROV. The current implementation prioritizes practical usability while maintaining compatibility with the PROV-O standard. The framework provides a straightforward interface for defining derivation relationships between datasets, making provenance capture accessible without requiring deep expertise in semantic web technologies.
 
@@ -145,9 +145,9 @@ The lineage visualization and supply chain analysis capabilities provide several
 
 These features make the simple_data_catalog particularly valuable for organizations that need to demonstrate data governance, track data quality across complex data ecosystems, and provide stakeholders with clear understanding of data origins and reliability.
 
-## 2.3 Practical Examples
+## 3.3 Practical Examples
 
-### 2.3.1 Basic Derivation Tracking
+### 3.3.1 Basic Derivation Tracking
 
 The simplest provenance scenario involves a dataset that is directly derived from a single source dataset. This example demonstrates the fundamental PROV concept in action, showing how to document the basic story of data transformation.
 
@@ -192,7 +192,7 @@ datasets:
 
 This example shows how processed temperature data is derived from raw temperature readings. The `wasDerivedFrom` property creates a clear link between the two datasets, enabling users to trace the data processing history. The derived dataset maintains its own metadata while explicitly referencing its source, creating a transparent provenance chain.
 
-### 2.3.2 Multi-Source Derivation
+### 3.3.2 Multi-Source Derivation
 
 A common scenario involves datasets that are created by combining multiple source datasets. This example demonstrates how to document complex derivation relationships where a single dataset draws from multiple sources.
 
@@ -248,7 +248,7 @@ datasets:
 
 This example shows how a climate index dataset is derived from both temperature and precipitation series. The multi-valued `wasDerivedFrom` property creates links to both source datasets, documenting the complete provenance of the derived dataset. Users can trace back to understand exactly what data sources contributed to the climate index calculation.
 
-### 2.3.3 Derivation Chains
+### 3.3.3 Derivation Chains
 
 Complex data processing workflows often create chains of derived datasets, where each step builds upon the previous one. This example demonstrates how to document multi-level derivation chains that show the complete data processing history.
 
@@ -308,7 +308,7 @@ datasets:
 
 This example demonstrates a complete derivation chain from raw sensor data to final climate trends analysis. Each dataset in the chain explicitly references its immediate predecessor, creating a clear trail of data transformations. Users can follow this chain backward to understand the complete processing history, or forward to see how the data evolves through each processing step.
 
-### 2.3.4 Integration with DCAT Metadata
+### 3.3.4 Integration with DCAT Metadata
 
 Provenance information integrates seamlessly with the DCAT metadata structures from Chapter 1. This example shows how derivation relationships complement the descriptive metadata to create a comprehensive dataset description.
 
@@ -392,7 +392,7 @@ datasets:
 
 This comprehensive example shows how provenance information enhances the rich DCAT metadata from Chapter 1. The national air quality index dataset includes complete descriptive metadata while also documenting its derivation from three pollutant measurement datasets. This integration creates a complete picture that tells users both what the dataset contains and where it came from.
 
-<!-- ### 2.3.5 Version Control and Provenance
+<!-- ### 3.3.5 Version Control and Provenance
 
 Data catalogs often need to track how datasets evolve over time. While PROV provides mechanisms for versioning through derivation relationships, simple_data_catalog_model allows you to document dataset evolution using the `version` property combined with provenance relationships.
 
@@ -433,7 +433,7 @@ datasets:
 
 This example demonstrates how to track dataset versions using explicit derivation relationships. Each version references its predecessor, creating a clear lineage of dataset evolution. This approach helps users understand how datasets have changed over time and choose appropriate versions for their needs. -->
 
-### 2.3.6 Cross-Referencing Provenance
+### 3.3.6 Cross-Referencing Provenance
 
 When documenting provenance across multiple datasets, you may need to reference datasets that are defined in separate YAML files or in other catalogs. PROV supports this through the use of full dataset identifiers.
 
@@ -459,7 +459,7 @@ datasets:
 
 This example shows how to reference datasets in external catalogs using their full identifiers. This approach enables provenance tracking across organizational boundaries, supporting federated data catalogs and collaborative data ecosystems.
 
-## 2.4 Current Limitations and Future Enhancements
+## 3.4 Current Limitations and Future Enhancements
 
 ### Current Implementation Limitations
 

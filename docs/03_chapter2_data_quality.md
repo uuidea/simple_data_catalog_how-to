@@ -1,7 +1,7 @@
-# Chapter 3: Data Quality (DQV)
+# Chapter 2: Data Quality (DQV)
 
 
-## 3.1 Theory and Concepts
+## 2.1 Theory and Concepts
 
 Data quality represents the cornerstone of trustworthy data ecosystems. While previous chapters explored how to describe datasets and trace their provenance, this chapter addresses the critical question of how good that data actually is. The Data Quality Vocabulary (DQV) provides a standardized framework for assessing, documenting, and communicating data quality information in a way that enables data consumers to make informed decisions about data usage.
 
@@ -50,13 +50,13 @@ Different applications and domains prioritize different quality dimensions. Unde
 
 ### DQV Integration with DCAT and PROV
 
-DQV builds upon the foundations established in previous chapters. While DCAT (Chapter 1) describes what datasets are available and how to access them, and PROV (Chapter 2) explains where those datasets came from, DQV tells us how good those datasets are for their intended purposes. This integration creates a comprehensive view of data resources that includes descriptive metadata, provenance information, and quality assessments.
+DQV builds upon the foundations established in previous chapters. While DCAT (Chapter 1) describes what datasets are available and how to access them, DQV tells us how good those datasets are for their intended purposes. This integration creates a comprehensive view of data resources that includes descriptive metadata and quality assessments. Provenance information will be covered in Chapter 3.
 
 The integration works through quality annotations that link to DCAT datasets and distributions. Each quality measurement is associated with a specific dataset or distribution, creating a clear connection between quality information and the data resource it describes. This enables data consumers to evaluate quality alongside other metadata when making decisions about data usage.
 
 PROV provenance information enhances quality assessments by providing context for quality measurements. When a dataset is derived from high-quality source data, consumers may have greater confidence in its quality. Conversely, datasets derived from low-quality sources may require additional scrutiny. The combination of provenance and quality information creates a complete picture of data trustworthiness.
 
-## 3.2 DQV in Simple Data Catalog
+## 2.2 DQV in Simple Data Catalog
 
 Simple Data Catalog implements a practical subset of DQV that focuses on the most commonly needed quality assessment capabilities. The implementation provides a straightforward interface for defining metrics, capturing measurements, and organizing quality information while maintaining compatibility with the DQV standard.
 
@@ -101,9 +101,9 @@ Quality measurements are organized to support both detailed analysis and summary
 
 The reporting structure also supports quality certificates and compliance attestations. These formal quality statements can be documented alongside metric measurements, providing both quantitative assessments and qualitative evaluations. This combination supports comprehensive quality communication that addresses both technical quality requirements and business quality expectations.
 
-## 3.3 Practical Examples
+## 2.3 Practical Examples
 
-### 3.3.1 Basic Quality Measurements
+### 2.3.1 Basic Quality Measurements
 
 The simplest quality assessment scenario involves measuring a single metric for a dataset. This example demonstrates the fundamental DQV concepts in action, showing how to document basic quality information that helps users evaluate dataset fitness for purpose.
 
@@ -147,7 +147,7 @@ datasets:
 
 This example shows a basic availability measurement for the temperature readings dataset. The metric defines what is being measured (availability), and the quality measurement captures the actual observation (true, indicating the dataset is accessible). The measurement includes a timestamp, enabling quality tracking over time.
 
-### 3.3.2 Multiple Quality Metrics
+### 2.3.2 Multiple Quality Metrics
 
 Real-world quality assessments typically involve multiple metrics across different quality dimensions. This example demonstrates how to capture comprehensive quality information that provides a complete picture of dataset quality.
 
@@ -210,7 +210,7 @@ datasets:
 
 This example shows comprehensive quality assessment for an air quality dataset, measuring three different quality dimensions. The completeness ratio of 0.95 indicates that 95% of expected data values are present, the accuracy percentage of 0.87 shows that 87% of values pass accuracy validation, and the timeliness score of 0.92 indicates relatively current data. Together, these measurements provide a complete quality picture that helps users evaluate the dataset for their specific needs.
 
-### 3.3.3 Quality Dimensions and Categories
+### 2.3.3 Quality Dimensions and Categories
 
 Organizing metrics into dimensions and categories helps users understand quality assessments in context. This example demonstrates how to structure quality information using standard quality frameworks.
 
@@ -298,7 +298,7 @@ datasets:
 
 This example demonstrates quality assessment organized across three dimensions: completeness, accuracy, and consistency. Each dimension includes multiple specific metrics that provide detailed quality information. The dimension-level organization helps users understand quality patterns and identify areas that may need attention or improvement.
 
-### 3.3.4 Quality Trend Analysis
+### 2.3.4 Quality Trend Analysis
 
 Quality often changes over time as datasets are updated, processed, or maintained. Tracking quality trends helps users understand data reliability and identify potential quality issues. This example shows how to capture quality measurements over time to support trend analysis.
 
@@ -381,7 +381,7 @@ graph LR
     style A3 fill:#81d4fa
 ```
 
-### 3.3.5 Integration with Provenance
+### 2.3.5 Integration with Provenance
 
 Quality assessments become more meaningful when combined with provenance information. This example shows how quality measurements can be interpreted in the context of data derivation chains, helping users understand how quality evolves through data processing workflows.
 
@@ -445,7 +445,7 @@ graph TD
     style C fill:#a5d6a7
 ```
 
-### 3.3.6 Quality Certificates and Compliance
+### 2.3.6 Quality Certificates and Compliance
 
 Formal quality assessments often include certificates or compliance attestations that provide authoritative statements about data quality. This example shows how to document such formal quality evaluations alongside metric measurements.
 
