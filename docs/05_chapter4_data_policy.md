@@ -1,3 +1,10 @@
+---
+layout: default
+title: "Data Policy (ODRL)"
+nav_order: 4
+sidebar_label: "🛡️ ODRL"
+---
+
 # Chapter 4: Data Policy (ODRL)
 
 ## 4.1 Theory and Concepts
@@ -134,18 +141,18 @@ The foundation of any policy system is the ability to grant permissions that ena
 A basic open data policy might specify permissions for common activities such as reading, analyzing, and redistributing the data. The policy should clearly identify the target datasets and the parties to whom the permissions apply. This creates a transparent environment where users understand exactly what they can do with the data without seeking additional permissions.
 
 ```yaml
-# Basic open data policy
+# Basic open data policy - LinkML compliant
 policies:
   - uid: "https://climate.org/policies/open-data"
     title: "Open Climate Data License"
     description: "Permits unrestricted use for any purpose"
     permission:
       - action: "use"
-        description: "Permission to use the data for any purpose"
+        description: "Permission to use data for any purpose"
       - action: "reproduce"
-        description: "Permission to make copies of the data"
+        description: "Permission to make copies of data"
       - action: "distribute"
-        description: "Permission to share the data with others"
+        description: "Permission to share data with others"
 ```
 
 This basic policy establishes a foundation for open data sharing while maintaining proper attribution and licensing. The action terms follow ODRL standard vocabulary, ensuring interoperability with other systems that understand ODRL policies. The policy can be attached to climate datasets through the `hasPolicy` property, automatically applying these usage terms to all specified data assets.

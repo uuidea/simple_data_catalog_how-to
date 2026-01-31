@@ -1,3 +1,10 @@
+---
+layout: default
+title: "Data Quality (DQV)"
+nav_order: 2
+sidebar_label: "✅ DQV"
+---
+
 # Chapter 2: Data Quality (DQV)
 
 
@@ -69,7 +76,7 @@ The simple_data_catalog_model provides three main classes for quality informatio
 ```yaml
 # Example metric definition
 metrics:
-  - id: completeness-ratio
+  - identifier: "completeness-ratio"
     definition: "Ratio of non-null values to total expected values"
     prefLabel: "Completeness Ratio"
     expectedDataType: "xsd:double"
@@ -87,7 +94,7 @@ The framework supports both simple metrics that capture single values and comple
 ```yaml
 # Complex metric example
 metrics:
-  - id: overall-quality-index
+  - identifier: "overall-quality-index"
     definition: "Weighted combination of completeness, accuracy, and availability metrics"
     prefLabel: "Overall Quality Index"
     expectedDataType: "xsd:double"
@@ -108,41 +115,41 @@ The reporting structure also supports quality certificates and compliance attest
 The simplest quality assessment scenario involves measuring a single metric for a dataset. This example demonstrates the fundamental DQV concepts in action, showing how to document basic quality information that helps users evaluate dataset fitness for purpose.
 
 ```yaml
-# Basic quality measurement example
+# Basic quality measurement example - LinkML compliant
+datasets:
+  - identifier: "temperature-readings"
+    title: "Daily Temperature Readings"
+    description: "Temperature measurements collected from weather station"
+    publisher:
+      name: "Weather Service"
+    issued: "2024-01-15"
+    modified: "2024-01-20"
+    distribution:
+      - identifier: "csv-data"
+        title: "CSV format"
+        description: "Temperature data in CSV format"
+        accessURL: "https://data.gov.climate/temperature.csv"
+        format: "text/csv"
+
 metrics:
-  - id: availability-check
+  - identifier: "availability-check"
     definition: "Binary check if dataset is accessible via its distributions"
     prefLabel: "Availability Check"
     expectedDataType: "xsd:boolean"
     inDimension: "availability"
 
 qualityMeasurements:
-  - id: availability-measurement-2024-01-15
-    computedOn: temperature-readings
-    isMeasurementOf: availability-check
+  - identifier: "availability-measurement-2024-01-15"
+    computedOn: "temperature-readings"
+    isMeasurementOf: "availability-check"
     value: true
     generatedAtTime: "2024-01-15T10:30:00Z"
 
-datasets:
-  - id: temperature-readings
-    title: "Daily Temperature Readings"
-    description: "Temperature measurements collected from weather station"
-    keywords:
-      - temperature
-      - climate
-      - weather
-    publisher:
-      name: "Weather Service"
-      email: "data@weather.gov"
-    issued: "2024-01-15"
-    modified: "2024-01-20"
-    distributions:
-      - id: csv-data
-        title: "CSV format"
-        description: "Temperature data in CSV format"
-        downloadURL: "https://data.gov.climate/temperature.csv"
-        mediaType: "text/csv"
-        byteSize: "15000000"
+dataCatalog:
+  title: "Environmental Data Catalog"
+  description: "Catalog of environmental monitoring datasets"
+  publisher:
+    name: "Weather Data Service"
 ```
 
 This example shows a basic availability measurement for the temperature readings dataset. The metric defines what is being measured (availability), and the quality measurement captures the actual observation (true, indicating the dataset is accessible). The measurement includes a timestamp, enabling quality tracking over time.
@@ -152,60 +159,78 @@ This example shows a basic availability measurement for the temperature readings
 Real-world quality assessments typically involve multiple metrics across different quality dimensions. This example demonstrates how to capture comprehensive quality information that provides a complete picture of dataset quality.
 
 ```yaml
-# Multiple quality metrics example
+# Multiple quality metrics example - LinkML compliant
+concepts:
+  - identifier: "air-quality"
+    prefLabel: "Air Quality"
+    definition: "The degree to which air is suitable for breathing and other uses"
+  - identifier: "pollution"
+    prefLabel: "Pollution"
+    definition: "The introduction of contaminants into natural environment"
+  - identifier: "urban"
+    prefLabel: "Urban"
+    definition: "Relating to or characteristic of a city or town"
+
+datasets:
+  - identifier: "air-quality-data"
+    title: "Urban Air Quality Measurements"
+    description: "Air quality index measurements from urban monitoring stations"
+    theme:
+      - "air-quality"
+      - "pollution"
+      - "urban"
+    publisher:
+      name: "Environmental Protection Agency"
+    contactPoint:
+      hasEmail: "data@epa.gov"
+    issued: "2024-01-15"
+    modified: "2024-01-20"
+    wasDerivedFrom:
+      - "raw-sensor-readings"
+
 metrics:
-  - id: completeness-ratio
+  - identifier: "completeness-ratio"
     definition: "Ratio of non-null values to total expected values"
     prefLabel: "Completeness Ratio"
     expectedDataType: "xsd:double"
     inDimension: "completeness"
 
-  - id: accuracy-percentage
+  - identifier: "accuracy-percentage"
     definition: "Percentage of values that pass accuracy validation"
     prefLabel: "Accuracy Percentage"
     expectedDataType: "xsd:double"
     inDimension: "accuracy"
 
-  - id: timeliness-score
+  - identifier: "timeliness-score"
     definition: "Score based on data recency relative to expected update frequency"
     prefLabel: "Timeliness Score"
     expectedDataType: "xsd:double"
     inDimension: "timeliness"
 
 qualityMeasurements:
-  - id: completeness-measurement-2024-01-15
-    computedOn: air-quality-data
-    isMeasurementOf: completeness-ratio
+  - identifier: "completeness-measurement-2024-01-15"
+    computedOn: "air-quality-data"
+    isMeasurementOf: "completeness-ratio"
     value: 0.95
     generatedAtTime: "2024-01-15T10:30:00Z"
 
-  - id: accuracy-measurement-2024-01-15
-    computedOn: air-quality-data
-    isMeasurementOf: accuracy-percentage
+  - identifier: "accuracy-measurement-2024-01-15"
+    computedOn: "air-quality-data"
+    isMeasurementOf: "accuracy-percentage"
     value: 0.87
     generatedAtTime: "2024-01-15T10:30:00Z"
 
-  - id: timeliness-measurement-2024-01-15
-    computedOn: air-quality-data
-    isMeasurementOf: timeliness-score
+  - identifier: "timeliness-measurement-2024-01-15"
+    computedOn: "air-quality-data"
+    isMeasurementOf: "timeliness-score"
     value: 0.92
     generatedAtTime: "2024-01-15T10:30:00Z"
 
-datasets:
-  - id: air-quality-data
-    title: "Urban Air Quality Measurements"
-    description: "Air quality index measurements from urban monitoring stations"
-    keywords:
-      - air-quality
-      - pollution
-      - urban
-    publisher:
-      name: "Environmental Protection Agency"
-      email: "data@epa.gov"
-    issued: "2024-01-15"
-    modified: "2024-01-20"
-    wasDerivedFrom:
-      - raw-sensor-readings
+dataCatalog:
+  title: "Environmental Data Catalog"
+  description: "Catalog of environmental monitoring datasets"
+  publisher:
+    name: "Environmental Protection Agency"
 ```
 
 This example shows comprehensive quality assessment for an air quality dataset, measuring three different quality dimensions. The completeness ratio of 0.95 indicates that 95% of expected data values are present, the accuracy percentage of 0.87 shows that 87% of values pass accuracy validation, and the timeliness score of 0.92 indicates relatively current data. Together, these measurements provide a complete quality picture that helps users evaluate the dataset for their specific needs.
@@ -216,73 +241,8 @@ Organizing metrics into dimensions and categories helps users understand quality
 
 ```yaml
 # Quality dimensions and categories example
-metrics:
-  # Completeness dimension
-  - id: record-completeness
-    definition: "Percentage of complete records in the dataset"
-    prefLabel: "Record Completeness"
-    expectedDataType: "xsd:double"
-    inDimension: "completeness"
-
-  - id: field-completeness
-    definition: "Percentage of non-null values across all fields"
-    prefLabel: "Field Completeness"
-    expectedDataType: "xsd:double"
-    inDimension: "completeness"
-
-  # Accuracy dimension
-  - id: format-accuracy
-    definition: "Percentage of values in correct format"
-    prefLabel: "Format Accuracy"
-    expectedDataType: "xsd:double"
-    inDimension: "accuracy"
-
-  - id: value-accuracy
-    definition: "Percentage of values within expected ranges"
-    prefLabel: "Value Accuracy"
-    expectedDataType: "xsd:double"
-    inDimension: "accuracy"
-
-  # Consistency dimension
-  - id: internal-consistency
-    definition: "Percentage of records without internal contradictions"
-    prefLabel: "Internal Consistency"
-    expectedDataType: "xsd:double"
-    inDimension: "consistency"
-
-qualityMeasurements:
-  - id: record-completeness-measurement
-    computedOn: population-census
-    isMeasurementOf: record-completeness
-    value: 0.98
-    generatedAtTime: "2024-01-15T10:30:00Z"
-
-  - id: field-completeness-measurement
-    computedOn: population-census
-    isMeasurementOf: field-completeness
-    value: 0.94
-    generatedAtTime: "2024-01-15T10:30:00Z"
-
-  - id: format-accuracy-measurement
-    computedOn: population-census
-    isMeasurementOf: format-accuracy
-    value: 0.99
-    generatedAtTime: "2024-01-15T10:30:00Z"
-
-  - id: value-accuracy-measurement
-    computedOn: population-census
-    isMeasurementOf: value-accuracy
-    value: 0.96
-    generatedAtTime: "2024-01-15T10:30:00Z"
-
-  - id: internal-consistency-measurement
-    computedOn: population-census
-    isMeasurementOf: internal-consistency
-    value: 0.97
-    generatedAtTime: "2024-01-15T10:30:00Z"
-
 datasets:
-  - id: population-census
+  - identifier: "population-census"
     title: "Annual Population Census"
     description: "Demographic data collected through annual census surveys"
     keywords:
@@ -291,9 +251,79 @@ datasets:
       - census
     publisher:
       name: "National Statistics Office"
-      email: "census@stats.gov"
     issued: "2024-01-15"
     modified: "2024-01-20"
+
+metrics:
+  # Completeness dimension
+  - identifier: "record-completeness"
+    definition: "Percentage of complete records in the dataset"
+    prefLabel: "Record Completeness"
+    expectedDataType: "xsd:double"
+    inDimension: "completeness"
+
+  - identifier: "field-completeness"
+    definition: "Percentage of non-null values across all fields"
+    prefLabel: "Field Completeness"
+    expectedDataType: "xsd:double"
+    inDimension: "completeness"
+
+  # Accuracy dimension
+  - identifier: "format-accuracy"
+    definition: "Percentage of values in correct format"
+    prefLabel: "Format Accuracy"
+    expectedDataType: "xsd:double"
+    inDimension: "accuracy"
+
+  - identifier: "value-accuracy"
+    definition: "Percentage of values within expected ranges"
+    prefLabel: "Value Accuracy"
+    expectedDataType: "xsd:double"
+    inDimension: "accuracy"
+
+  # Consistency dimension
+  - identifier: "internal-consistency"
+    definition: "Percentage of records without internal contradictions"
+    prefLabel: "Internal Consistency"
+    expectedDataType: "xsd:double"
+    inDimension: "consistency"
+
+qualityMeasurements:
+  - identifier: "record-completeness-measurement"
+    computedOn: "population-census"
+    isMeasurementOf: "record-completeness"
+    value: 0.98
+    generatedAtTime: "2024-01-15T10:30:00Z"
+
+  - identifier: "field-completeness-measurement"
+    computedOn: "population-census"
+    isMeasurementOf: "field-completeness"
+    value: 0.94
+    generatedAtTime: "2024-01-15T10:30:00Z"
+
+  - identifier: "format-accuracy-measurement"
+    computedOn: "population-census"
+    isMeasurementOf: "format-accuracy"
+    value: 0.99
+    generatedAtTime: "2024-01-15T10:30:00Z"
+
+  - identifier: "value-accuracy-measurement"
+    computedOn: "population-census"
+    isMeasurementOf: "value-accuracy"
+    value: 0.96
+    generatedAtTime: "2024-01-15T10:30:00Z"
+
+  - identifier: "internal-consistency-measurement"
+    computedOn: "population-census"
+    isMeasurementOf: "internal-consistency"
+    value: 0.97
+    generatedAtTime: "2024-01-15T10:30:00Z"
+
+dataCatalog:
+  title: "National Data Catalog"
+  description: "Catalog of national statistical datasets"
+  publisher:
+    name: "National Statistics Office"
 ```
 
 This example demonstrates quality assessment organized across three dimensions: completeness, accuracy, and consistency. Each dimension includes multiple specific metrics that provide detailed quality information. The dimension-level organization helps users understand quality patterns and identify areas that may need attention or improvement.
@@ -304,48 +334,8 @@ Quality often changes over time as datasets are updated, processed, or maintaine
 
 ```yaml
 # Quality trend analysis example
-qualityMeasurements:
-  # January measurements
-  - id: completeness-jan-2024
-    computedOn: climate-data
-    isMeasurementOf: completeness-ratio
-    value: 0.92
-    generatedAtTime: "2024-01-31T23:59:59Z"
-
-  - id: accuracy-jan-2024
-    computedOn: climate-data
-    isMeasurementOf: accuracy-percentage
-    value: 0.89
-    generatedAtTime: "2024-01-31T23:59:59Z"
-
-  # February measurements
-  - id: completeness-feb-2024
-    computedOn: climate-data
-    isMeasurementOf: completeness-ratio
-    value: 0.94
-    generatedAtTime: "2024-02-29T23:59:59Z"
-
-  - id: accuracy-feb-2024
-    computedOn: climate-data
-    isMeasurementOf: accuracy-percentage
-    value: 0.91
-    generatedAtTime: "2024-02-29T23:59:59Z"
-
-  # March measurements
-  - id: completeness-mar-2024
-    computedOn: climate-data
-    isMeasurementOf: completeness-ratio
-    value: 0.96
-    generatedAtTime: "2024-03-31T23:59:59Z"
-
-  - id: accuracy-mar-2024
-    computedOn: climate-data
-    isMeasurementOf: accuracy-percentage
-    value: 0.93
-    generatedAtTime: "2024-03-31T23:59:59Z"
-
 datasets:
-  - id: climate-data
+  - identifier: "climate-data"
     title: "Monthly Climate Data"
     description: "Climate measurements updated monthly"
     keywords:
@@ -354,9 +344,67 @@ datasets:
       - environmental
     publisher:
       name: "Climate Data Center"
-      email: "data@climate.gov"
     issued: "2024-01-01"
     modified: "2024-03-31"
+
+metrics:
+  - identifier: "completeness-ratio"
+    definition: "Ratio of non-null values to total expected values"
+    prefLabel: "Completeness Ratio"
+    expectedDataType: "xsd:double"
+    inDimension: "completeness"
+
+  - identifier: "accuracy-percentage"
+    definition: "Percentage of values that pass accuracy validation"
+    prefLabel: "Accuracy Percentage"
+    expectedDataType: "xsd:double"
+    inDimension: "accuracy"
+
+qualityMeasurements:
+  # January measurements
+  - identifier: "completeness-jan-2024"
+    computedOn: "climate-data"
+    isMeasurementOf: "completeness-ratio"
+    value: 0.92
+    generatedAtTime: "2024-01-31T23:59:59Z"
+
+  - identifier: "accuracy-jan-2024"
+    computedOn: "climate-data"
+    isMeasurementOf: "accuracy-percentage"
+    value: 0.89
+    generatedAtTime: "2024-01-31T23:59:59Z"
+
+  # February measurements
+  - identifier: "completeness-feb-2024"
+    computedOn: "climate-data"
+    isMeasurementOf: "completeness-ratio"
+    value: 0.94
+    generatedAtTime: "2024-02-29T23:59:59Z"
+
+  - identifier: "accuracy-feb-2024"
+    computedOn: "climate-data"
+    isMeasurementOf: "accuracy-percentage"
+    value: 0.91
+    generatedAtTime: "2024-02-29T23:59:59Z"
+
+  # March measurements
+  - identifier: "completeness-mar-2024"
+    computedOn: "climate-data"
+    isMeasurementOf: "completeness-ratio"
+    value: 0.96
+    generatedAtTime: "2024-03-31T23:59:59Z"
+
+  - identifier: "accuracy-mar-2024"
+    computedOn: "climate-data"
+    isMeasurementOf: "accuracy-percentage"
+    value: 0.93
+    generatedAtTime: "2024-03-31T23:59:59Z"
+
+dataCatalog:
+  title: "Climate Data Catalog"
+  description: "Catalog of climate and environmental datasets"
+  publisher:
+    name: "Climate Data Center"
 ```
 
 This example shows quality measurements captured over three months, revealing improvement trends in both completeness (from 0.92 to 0.96) and accuracy (from 0.89 to 0.93). Such trend analysis helps users understand data reliability and can inform decisions about when to use the data or when additional quality validation may be needed.
@@ -387,50 +435,60 @@ Quality assessments become more meaningful when combined with provenance informa
 
 ```yaml
 # Quality with provenance integration example
-qualityMeasurements:
-  - id: raw-data-quality
-    computedOn: raw-sensor-data
-    isMeasurementOf: completeness-ratio
-    value: 0.85
-    generatedAtTime: "2024-01-15T10:30:00Z"
-
-  - id: cleaned-data-quality
-    computedOn: cleaned-sensor-data
-    isMeasurementOf: completeness-ratio
-    value: 0.92
-    generatedAtTime: "2024-01-15T11:45:00Z"
-
-  - id: aggregated-data-quality
-    computedOn: aggregated-climate-data
-    isMeasurementOf: completeness-ratio
-    value: 0.96
-    generatedAtTime: "2024-01-15T14:20:00Z"
-
 datasets:
-  - id: raw-sensor-data
+  - identifier: "raw-sensor-data"
     title: "Raw Weather Station Sensor Data"
     description: "Direct readings from weather station sensors"
     publisher:
       name: "Weather Station Network"
-      email: "data@stations.weather.gov"
 
-  - id: cleaned-sensor-data
+  - identifier: "cleaned-sensor-data"
     title: "Cleaned Weather Station Data"
     description: "Sensor data after automated cleaning and validation"
     publisher:
       name: "Weather Data Processing Center"
-      email: "processing@weather.gov"
     wasDerivedFrom:
-      - raw-sensor-data
+      - "raw-sensor-data"
 
-  - id: aggregated-climate-data
+  - identifier: "aggregated-climate-data"
     title: "Monthly Aggregated Climate Data"
     description: "Climate data aggregated to monthly resolution"
     publisher:
       name: "Climate Data Center"
-      email: "data@climate.gov"
     wasDerivedFrom:
-      - cleaned-sensor-data
+      - "cleaned-sensor-data"
+
+metrics:
+  - identifier: "completeness-ratio"
+    definition: "Ratio of non-null values to total expected values"
+    prefLabel: "Completeness Ratio"
+    expectedDataType: "xsd:double"
+    inDimension: "completeness"
+
+qualityMeasurements:
+  - identifier: "raw-data-quality"
+    computedOn: "raw-sensor-data"
+    isMeasurementOf: "completeness-ratio"
+    value: 0.85
+    generatedAtTime: "2024-01-15T10:30:00Z"
+
+  - identifier: "cleaned-data-quality"
+    computedOn: "cleaned-sensor-data"
+    isMeasurementOf: "completeness-ratio"
+    value: 0.92
+    generatedAtTime: "2024-01-15T11:45:00Z"
+
+  - identifier: "aggregated-data-quality"
+    computedOn: "aggregated-climate-data"
+    isMeasurementOf: "completeness-ratio"
+    value: 0.96
+    generatedAtTime: "2024-01-15T14:20:00Z"
+
+dataCatalog:
+  title: "Weather Data Catalog"
+  description: "Catalog of weather and climate datasets"
+  publisher:
+    name: "Weather Data Processing Center"
 ```
 
 This example demonstrates how quality improves through data processing steps. The raw sensor data has 85% completeness, which improves to 92% after cleaning and validation, and reaches 96% after aggregation. This quality progression, documented alongside the provenance chain, helps users understand how data processing affects quality and builds trust in the final dataset.
@@ -451,21 +509,8 @@ Formal quality assessments often include certificates or compliance attestations
 
 ```yaml
 # Quality certificate example
-qualityMeasurements:
-  - id: iso-compliance-measurement
-    computedOn: certified-dataset
-    isMeasurementOf: iso-25012-compliance
-    value: true
-    generatedAtTime: "2024-01-15T10:30:00Z"
-
-  - id: overall-quality-score
-    computedOn: certified-dataset
-    isMeasurementOf: quality-index
-    value: 0.94
-    generatedAtTime: "2024-01-15T10:30:00Z"
-
 datasets:
-  - id: certified-dataset
+  - identifier: "certified-dataset"
     title: "ISO 25012 Certified Dataset"
     description: "Dataset certified as compliant with ISO 25012 data quality standards"
     keywords:
@@ -474,12 +519,39 @@ datasets:
       - high-quality
     publisher:
       name: "Quality Certified Data Provider"
-      email: "data@quality-certified.org"
     license: "https://creativecommons.org/licenses/by/4.0/"
-    # Quality certificate information in description
-    conformsTo:
-      - "https://www.iso.org/standard/57052.html"  # ISO 25012
-    hasQualityAnnotation: true
+
+metrics:
+  - identifier: "iso-25012-compliance"
+    definition: "Compliance with ISO 25012 data quality standards"
+    prefLabel: "ISO 25012 Compliance"
+    expectedDataType: "xsd:boolean"
+    inDimension: "compliance"
+
+  - identifier: "quality-index"
+    definition: "Overall quality index combining multiple quality dimensions"
+    prefLabel: "Quality Index"
+    expectedDataType: "xsd:double"
+    inDimension: "overall-quality"
+
+qualityMeasurements:
+  - identifier: "iso-compliance-measurement"
+    computedOn: "certified-dataset"
+    isMeasurementOf: "iso-25012-compliance"
+    value: true
+    generatedAtTime: "2024-01-15T10:30:00Z"
+
+  - identifier: "overall-quality-score"
+    computedOn: "certified-dataset"
+    isMeasurementOf: "quality-index"
+    value: 0.94
+    generatedAtTime: "2024-01-15T10:30:00Z"
+
+dataCatalog:
+  title: "Quality Certified Data Catalog"
+  description: "Catalog of high-quality certified datasets"
+  publisher:
+    name: "Quality Certified Data Provider"
 ```
 
 This example shows a dataset with formal quality certification. The ISO 25012 compliance measurement indicates that the dataset meets international data quality standards, while the quality index provides a quantitative assessment. Such formal quality information helps users trust the data for critical applications and supports regulatory compliance requirements.

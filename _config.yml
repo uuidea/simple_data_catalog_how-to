@@ -1,0 +1,51 @@
+title: "Data Management for Data Publishers"
+description: "How-to guide for simple_data_catalog framework"
+baseurl: "/simple_data_catalog_how-to"
+url: "https://uuidea.github.io"
+
+# Build settings
+markdown: kramdown
+highlighter: rouge
+permalink: pretty
+
+# Navigation structure
+navigation:
+  main:
+    - title: "📖 Introduction"
+      url: /
+      id: introduction
+    - title: "📊 DCAT"
+      url: /docs/02_chapter1_dcat.html
+      id: dcat
+    - title: "✅ DQV" 
+      url: /docs/03_chapter2_data_quality.html
+      id: dqv
+    - title: "🔗 PROV"
+      url: /docs/04_chapter3_prov.html
+      id: prov
+    - title: "🛡️ ODRL"
+      url: /docs/05_chapter4_data_policy.html
+      id: odrl
+
+# Default values for all pages
+defaults:
+  - scope:
+      path: ""
+    values:
+      layout: default
+
+# Plugins (for GitHub Pages)
+plugins:
+  - jekyll-feed
+  - jekyll-sitemap
+  - jekyll-seo-tag
+
+# Exclude from processing
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - node_modules
+  - vendor/bundle/
+  - vendor/cache/
+  - vendor/gems/
+  - vendor/ruby/

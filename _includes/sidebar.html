@@ -1,0 +1,63 @@
+<aside class="sidebar" id="sidebar">
+  <div class="sidebar-content">
+    <header class="sidebar-header">
+      <h2 class="sidebar-title">
+        <a href="{{ "/" | relative_url }}" class="logo-link">
+          📖 Documentation Guide
+        </a>
+      </h2>
+    </header>
+    
+    <nav class="sidebar-nav">
+      <ul class="nav-list">
+        {% for item in site.data.navigation.main %}
+          {% if item.children %}
+            <li class="nav-item nav-parent">
+              <button class="nav-toggle" aria-expanded="false">
+                {{ item.title }}
+                <span class="toggle-icon">▼</span>
+              </button>
+              <ul class="nav-children">
+                {% for child in item.children %}
+                  {% if child.children %}
+                    <li class="nav-item nav-parent">
+                      <button class="nav-toggle">
+                        {{ child.title }}
+                        <span class="toggle-icon">▼</span>
+                      </button>
+                      <ul class="nav-children">
+                        {% for grandchild in child.children %}
+                          <li class="nav-item">
+                            <a href="{{ grandchild.url }}" 
+                               {% if grandchild.external %}target="_blank" rel="noopener"{% endif %}
+                               class="nav-link">
+                              {{ grandchild.title }}
+                            </a>
+                          </li>
+                        {% endfor %}
+                      </ul>
+                    </li>
+                  {% else %}
+                    <li class="nav-item">
+                      <a href="{{ child.url }}" 
+                         {% if child.external %}target="_blank" rel="noopener"{% endif %}
+                         class="nav-link">
+                        {{ child.title }}
+                      </a>
+                    </li>
+                  {% endif %}
+                {% endfor %}
+              </ul>
+            </li>
+          {% else %}
+            <li class="nav-item">
+              <a href="{{ item.url }}" class="nav-link {% if page.url == item.url %}active{% endif %}">
+                {{ item.title }}
+              </a>
+            </li>
+          {% endif %}
+        {% endfor %}
+      </ul>
+    </nav>
+  </div>
+</aside>

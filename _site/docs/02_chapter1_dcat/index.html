@@ -1,0 +1,1151 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <!-- SEO tags -->
+    <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Data Cataloging with DCAT | Data Management for Data Publishers</title>
+<meta name="generator" content="Jekyll v4.3.4" />
+<meta property="og:title" content="Data Cataloging with DCAT" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="How-to guide for simple_data_catalog framework" />
+<meta property="og:description" content="How-to guide for simple_data_catalog framework" />
+<link rel="canonical" href="https://uuidea.github.io/simple_data_catalog_how-to/docs/02_chapter1_dcat/" />
+<meta property="og:url" content="https://uuidea.github.io/simple_data_catalog_how-to/docs/02_chapter1_dcat/" />
+<meta property="og:site_name" content="Data Management for Data Publishers" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Data Cataloging with DCAT" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","description":"How-to guide for simple_data_catalog framework","headline":"Data Cataloging with DCAT","url":"https://uuidea.github.io/simple_data_catalog_how-to/docs/02_chapter1_dcat/"}</script>
+<!-- End Jekyll SEO tag -->
+
+    
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="/simple_data_catalog_how-to/assets/css/style.css?v=">
+    
+    <!-- Custom fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  </head>
+  <body class="sidebar-visible">
+    <div class="site-container">
+      <!-- Sidebar -->
+      <aside class="sidebar" id="sidebar">
+  <div class="sidebar-content">
+    <header class="sidebar-header">
+      <h2 class="sidebar-title">
+        <a href="/simple_data_catalog_how-to/" class="logo-link">
+          📖 Documentation Guide
+        </a>
+      </h2>
+    </header>
+    
+    <nav class="sidebar-nav">
+      <ul class="nav-list">
+        
+          
+            <li class="nav-item">
+              <a href="/" class="nav-link ">
+                📖 Introduction
+              </a>
+            </li>
+          
+        
+          
+            <li class="nav-item">
+              <a href="/docs/02_chapter1_dcat.html" class="nav-link ">
+                📊 DCAT
+              </a>
+            </li>
+          
+        
+          
+            <li class="nav-item">
+              <a href="/docs/03_chapter2_data_quality.html" class="nav-link ">
+                ✅ DQV
+              </a>
+            </li>
+          
+        
+          
+            <li class="nav-item">
+              <a href="/docs/04_chapter3_prov.html" class="nav-link ">
+                🔗 PROV
+              </a>
+            </li>
+          
+        
+          
+            <li class="nav-item">
+              <a href="/docs/05_chapter4_data_policy.html" class="nav-link ">
+                🛡️ ODRL
+              </a>
+            </li>
+          
+        
+          
+            <li class="nav-item nav-parent">
+              <button class="nav-toggle" aria-expanded="false">
+                📚 Resources
+                <span class="toggle-icon">▼</span>
+              </button>
+              <ul class="nav-children">
+                
+                  
+                    <li class="nav-item">
+                      <a href="https://github.com/uuidea/simple_data_catalog" 
+                         target="_blank" rel="noopener"
+                         class="nav-link">
+                        simple_data_catalog
+                      </a>
+                    </li>
+                  
+                
+                  
+                    <li class="nav-item nav-parent">
+                      <button class="nav-toggle">
+                        W3C Standards
+                        <span class="toggle-icon">▼</span>
+                      </button>
+                      <ul class="nav-children">
+                        
+                          <li class="nav-item">
+                            <a href="https://www.w3.org/TR/vocab-dcat-3/" 
+                               target="_blank" rel="noopener"
+                               class="nav-link">
+                              DCAT 3
+                            </a>
+                          </li>
+                        
+                          <li class="nav-item">
+                            <a href="https://www.w3.org/TR/prov-o/" 
+                               target="_blank" rel="noopener"
+                               class="nav-link">
+                              PROV-O
+                            </a>
+                          </li>
+                        
+                          <li class="nav-item">
+                            <a href="https://www.w3.org/TR/vocab-dqv/" 
+                               target="_blank" rel="noopener"
+                               class="nav-link">
+                              DQV
+                            </a>
+                          </li>
+                        
+                          <li class="nav-item">
+                            <a href="https://www.w3.org/TR/odrl-model/" 
+                               target="_blank" rel="noopener"
+                               class="nav-link">
+                              ODRL
+                            </a>
+                          </li>
+                        
+                      </ul>
+                    </li>
+                  
+                
+              </ul>
+            </li>
+          
+        
+      </ul>
+    </nav>
+  </div>
+</aside>
+      
+      <!-- Main Content -->
+      <div class="main-content">
+        <header class="site-header">
+          <button class="sidebar-toggle" aria-label="Toggle navigation">
+            <span></span>
+            <span></span>
+            <span></span>
+          </button>
+          <div class="header-content">
+            
+              <h1>Data Cataloging with DCAT</h1>
+            
+          </div>
+        </header>
+        
+        <main class="content-area">
+          <div class="content-wrapper">
+            <h1 id="chapter-1-data-cataloging-with-dcat">Chapter 1: Data Cataloging with DCAT</h1>
+
+<h2 id="11-introduction-to-data-cataloging">1.1 Introduction to Data Cataloging</h2>
+
+<p>Data cataloging is the systematic practice of describing your data resources so that others can discover, understand, and use them effectively. Think of it as creating a comprehensive library catalog for your datasets - without proper descriptions, even the most valuable data remains hidden and unusable to potential users. In today’s data-driven organizations, data catalogs have evolved from simple inventories into strategic tools that enable effective data management, support governance frameworks, and drive business value through better data utilization.</p>
+
+<h3 id="the-role-of-data-catalogs-in-modern-organizations">The Role of Data Catalogs in Modern Organizations</h3>
+
+<p>In contemporary data ecosystems, organizations generate and consume vast amounts of data across various systems, departments, and projects. This proliferation creates significant challenges in understanding what data exists, where it resides, who owns it, and how it can be used. Data catalogs address these challenges by serving as centralized metadata repositories that provide a single source of truth about an organization’s data assets.</p>
+
+<p>Data catalogs play a crucial role in data management by establishing structured metadata frameworks that enable consistent documentation, classification, and organization of data resources. They help organizations move beyond siloed data environments by creating shared understanding and visibility across the entire data landscape. This visibility is essential for effective data governance, as it allows organizations to track data lineage, enforce quality standards, manage access controls, and demonstrate compliance with regulatory requirements such as GDPR, HIPAA, or industry-specific data protection regulations.</p>
+
+<p>From a governance perspective, data catalogs provide the foundation for implementing robust data policies and procedures. They enable organizations to assign clear ownership and stewardship responsibilities, establish data quality metrics, and create audit trails that demonstrate responsible data management practices. This governance infrastructure becomes particularly valuable as organizations scale their data operations and need to maintain consistency, reliability, and trustworthiness across increasingly complex data environments.</p>
+
+<h3 id="data-catalogs-and-the-fair-principles">Data Catalogs and the FAIR Principles</h3>
+
+<p>The FAIR principles (Findable, Accessible, Interoperable, and Reusable) have become the cornerstone of modern data management practices, providing a framework for maximizing the value of data assets. Data catalogs serve as the primary mechanism for implementing these principles within organizations and for sharing data with external communities.</p>
+
+<p>The <strong>Findable</strong> aspect requires that data be easily discoverable by both humans and machines. Data catalogs achieve this through rich metadata descriptions, standardized identifiers, comprehensive keyword systems, and hierarchical classification schemes. When datasets are properly cataloged with appropriate titles, descriptions, temporal and spatial coverage, and thematic classifications, they become searchable through multiple interfaces and discoverable across federated catalog systems.</p>
+
+<p>For <strong>Accessibility</strong>, data catalogs document not only where data resides but also the conditions and procedures for obtaining it. This includes detailed descriptions of access mechanisms, authentication requirements, usage restrictions, and contact information for data custodians. By making access information transparent and well-documented, catalogs reduce barriers to data use while ensuring appropriate governance controls are maintained.</p>
+
+<p><strong>Interoperability</strong> is achieved through data catalogs by documenting data formats, schemas, standards compliance, and semantic definitions. When catalogs include information about data models, controlled vocabularies, and mapping to standard ontologies, they enable automated systems to understand and process data from diverse sources. This semantic interoperability is essential for data integration, cross-domain analysis, and machine-to-machine data exchange.</p>
+
+<p>The <strong>Reusable</strong> principle depends on clear documentation of data provenance, quality assessments, usage licenses, and attribution requirements. Data catalogs capture this information through detailed provenance records, quality metrics, licensing information, and recommended citation practices. This transparency enables data consumers to evaluate fitness for purpose, understand limitations, and properly acknowledge data creators, thereby fostering responsible data sharing and scientific reproducibility.</p>
+
+<h3 id="why-catalog-your-data">Why Catalog Your Data?</h3>
+
+<p>When you systematically catalog your data resources, you enable comprehensive data management that transforms raw data into valuable organizational assets. Effective cataloging allows users to discover relevant datasets through targeted searches, quickly assess whether data meets their specific requirements, understand exactly how to obtain and properly use the data, verify data quality, provenance, and usage rights to build trust, and properly attribute data creators when using their work in research or applications.</p>
+
+<p>Beyond these immediate benefits, data cataloging creates the foundation for data-driven decision making, collaboration across organizational boundaries, and compliance with emerging data sharing mandates. It establishes the metadata infrastructure necessary for modern data architectures, supports advanced analytics initiatives, and enables organizations to derive maximum value from their data investments.</p>
+
+<h3 id="dcat-the-standard-that-makes-cataloging-work">DCAT: The Standard That Makes Cataloging Work</h3>
+
+<p>The Data Catalog Vocabulary (DCAT) is a W3C standard that provides a common language for describing datasets. By using DCAT, your data catalog becomes:</p>
+
+<ul>
+  <li><strong>Interoperable</strong>: Other systems can understand and process your metadata</li>
+  <li><strong>Searchable</strong>: Your data can be found through federated search across multiple catalogs</li>
+  <li><strong>Future-proof</strong>: Your catalog follows established best practices that won’t become obsolete</li>
+</ul>
+
+<p>DCAT provides the building blocks for cataloging, but this chapter focuses on <strong>how to apply those building blocks effectively</strong> to create useful, discoverable data catalogs.</p>
+
+<h2 id="12-getting-started-your-first-dataset">1.2 Getting Started: Your First Dataset</h2>
+
+<p>Let’s start with the simplest possible dataset description. We’ll catalog a collection of air quality measurements collected from urban monitoring stations.</p>
+
+<h3 id="minimal-viable-dataset">Minimal Viable Dataset</h3>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># dataset.yaml - Individual dataset description</span>
+<span class="pi">-</span> <span class="na">identifier</span><span class="pi">:</span> <span class="s2">"</span><span class="s">air-quality-data"</span>
+  <span class="na">title</span><span class="pi">:</span> <span class="s2">"</span><span class="s">Urban</span><span class="nv"> </span><span class="s">Air</span><span class="nv"> </span><span class="s">Quality</span><span class="nv"> </span><span class="s">Measurements"</span>
+  <span class="na">description</span><span class="pi">:</span> <span class="s2">"</span><span class="s">Air</span><span class="nv"> </span><span class="s">quality</span><span class="nv"> </span><span class="s">index</span><span class="nv"> </span><span class="s">measurements</span><span class="nv"> </span><span class="s">from</span><span class="nv"> </span><span class="s">urban</span><span class="nv"> </span><span class="s">monitoring</span><span class="nv"> </span><span class="s">stations"</span>
+</code></pre></div></div>
+
+<p><strong>What this provides:</strong></p>
+<ul>
+  <li><strong><code class="language-plaintext highlighter-rouge">identifier</code></strong>: A unique identifier that distinguishes this dataset from others</li>
+  <li><strong><code class="language-plaintext highlighter-rouge">title</code></strong>: A human-readable name that appears in search results</li>
+  <li><strong><code class="language-plaintext highlighter-rouge">description</code></strong>: A brief explanation of what the data contains</li>
+</ul>
+
+<p><strong>Why this matters:</strong>
+Even this minimal description makes your dataset discoverable. Users searching for “air quality” or “urban measurements” can now find your data and understand what it contains. This focused approach lets us concentrate on describing individual datasets effectively before we worry about organizing them into catalogs.</p>
+
+<h2 id="13-enriching-your-dataset-description">1.3 Enriching Your Dataset Description</h2>
+
+<p>Now let’s enhance our dataset description to make it more discoverable and useful:</p>
+
+<p>First, let’s define reusable concepts for our themes that we can use across multiple datasets:</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># concepts.yaml - Reusable theme definitions</span>
+<span class="na">concepts</span><span class="pi">:</span>
+  <span class="pi">-</span> <span class="na">identifier</span><span class="pi">:</span> <span class="s2">"</span><span class="s">air-quality"</span>
+    <span class="na">prefLabel</span><span class="pi">:</span> <span class="s2">"</span><span class="s">Air</span><span class="nv"> </span><span class="s">Quality"</span>
+    <span class="na">definition</span><span class="pi">:</span> <span class="s2">"</span><span class="s">The</span><span class="nv"> </span><span class="s">degree</span><span class="nv"> </span><span class="s">to</span><span class="nv"> </span><span class="s">which</span><span class="nv"> </span><span class="s">air</span><span class="nv"> </span><span class="s">is</span><span class="nv"> </span><span class="s">suitable</span><span class="nv"> </span><span class="s">for</span><span class="nv"> </span><span class="s">breathing</span><span class="nv"> </span><span class="s">and</span><span class="nv"> </span><span class="s">other</span><span class="nv"> </span><span class="s">uses"</span>
+  <span class="pi">-</span> <span class="na">identifier</span><span class="pi">:</span> <span class="s2">"</span><span class="s">pollution"</span>
+    <span class="na">prefLabel</span><span class="pi">:</span> <span class="s2">"</span><span class="s">Pollution"</span>
+    <span class="na">definition</span><span class="pi">:</span> <span class="s2">"</span><span class="s">The</span><span class="nv"> </span><span class="s">introduction</span><span class="nv"> </span><span class="s">of</span><span class="nv"> </span><span class="s">contaminants</span><span class="nv"> </span><span class="s">into</span><span class="nv"> </span><span class="s">natural</span><span class="nv"> </span><span class="s">environment"</span>
+  <span class="pi">-</span> <span class="na">identifier</span><span class="pi">:</span> <span class="s2">"</span><span class="s">urban"</span>
+    <span class="na">prefLabel</span><span class="pi">:</span> <span class="s2">"</span><span class="s">Urban"</span>
+    <span class="na">definition</span><span class="pi">:</span> <span class="s2">"</span><span class="s">Relating</span><span class="nv"> </span><span class="s">to</span><span class="nv"> </span><span class="s">or</span><span class="nv"> </span><span class="s">characteristic</span><span class="nv"> </span><span class="s">of</span><span class="nv"> </span><span class="s">a</span><span class="nv"> </span><span class="s">city</span><span class="nv"> </span><span class="s">or</span><span class="nv"> </span><span class="s">town"</span>
+  <span class="pi">-</span> <span class="na">identifier</span><span class="pi">:</span> <span class="s2">"</span><span class="s">environmental-monitoring"</span>
+    <span class="na">prefLabel</span><span class="pi">:</span> <span class="s2">"</span><span class="s">Environmental</span><span class="nv"> </span><span class="s">Monitoring"</span>
+    <span class="na">definition</span><span class="pi">:</span> <span class="s2">"</span><span class="s">The</span><span class="nv"> </span><span class="s">systematic</span><span class="nv"> </span><span class="s">collection</span><span class="nv"> </span><span class="s">of</span><span class="nv"> </span><span class="s">environmental</span><span class="nv"> </span><span class="s">data"</span>
+
+<span class="c1"># dataset.yaml - Enhanced dataset description</span>
+<span class="pi">-</span> <span class="na">identifier</span><span class="pi">:</span> <span class="s2">"</span><span class="s">air-quality-data"</span>
+  <span class="na">title</span><span class="pi">:</span> <span class="s2">"</span><span class="s">Urban</span><span class="nv"> </span><span class="s">Air</span><span class="nv"> </span><span class="s">Quality</span><span class="nv"> </span><span class="s">Measurements"</span>
+  <span class="na">description</span><span class="pi">:</span> <span class="s2">"</span><span class="s">Air</span><span class="nv"> </span><span class="s">quality</span><span class="nv"> </span><span class="s">index</span><span class="nv"> </span><span class="s">measurements</span><span class="nv"> </span><span class="s">from</span><span class="nv"> </span><span class="s">urban</span><span class="nv"> </span><span class="s">monitoring</span><span class="nv"> </span><span class="s">stations</span><span class="nv"> </span><span class="s">collected</span><span class="nv"> </span><span class="s">hourly"</span>
+  <span class="na">theme</span><span class="pi">:</span>
+    <span class="pi">-</span> <span class="s2">"</span><span class="s">air-quality"</span>
+    <span class="pi">-</span> <span class="s2">"</span><span class="s">pollution"</span>
+    <span class="pi">-</span> <span class="s2">"</span><span class="s">urban"</span>
+    <span class="pi">-</span> <span class="s2">"</span><span class="s">environmental-monitoring"</span>
+  <span class="na">publisher</span><span class="pi">:</span>
+    <span class="na">name</span><span class="pi">:</span> <span class="s2">"</span><span class="s">Environmental</span><span class="nv"> </span><span class="s">Protection</span><span class="nv"> </span><span class="s">Agency"</span>
+  <span class="na">temporal</span><span class="pi">:</span>
+    <span class="na">hasBeginning</span><span class="pi">:</span> <span class="s2">"</span><span class="s">2023-01-01"</span>
+    <span class="na">hasEnd</span><span class="pi">:</span> <span class="s2">"</span><span class="s">2023-12-31"</span>
+  <span class="na">contactPoint</span><span class="pi">:</span>
+    <span class="na">hasEmail</span><span class="pi">:</span> <span class="s2">"</span><span class="s">air-quality@epa.gov"</span>
+  <span class="na">license</span><span class="pi">:</span>
+    <span class="na">title</span><span class="pi">:</span> <span class="s2">"</span><span class="s">https://creativecommons.org/licenses/by/4.0/"</span>
+</code></pre></div></div>
+
+<p><strong>New elements and what they enable:</strong></p>
+
+<ul>
+  <li><strong><code class="language-plaintext highlighter-rouge">concepts</code></strong>: Reusable theme definitions that can be used across multiple datasets
+    <ul>
+      <li><strong><code class="language-plaintext highlighter-rouge">identifier</code></strong>: Unique key for referencing concepts</li>
+      <li><strong><code class="language-plaintext highlighter-rouge">prefLabel</code></strong>: Human-readable display name for the concept</li>
+      <li><strong><code class="language-plaintext highlighter-rouge">definition</code></strong>: Clear explanation of what the concept means</li>
+    </ul>
+  </li>
+  <li><strong><code class="language-plaintext highlighter-rouge">theme</code></strong>: References to concept identifiers instead of inline strings
+    <ul>
+      <li><strong>Reusability</strong>: Same concepts can theme multiple datasets</li>
+      <li><strong>Consistency</strong>: All datasets use exact same concept definitions</li>
+    </ul>
+  </li>
+  <li><strong><code class="language-plaintext highlighter-rouge">temporal</code></strong>: Uses LinkML-compliant <code class="language-plaintext highlighter-rouge">hasBeginning</code>/<code class="language-plaintext highlighter-rouge">hasEnd</code> structure</li>
+  <li><strong><code class="language-plaintext highlighter-rouge">contactPoint</code></strong>: Uses LinkML-compliant <code class="language-plaintext highlighter-rouge">Kind</code> class with <code class="language-plaintext highlighter-rouge">hasEmail</code></li>
+  <li><strong><code class="language-plaintext highlighter-rouge">license</code></strong>: Uses LinkML-compliant <code class="language-plaintext highlighter-rouge">LicenseDocument</code> object with <code class="language-plaintext highlighter-rouge">title</code></li>
+</ul>
+
+<p><strong>Why these additions matter:</strong>
+A researcher looking for air quality data from 2023 can now quickly determine that this dataset meets their needs. They know who to contact with questions, understand their usage rights, and the concepts used for themes are properly defined and reusable across the catalog.</p>
+
+<h2 id="14-providing-data-access-adding-distributions">1.4 Providing Data Access: Adding Distributions</h2>
+
+<p>A dataset description is useful, but users need actual access to the data. This is where distributions come in - they represent the different ways users can obtain your dataset.</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># dataset.yaml - Dataset with distributions</span>
+<span class="pi">-</span> <span class="na">identifier</span><span class="pi">:</span> <span class="s2">"</span><span class="s">air-quality-data"</span>
+  <span class="na">title</span><span class="pi">:</span> <span class="s2">"</span><span class="s">Urban</span><span class="nv"> </span><span class="s">Air</span><span class="nv"> </span><span class="s">Quality</span><span class="nv"> </span><span class="s">Measurements"</span>
+  <span class="na">description</span><span class="pi">:</span> <span class="s2">"</span><span class="s">Air</span><span class="nv"> </span><span class="s">quality</span><span class="nv"> </span><span class="s">index</span><span class="nv"> </span><span class="s">measurements</span><span class="nv"> </span><span class="s">from</span><span class="nv"> </span><span class="s">urban</span><span class="nv"> </span><span class="s">monitoring</span><span class="nv"> </span><span class="s">stations</span><span class="nv"> </span><span class="s">collected</span><span class="nv"> </span><span class="s">hourly"</span>
+  <span class="na">theme</span><span class="pi">:</span>
+    <span class="pi">-</span> <span class="s2">"</span><span class="s">air-quality"</span>
+    <span class="pi">-</span> <span class="s2">"</span><span class="s">pollution"</span>
+    <span class="pi">-</span> <span class="s2">"</span><span class="s">urban"</span>
+    <span class="pi">-</span> <span class="s2">"</span><span class="s">environmental-monitoring"</span>
+  <span class="na">publisher</span><span class="pi">:</span>
+    <span class="na">name</span><span class="pi">:</span> <span class="s2">"</span><span class="s">Environmental</span><span class="nv"> </span><span class="s">Protection</span><span class="nv"> </span><span class="s">Agency"</span>
+  <span class="na">temporal</span><span class="pi">:</span>
+    <span class="na">hasBeginning</span><span class="pi">:</span> <span class="s2">"</span><span class="s">2023-01-01"</span>
+    <span class="na">hasEnd</span><span class="pi">:</span> <span class="s2">"</span><span class="s">2023-12-31"</span>
+  <span class="na">contactPoint</span><span class="pi">:</span>
+    <span class="na">hasEmail</span><span class="pi">:</span> <span class="s2">"</span><span class="s">air-quality@epa.gov"</span>
+  <span class="na">license</span><span class="pi">:</span>
+    <span class="na">title</span><span class="pi">:</span> <span class="s2">"</span><span class="s">https://creativecommons.org/licenses/by/4.0/"</span>
+  <span class="na">distribution</span><span class="pi">:</span>
+    <span class="pi">-</span> <span class="na">identifier</span><span class="pi">:</span> <span class="s2">"</span><span class="s">csv-download"</span>
+      <span class="na">title</span><span class="pi">:</span> <span class="s2">"</span><span class="s">CSV</span><span class="nv"> </span><span class="s">Download"</span>
+      <span class="na">description</span><span class="pi">:</span> <span class="s2">"</span><span class="s">Complete</span><span class="nv"> </span><span class="s">dataset</span><span class="nv"> </span><span class="s">in</span><span class="nv"> </span><span class="s">CSV</span><span class="nv"> </span><span class="s">format</span><span class="nv"> </span><span class="s">for</span><span class="nv"> </span><span class="s">analysis"</span>
+      <span class="na">downloadURL</span><span class="pi">:</span> <span class="s2">"</span><span class="s">https://data.epa.gov/air-quality/2023.csv"</span>
+      <span class="na">mediaType</span><span class="pi">:</span> <span class="s2">"</span><span class="s">text/csv"</span>
+      <span class="na">byteSize</span><span class="pi">:</span> <span class="s2">"</span><span class="s">50000000"</span>
+      <span class="na">format</span><span class="pi">:</span> <span class="s2">"</span><span class="s">csv"</span>
+    <span class="pi">-</span> <span class="na">identifier</span><span class="pi">:</span> <span class="s2">"</span><span class="s">api-access"</span>
+      <span class="na">title</span><span class="pi">:</span> <span class="s2">"</span><span class="s">REST</span><span class="nv"> </span><span class="s">API"</span>
+      <span class="na">description</span><span class="pi">:</span> <span class="s2">"</span><span class="s">Programmatic</span><span class="nv"> </span><span class="s">access</span><span class="nv"> </span><span class="s">to</span><span class="nv"> </span><span class="s">current</span><span class="nv"> </span><span class="s">and</span><span class="nv"> </span><span class="s">historical</span><span class="nv"> </span><span class="s">data"</span>
+      <span class="na">accessURL</span><span class="pi">:</span> <span class="s2">"</span><span class="s">https://api.epa.gov/air-quality/v1"</span>
+      <span class="na">mediaType</span><span class="pi">:</span> <span class="s2">"</span><span class="s">application/json"</span>
+      <span class="na">conformsTo</span><span class="pi">:</span> <span class="s2">"</span><span class="s">https://api.epa.gov/docs/air-quality"</span>
+</code></pre></div></div>
+
+<p><strong>What distributions provide:</strong></p>
+
+<ul>
+  <li><strong><code class="language-plaintext highlighter-rouge">csv-download</code></strong>: Direct file access for users who want to download and analyze data locally
+    <ul>
+      <li><strong><code class="language-plaintext highlighter-rouge">identifier</code></strong>: Required unique identifier for distribution</li>
+      <li><strong><code class="language-plaintext highlighter-rouge">downloadURL</code></strong>: Direct link to the file</li>
+      <li><strong><code class="language-plaintext highlighter-rouge">mediaType</code></strong>: File format information so users know what they’re getting</li>
+      <li><strong><code class="language-plaintext highlighter-rouge">byteSize</code></strong>: File size helps users estimate download time and storage needs</li>
+      <li><strong><code class="language-plaintext highlighter-rouge">format</code></strong>: Additional format specification</li>
+    </ul>
+  </li>
+  <li><strong><code class="language-plaintext highlighter-rouge">api-access</code></strong>: Programmatic access for developers and automated systems
+    <ul>
+      <li><strong><code class="language-plaintext highlighter-rouge">accessURL</code></strong>: Endpoint for making API requests</li>
+      <li><strong><code class="language-plaintext highlighter-rouge">conformsTo</code></strong>: Link to API documentation so users know how to use it</li>
+    </ul>
+  </li>
+</ul>
+
+<p><strong>Why multiple distributions matter:</strong>
+Different users have different needs. Researchers might want the complete CSV file for offline analysis, while application developers prefer API access for real-time data integration. Providing multiple access methods makes your dataset useful to a broader audience. Using proper LinkML structure ensures compatibility with any compliant data catalog system.</p>
+
+<h2 id="15-managing-multiple-datasets-and-services">1.5 Managing Multiple Datasets and Services</h2>
+
+<p>As your data collection grows, you’ll want to organize related datasets and provide services that serve multiple datasets. This is where introducing a catalog structure becomes valuable - it provides a container for managing your growing collection of related datasets and services.</p>
+
+<p>Let’s expand our collection to include related environmental datasets and organize them within a catalog:</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># data-catalog.yaml - LinkML compliant Container structure</span>
+<span class="na">concepts</span><span class="pi">:</span>
+  <span class="pi">-</span> <span class="na">identifier</span><span class="pi">:</span> <span class="s2">"</span><span class="s">air-quality"</span>
+    <span class="na">prefLabel</span><span class="pi">:</span> <span class="s2">"</span><span class="s">Air</span><span class="nv"> </span><span class="s">Quality"</span>
+    <span class="na">definition</span><span class="pi">:</span> <span class="s2">"</span><span class="s">The</span><span class="nv"> </span><span class="s">degree</span><span class="nv"> </span><span class="s">to</span><span class="nv"> </span><span class="s">which</span><span class="nv"> </span><span class="s">air</span><span class="nv"> </span><span class="s">is</span><span class="nv"> </span><span class="s">suitable</span><span class="nv"> </span><span class="s">for</span><span class="nv"> </span><span class="s">breathing</span><span class="nv"> </span><span class="s">and</span><span class="nv"> </span><span class="s">other</span><span class="nv"> </span><span class="s">uses"</span>
+  <span class="pi">-</span> <span class="na">identifier</span><span class="pi">:</span> <span class="s2">"</span><span class="s">water-quality"</span>
+    <span class="na">prefLabel</span><span class="pi">:</span> <span class="s2">"</span><span class="s">Water</span><span class="nv"> </span><span class="s">Quality"</span>
+    <span class="na">definition</span><span class="pi">:</span> <span class="s2">"</span><span class="s">The</span><span class="nv"> </span><span class="s">chemical,</span><span class="nv"> </span><span class="s">physical,</span><span class="nv"> </span><span class="s">and</span><span class="nv"> </span><span class="s">biological</span><span class="nv"> </span><span class="s">characteristics</span><span class="nv"> </span><span class="s">of</span><span class="nv"> </span><span class="s">water"</span>
+  <span class="pi">-</span> <span class="na">identifier</span><span class="pi">:</span> <span class="s2">"</span><span class="s">pollution"</span>
+    <span class="na">prefLabel</span><span class="pi">:</span> <span class="s2">"</span><span class="s">Pollution"</span>
+    <span class="na">definition</span><span class="pi">:</span> <span class="s2">"</span><span class="s">The</span><span class="nv"> </span><span class="s">introduction</span><span class="nv"> </span><span class="s">of</span><span class="nv"> </span><span class="s">contaminants</span><span class="nv"> </span><span class="s">into</span><span class="nv"> </span><span class="s">natural</span><span class="nv"> </span><span class="s">environment"</span>
+  <span class="pi">-</span> <span class="na">identifier</span><span class="pi">:</span> <span class="s2">"</span><span class="s">environmental"</span>
+    <span class="na">prefLabel</span><span class="pi">:</span> <span class="s2">"</span><span class="s">Environmental"</span>
+    <span class="na">definition</span><span class="pi">:</span> <span class="s2">"</span><span class="s">Relating</span><span class="nv"> </span><span class="s">to</span><span class="nv"> </span><span class="s">natural</span><span class="nv"> </span><span class="s">world</span><span class="nv"> </span><span class="s">and</span><span class="nv"> </span><span class="s">impact</span><span class="nv"> </span><span class="s">of</span><span class="nv"> </span><span class="s">human</span><span class="nv"> </span><span class="s">activity</span><span class="nv"> </span><span class="s">on</span><span class="nv"> </span><span class="s">it"</span>
+
+<span class="na">dataCatalog</span><span class="pi">:</span>
+  <span class="na">title</span><span class="pi">:</span> <span class="s2">"</span><span class="s">Environmental</span><span class="nv"> </span><span class="s">Data</span><span class="nv"> </span><span class="s">Catalog"</span>
+  <span class="na">description</span><span class="pi">:</span> <span class="s2">"</span><span class="s">Catalog</span><span class="nv"> </span><span class="s">of</span><span class="nv"> </span><span class="s">environmental</span><span class="nv"> </span><span class="s">monitoring</span><span class="nv"> </span><span class="s">datasets"</span>
+  <span class="na">publisher</span><span class="pi">:</span>
+    <span class="na">name</span><span class="pi">:</span> <span class="s2">"</span><span class="s">Environmental</span><span class="nv"> </span><span class="s">Protection</span><span class="nv"> </span><span class="s">Agency"</span>
+  <span class="na">contactPoint</span><span class="pi">:</span>
+    <span class="na">hasEmail</span><span class="pi">:</span> <span class="s2">"</span><span class="s">catalog@epa.gov"</span>
+
+<span class="na">datasets</span><span class="pi">:</span>
+  <span class="pi">-</span> <span class="na">identifier</span><span class="pi">:</span> <span class="s2">"</span><span class="s">air-quality-data"</span>
+    <span class="na">title</span><span class="pi">:</span> <span class="s2">"</span><span class="s">Urban</span><span class="nv"> </span><span class="s">Air</span><span class="nv"> </span><span class="s">Quality</span><span class="nv"> </span><span class="s">Measurements"</span>
+    <span class="na">description</span><span class="pi">:</span> <span class="s2">"</span><span class="s">Air</span><span class="nv"> </span><span class="s">quality</span><span class="nv"> </span><span class="s">index</span><span class="nv"> </span><span class="s">measurements</span><span class="nv"> </span><span class="s">from</span><span class="nv"> </span><span class="s">urban</span><span class="nv"> </span><span class="s">monitoring</span><span class="nv"> </span><span class="s">stations"</span>
+    <span class="na">theme</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="s2">"</span><span class="s">air-quality"</span>
+      <span class="pi">-</span> <span class="s2">"</span><span class="s">pollution"</span>
+      <span class="pi">-</span> <span class="s2">"</span><span class="s">environmental"</span>
+    <span class="na">temporal</span><span class="pi">:</span>
+      <span class="na">hasBeginning</span><span class="pi">:</span> <span class="s2">"</span><span class="s">2023-01-01"</span>
+      <span class="na">hasEnd</span><span class="pi">:</span> <span class="s2">"</span><span class="s">2023-12-31"</span>
+    <span class="na">distribution</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="na">identifier</span><span class="pi">:</span> <span class="s2">"</span><span class="s">air-quality-csv"</span>
+        <span class="na">title</span><span class="pi">:</span> <span class="s2">"</span><span class="s">Air</span><span class="nv"> </span><span class="s">Quality</span><span class="nv"> </span><span class="s">CSV"</span>
+        <span class="na">accessURL</span><span class="pi">:</span> <span class="s2">"</span><span class="s">https://data.epa.gov/air-quality/2023.csv"</span>
+    
+  <span class="pi">-</span> <span class="na">identifier</span><span class="pi">:</span> <span class="s2">"</span><span class="s">water-quality-data"</span>
+    <span class="na">title</span><span class="pi">:</span> <span class="s2">"</span><span class="s">Water</span><span class="nv"> </span><span class="s">Quality</span><span class="nv"> </span><span class="s">Monitoring"</span>
+    <span class="na">description</span><span class="pi">:</span> <span class="s2">"</span><span class="s">Water</span><span class="nv"> </span><span class="s">quality</span><span class="nv"> </span><span class="s">parameters</span><span class="nv"> </span><span class="s">from</span><span class="nv"> </span><span class="s">river</span><span class="nv"> </span><span class="s">and</span><span class="nv"> </span><span class="s">lake</span><span class="nv"> </span><span class="s">monitoring</span><span class="nv"> </span><span class="s">stations"</span>
+    <span class="na">theme</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="s2">"</span><span class="s">water-quality"</span>
+      <span class="pi">-</span> <span class="s2">"</span><span class="s">pollution"</span>
+      <span class="pi">-</span> <span class="s2">"</span><span class="s">environmental"</span>
+    <span class="na">temporal</span><span class="pi">:</span>
+      <span class="na">hasBeginning</span><span class="pi">:</span> <span class="s2">"</span><span class="s">2023-01-01"</span>
+      <span class="na">hasEnd</span><span class="pi">:</span> <span class="s2">"</span><span class="s">2023-12-31"</span>
+    <span class="na">distribution</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="na">identifier</span><span class="pi">:</span> <span class="s2">"</span><span class="s">water-quality-csv"</span>
+        <span class="na">title</span><span class="pi">:</span> <span class="s2">"</span><span class="s">Water</span><span class="nv"> </span><span class="s">Quality</span><span class="nv"> </span><span class="s">CSV"</span>
+        <span class="na">accessURL</span><span class="pi">:</span> <span class="s2">"</span><span class="s">https://data.epa.gov/water-quality/2023.csv"</span>
+
+<span class="na">dataServices</span><span class="pi">:</span>
+  <span class="pi">-</span> <span class="na">identifier</span><span class="pi">:</span> <span class="s2">"</span><span class="s">environmental-api"</span>
+    <span class="na">title</span><span class="pi">:</span> <span class="s2">"</span><span class="s">Environmental</span><span class="nv"> </span><span class="s">Data</span><span class="nv"> </span><span class="s">API"</span>
+    <span class="na">description</span><span class="pi">:</span> <span class="s2">"</span><span class="s">Unified</span><span class="nv"> </span><span class="s">access</span><span class="nv"> </span><span class="s">to</span><span class="nv"> </span><span class="s">all</span><span class="nv"> </span><span class="s">environmental</span><span class="nv"> </span><span class="s">monitoring</span><span class="nv"> </span><span class="s">datasets"</span>
+    <span class="na">endpointURL</span><span class="pi">:</span> <span class="s2">"</span><span class="s">https://api.epa.gov/environmental/v1"</span>
+    <span class="na">servesDataset</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="s2">"</span><span class="s">air-quality-data"</span>
+      <span class="pi">-</span> <span class="s2">"</span><span class="s">water-quality-data"</span>
+    <span class="na">publisher</span><span class="pi">:</span>
+      <span class="na">name</span><span class="pi">:</span> <span class="s2">"</span><span class="s">Environmental</span><span class="nv"> </span><span class="s">Protection</span><span class="nv"> </span><span class="s">Agency"</span>
+  <span class="na">contactPoint</span><span class="pi">:</span>
+    <span class="na">hasEmail</span><span class="pi">:</span> <span class="s2">"</span><span class="s">api@epa.gov"</span>
+</code></pre></div></div>
+
+<p><strong>What this adds:</strong></p>
+
+<ul>
+  <li><strong>Multiple datasets</strong>: Related datasets are grouped together, making it easier for users to find comprehensive environmental data</li>
+  <li><strong><code class="language-plaintext highlighter-rouge">concepts</code></strong>: Reusable theme definitions used by both datasets</li>
+  <li><strong><code class="language-plaintext highlighter-rouge">dataServices</code></strong>: A service that provides access to multiple datasets through a single interface
+    <ul>
+      <li><strong><code class="language-plaintext highlighter-rouge">servesDataset</code></strong>: References dataset identifiers, not inline objects</li>
+      <li><strong><code class="language-plaintext highlighter-rouge">endpointURL</code></strong>: The base URL for the API service</li>
+    </ul>
+  </li>
+</ul>
+
+<p><strong>Why this organization matters:</strong>
+Users interested in environmental data can now find all related datasets in one place. Concepts are reusable across datasets, ensuring consistent theming. The unified API service makes it easy for developers to access multiple datasets without learning different interfaces for each one. This creates a coherent data ecosystem rather than isolated datasets, all following proper LinkML structure.</p>
+
+<h2 id="16-advanced-catalog-features">1.6 Advanced Catalog Features</h2>
+
+<p>Once you have a functional catalog, you can add advanced features to improve data management and user experience.</p>
+
+<h3 id="version-management">Version Management</h3>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">datasets</span><span class="pi">:</span>
+  <span class="pi">-</span> <span class="na">identifier</span><span class="pi">:</span> <span class="s2">"</span><span class="s">air-quality-data"</span>
+    <span class="na">title</span><span class="pi">:</span> <span class="s2">"</span><span class="s">Urban</span><span class="nv"> </span><span class="s">Air</span><span class="nv"> </span><span class="s">Quality</span><span class="nv"> </span><span class="s">Measurements"</span>
+    <span class="na">version</span><span class="pi">:</span> <span class="s2">"</span><span class="s">2.0"</span>
+    <span class="na">wasDerivedFrom</span><span class="pi">:</span> <span class="s2">"</span><span class="s">air-quality-data-v1"</span>
+    <span class="na">description</span><span class="pi">:</span> <span class="s2">"</span><span class="s">Air</span><span class="nv"> </span><span class="s">quality</span><span class="nv"> </span><span class="s">index</span><span class="nv"> </span><span class="s">measurements</span><span class="nv"> </span><span class="s">from</span><span class="nv"> </span><span class="s">urban</span><span class="nv"> </span><span class="s">monitoring</span><span class="nv"> </span><span class="s">stations</span><span class="nv"> </span><span class="s">(2023</span><span class="nv"> </span><span class="s">data,</span><span class="nv"> </span><span class="s">updated</span><span class="nv"> </span><span class="s">methodology)"</span>
+    <span class="c1"># ... other metadata from previous example</span>
+</code></pre></div></div>
+
+<p><strong>Version information helps users:</strong></p>
+<ul>
+  <li><strong><code class="language-plaintext highlighter-rouge">version</code></strong>: Identify which version they’re using</li>
+  <li><strong><code class="language-plaintext highlighter-rouge">wasDerivedFrom</code></strong>: Track evolution of dataset by linking to previous version</li>
+  <li><strong>Consistent identifiers</strong>: Same identifier pattern used across versions (air-quality-data-v1, air-quality-data)</li>
+</ul>
+
+<p><strong>Note</strong>: While LinkML model supports various version relationships, <code class="language-plaintext highlighter-rouge">wasDerivedFrom</code> is the most common for showing dataset evolution. Previous versions can be cataloged as separate datasets with their own identifiers.</p>
+
+<h3 id="dataset-series">Dataset Series</h3>
+
+<p>For ongoing data collection, you can organize datasets into series. Series are defined at root level and referenced by datasets:</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">series</span><span class="pi">:</span>
+  <span class="pi">-</span> <span class="na">identifier</span><span class="pi">:</span> <span class="s2">"</span><span class="s">air-quality-series"</span>
+    <span class="na">title</span><span class="pi">:</span> <span class="s2">"</span><span class="s">Urban</span><span class="nv"> </span><span class="s">Air</span><span class="nv"> </span><span class="s">Quality</span><span class="nv"> </span><span class="s">Time</span><span class="nv"> </span><span class="s">Series"</span>
+    <span class="na">description</span><span class="pi">:</span> <span class="s2">"</span><span class="s">Long-term</span><span class="nv"> </span><span class="s">air</span><span class="nv"> </span><span class="s">quality</span><span class="nv"> </span><span class="s">monitoring</span><span class="nv"> </span><span class="s">program"</span>
+    <span class="na">temporalResolution</span><span class="pi">:</span> <span class="s2">"</span><span class="s">P1D"</span>  <span class="c1"># Daily measurements</span>
+    <span class="na">spatialResolutionInMeters</span><span class="pi">:</span> <span class="s2">"</span><span class="s">100.0"</span>
+
+<span class="na">datasets</span><span class="pi">:</span>
+  <span class="pi">-</span> <span class="na">identifier</span><span class="pi">:</span> <span class="s2">"</span><span class="s">air-quality-2023"</span>
+    <span class="na">title</span><span class="pi">:</span> <span class="s2">"</span><span class="s">Urban</span><span class="nv"> </span><span class="s">Air</span><span class="nv"> </span><span class="s">Quality</span><span class="nv"> </span><span class="s">Measurements</span><span class="nv"> </span><span class="s">-</span><span class="nv"> </span><span class="s">2023"</span>
+    <span class="na">description</span><span class="pi">:</span> <span class="s2">"</span><span class="s">Air</span><span class="nv"> </span><span class="s">quality</span><span class="nv"> </span><span class="s">measurements</span><span class="nv"> </span><span class="s">for</span><span class="nv"> </span><span class="s">2023"</span>
+    <span class="na">inSeries</span><span class="pi">:</span> <span class="s2">"</span><span class="s">air-quality-series"</span>
+    <span class="c1"># ... other metadata</span>
+
+  <span class="pi">-</span> <span class="na">identifier</span><span class="pi">:</span> <span class="s2">"</span><span class="s">air-quality-2022"</span>
+    <span class="na">title</span><span class="pi">:</span> <span class="s2">"</span><span class="s">Urban</span><span class="nv"> </span><span class="s">Air</span><span class="nv"> </span><span class="s">Quality</span><span class="nv"> </span><span class="s">Measurements</span><span class="nv"> </span><span class="s">-</span><span class="nv"> </span><span class="s">2022"</span>
+    <span class="na">description</span><span class="pi">:</span> <span class="s2">"</span><span class="s">Air</span><span class="nv"> </span><span class="s">quality</span><span class="nv"> </span><span class="s">measurements</span><span class="nv"> </span><span class="s">for</span><span class="nv"> </span><span class="s">2022"</span>
+    <span class="na">inSeries</span><span class="pi">:</span> <span class="s2">"</span><span class="s">air-quality-series"</span>
+    <span class="c1"># ... other metadata</span>
+</code></pre></div></div>
+
+<p><strong>Series management enables:</strong></p>
+<ul>
+  <li><strong><code class="language-plaintext highlighter-rouge">inSeries</code></strong>: Connects individual datasets to their parent series via identifier</li>
+  <li><strong><code class="language-plaintext highlighter-rouge">series</code> container</strong>: Defines series-level metadata at root level for reuse</li>
+  <li><strong><code class="language-plaintext highlighter-rouge">temporalResolution</code></strong>: How frequently data is collected</li>
+  <li><strong><code class="language-plaintext highlighter-rouge">spatialResolutionInMeters</code></strong>: Spatial precision of measurements</li>
+  <li><strong>Reusability</strong>: Single series definition can be referenced by many datasets</li>
+</ul>
+
+<h3 id="standards-compliance">Standards Compliance</h3>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">datasets</span><span class="pi">:</span>
+  <span class="pi">-</span> <span class="na">identifier</span><span class="pi">:</span> <span class="s2">"</span><span class="s">air-quality-data"</span>
+    <span class="na">title</span><span class="pi">:</span> <span class="s2">"</span><span class="s">Urban</span><span class="nv"> </span><span class="s">Air</span><span class="nv"> </span><span class="s">Quality</span><span class="nv"> </span><span class="s">Measurements"</span>
+    <span class="c1"># ... basic metadata</span>
+    <span class="na">conformsTo</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="s2">"</span><span class="s">https://www.w3.org/TR/vocab-dcat-3/"</span>
+      <span class="pi">-</span> <span class="s2">"</span><span class="s">https://www.epa.gov/air-quality-standards"</span>
+</code></pre></div></div>
+
+<p><strong>Standards information provides:</strong></p>
+<ul>
+  <li><strong><code class="language-plaintext highlighter-rouge">conformsTo</code></strong>: Standards and methodologies followed</li>
+</ul>
+
+<p><strong>Why this matters:</strong>
+Professional data catalogs need to document adherence to standards. This enables:</p>
+<ul>
+  <li><strong>Interoperability</strong>: Users understand what standards your data follows</li>
+  <li><strong>Regulatory compliance</strong>: Document adherence to requirements</li>
+  <li><strong>Trust building</strong>: Users know your data meets established quality benchmarks</li>
+</ul>
+
+<h2 id="17-complete-example-putting-it-all-together">1.7 Complete Example: Putting It All Together</h2>
+
+<p>Here’s our complete environmental data catalog with all the features we’ve discussed:</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># data-catalog.yaml - LinkML compliant complete example</span>
+<span class="na">concepts</span><span class="pi">:</span>
+  <span class="pi">-</span> <span class="na">identifier</span><span class="pi">:</span> <span class="s2">"</span><span class="s">air-quality"</span>
+    <span class="na">prefLabel</span><span class="pi">:</span> <span class="s2">"</span><span class="s">Air</span><span class="nv"> </span><span class="s">Quality"</span>
+    <span class="na">definition</span><span class="pi">:</span> <span class="s2">"</span><span class="s">The</span><span class="nv"> </span><span class="s">degree</span><span class="nv"> </span><span class="s">to</span><span class="nv"> </span><span class="s">which</span><span class="nv"> </span><span class="s">air</span><span class="nv"> </span><span class="s">is</span><span class="nv"> </span><span class="s">suitable</span><span class="nv"> </span><span class="s">for</span><span class="nv"> </span><span class="s">breathing</span><span class="nv"> </span><span class="s">and</span><span class="nv"> </span><span class="s">other</span><span class="nv"> </span><span class="s">uses"</span>
+  <span class="pi">-</span> <span class="na">identifier</span><span class="pi">:</span> <span class="s2">"</span><span class="s">pollution"</span>
+    <span class="na">prefLabel</span><span class="pi">:</span> <span class="s2">"</span><span class="s">Pollution"</span>
+    <span class="na">definition</span><span class="pi">:</span> <span class="s2">"</span><span class="s">The</span><span class="nv"> </span><span class="s">introduction</span><span class="nv"> </span><span class="s">of</span><span class="nv"> </span><span class="s">contaminants</span><span class="nv"> </span><span class="s">into</span><span class="nv"> </span><span class="s">natural</span><span class="nv"> </span><span class="s">environment"</span>
+  <span class="pi">-</span> <span class="na">identifier</span><span class="pi">:</span> <span class="s2">"</span><span class="s">urban"</span>
+    <span class="na">prefLabel</span><span class="pi">:</span> <span class="s2">"</span><span class="s">Urban"</span>
+    <span class="na">definition</span><span class="pi">:</span> <span class="s2">"</span><span class="s">Relating</span><span class="nv"> </span><span class="s">to</span><span class="nv"> </span><span class="s">or</span><span class="nv"> </span><span class="s">characteristic</span><span class="nv"> </span><span class="s">of</span><span class="nv"> </span><span class="s">a</span><span class="nv"> </span><span class="s">city</span><span class="nv"> </span><span class="s">or</span><span class="nv"> </span><span class="s">town"</span>
+  <span class="pi">-</span> <span class="na">identifier</span><span class="pi">:</span> <span class="s2">"</span><span class="s">environmental-monitoring"</span>
+    <span class="na">prefLabel</span><span class="pi">:</span> <span class="s2">"</span><span class="s">Environmental</span><span class="nv"> </span><span class="s">Monitoring"</span>
+    <span class="na">definition</span><span class="pi">:</span> <span class="s2">"</span><span class="s">The</span><span class="nv"> </span><span class="s">systematic</span><span class="nv"> </span><span class="s">collection</span><span class="nv"> </span><span class="s">of</span><span class="nv"> </span><span class="s">environmental</span><span class="nv"> </span><span class="s">data"</span>
+  <span class="pi">-</span> <span class="na">identifier</span><span class="pi">:</span> <span class="s2">"</span><span class="s">public-health"</span>
+    <span class="na">prefLabel</span><span class="pi">:</span> <span class="s2">"</span><span class="s">Public</span><span class="nv"> </span><span class="s">Health"</span>
+    <span class="na">definition</span><span class="pi">:</span> <span class="s2">"</span><span class="s">The</span><span class="nv"> </span><span class="s">health</span><span class="nv"> </span><span class="s">of</span><span class="nv"> </span><span class="s">population</span><span class="nv"> </span><span class="s">as</span><span class="nv"> </span><span class="s">a</span><span class="nv"> </span><span class="s">whole"</span>
+
+<span class="na">dataCatalog</span><span class="pi">:</span>
+  <span class="na">title</span><span class="pi">:</span> <span class="s2">"</span><span class="s">Environmental</span><span class="nv"> </span><span class="s">Data</span><span class="nv"> </span><span class="s">Catalog"</span>
+  <span class="na">description</span><span class="pi">:</span> <span class="s2">"</span><span class="s">Comprehensive</span><span class="nv"> </span><span class="s">catalog</span><span class="nv"> </span><span class="s">of</span><span class="nv"> </span><span class="s">environmental</span><span class="nv"> </span><span class="s">monitoring</span><span class="nv"> </span><span class="s">datasets</span><span class="nv"> </span><span class="s">and</span><span class="nv"> </span><span class="s">services"</span>
+  <span class="na">publisher</span><span class="pi">:</span>
+    <span class="na">name</span><span class="pi">:</span> <span class="s2">"</span><span class="s">Environmental</span><span class="nv"> </span><span class="s">Protection</span><span class="nv"> </span><span class="s">Agency"</span>
+  <span class="na">contactPoint</span><span class="pi">:</span>
+    <span class="na">hasEmail</span><span class="pi">:</span> <span class="s2">"</span><span class="s">catalog@epa.gov"</span>
+
+<span class="na">datasets</span><span class="pi">:</span>
+  <span class="pi">-</span> <span class="na">identifier</span><span class="pi">:</span> <span class="s2">"</span><span class="s">air-quality-2023"</span>
+    <span class="na">title</span><span class="pi">:</span> <span class="s2">"</span><span class="s">Urban</span><span class="nv"> </span><span class="s">Air</span><span class="nv"> </span><span class="s">Quality</span><span class="nv"> </span><span class="s">Measurements</span><span class="nv"> </span><span class="s">-</span><span class="nv"> </span><span class="s">2023"</span>
+    <span class="na">description</span><span class="pi">:</span> <span class="s2">"</span><span class="s">Air</span><span class="nv"> </span><span class="s">quality</span><span class="nv"> </span><span class="s">index</span><span class="nv"> </span><span class="s">measurements</span><span class="nv"> </span><span class="s">from</span><span class="nv"> </span><span class="s">urban</span><span class="nv"> </span><span class="s">monitoring</span><span class="nv"> </span><span class="s">stations</span><span class="nv"> </span><span class="s">collected</span><span class="nv"> </span><span class="s">hourly"</span>
+    <span class="na">version</span><span class="pi">:</span> <span class="s2">"</span><span class="s">2.0"</span>
+    <span class="na">theme</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="s2">"</span><span class="s">air-quality"</span>
+      <span class="pi">-</span> <span class="s2">"</span><span class="s">pollution"</span>
+      <span class="pi">-</span> <span class="s2">"</span><span class="s">urban"</span>
+      <span class="pi">-</span> <span class="s2">"</span><span class="s">environmental-monitoring"</span>
+      <span class="pi">-</span> <span class="s2">"</span><span class="s">public-health"</span>
+    <span class="na">publisher</span><span class="pi">:</span>
+      <span class="na">name</span><span class="pi">:</span> <span class="s2">"</span><span class="s">Environmental</span><span class="nv"> </span><span class="s">Protection</span><span class="nv"> </span><span class="s">Agency"</span>
+    <span class="na">temporal</span><span class="pi">:</span>
+      <span class="na">hasBeginning</span><span class="pi">:</span> <span class="s2">"</span><span class="s">2023-01-01"</span>
+      <span class="na">hasEnd</span><span class="pi">:</span> <span class="s2">"</span><span class="s">2023-12-31"</span>
+    <span class="na">contactPoint</span><span class="pi">:</span>
+      <span class="na">hasEmail</span><span class="pi">:</span> <span class="s2">"</span><span class="s">air-quality@epa.gov"</span>
+    <span class="na">license</span><span class="pi">:</span>
+      <span class="na">title</span><span class="pi">:</span> <span class="s2">"</span><span class="s">https://creativecommons.org/licenses/by/4.0/"</span>
+    <span class="na">inSeries</span><span class="pi">:</span> <span class="s2">"</span><span class="s">air-quality-series"</span>
+
+<span class="na">series</span><span class="pi">:</span>
+  <span class="pi">-</span> <span class="na">identifier</span><span class="pi">:</span> <span class="s2">"</span><span class="s">air-quality-series"</span>
+    <span class="na">title</span><span class="pi">:</span> <span class="s2">"</span><span class="s">Urban</span><span class="nv"> </span><span class="s">Air</span><span class="nv"> </span><span class="s">Quality</span><span class="nv"> </span><span class="s">Time</span><span class="nv"> </span><span class="s">Series"</span>
+    <span class="na">description</span><span class="pi">:</span> <span class="s2">"</span><span class="s">Long-term</span><span class="nv"> </span><span class="s">air</span><span class="nv"> </span><span class="s">quality</span><span class="nv"> </span><span class="s">monitoring</span><span class="nv"> </span><span class="s">program</span><span class="nv"> </span><span class="s">in</span><span class="nv"> </span><span class="s">metropolitan</span><span class="nv"> </span><span class="s">areas"</span>
+
+<span class="na">distributions</span><span class="pi">:</span>
+  <span class="pi">-</span> <span class="na">identifier</span><span class="pi">:</span> <span class="s2">"</span><span class="s">air-quality-csv"</span>
+    <span class="na">title</span><span class="pi">:</span> <span class="s2">"</span><span class="s">Complete</span><span class="nv"> </span><span class="s">Air</span><span class="nv"> </span><span class="s">Quality</span><span class="nv"> </span><span class="s">Dataset</span><span class="nv"> </span><span class="s">(CSV)"</span>
+    <span class="na">description</span><span class="pi">:</span> <span class="s2">"</span><span class="s">Full</span><span class="nv"> </span><span class="s">year</span><span class="nv"> </span><span class="s">of</span><span class="nv"> </span><span class="s">air</span><span class="nv"> </span><span class="s">quality</span><span class="nv"> </span><span class="s">measurements</span><span class="nv"> </span><span class="s">in</span><span class="nv"> </span><span class="s">CSV</span><span class="nv"> </span><span class="s">format"</span>
+    <span class="na">accessURL</span><span class="pi">:</span> <span class="s2">"</span><span class="s">https://data.epa.gov/air-quality/2023.csv"</span>
+    <span class="na">format</span><span class="pi">:</span> <span class="s2">"</span><span class="s">csv"</span>
+
+  <span class="pi">-</span> <span class="na">identifier</span><span class="pi">:</span> <span class="s2">"</span><span class="s">air-quality-api"</span>
+    <span class="na">title</span><span class="pi">:</span> <span class="s2">"</span><span class="s">Air</span><span class="nv"> </span><span class="s">Quality</span><span class="nv"> </span><span class="s">API"</span>
+    <span class="na">description</span><span class="pi">:</span> <span class="s2">"</span><span class="s">Real-time</span><span class="nv"> </span><span class="s">and</span><span class="nv"> </span><span class="s">historical</span><span class="nv"> </span><span class="s">air</span><span class="nv"> </span><span class="s">quality</span><span class="nv"> </span><span class="s">data</span><span class="nv"> </span><span class="s">via</span><span class="nv"> </span><span class="s">REST</span><span class="nv"> </span><span class="s">API"</span>
+    <span class="na">accessURL</span><span class="pi">:</span> <span class="s2">"</span><span class="s">https://api.epa.gov/air-quality/v1"</span>
+    <span class="na">conformsTo</span><span class="pi">:</span> <span class="s2">"</span><span class="s">https://api.epa.gov/docs/air-quality"</span>
+
+<span class="na">dataServices</span><span class="pi">:</span>
+  <span class="pi">-</span> <span class="na">identifier</span><span class="pi">:</span> <span class="s2">"</span><span class="s">environmental-api"</span>
+    <span class="na">title</span><span class="pi">:</span> <span class="s2">"</span><span class="s">Environmental</span><span class="nv"> </span><span class="s">Data</span><span class="nv"> </span><span class="s">API"</span>
+    <span class="na">description</span><span class="pi">:</span> <span class="s2">"</span><span class="s">Unified</span><span class="nv"> </span><span class="s">access</span><span class="nv"> </span><span class="s">to</span><span class="nv"> </span><span class="s">all</span><span class="nv"> </span><span class="s">environmental</span><span class="nv"> </span><span class="s">monitoring</span><span class="nv"> </span><span class="s">datasets"</span>
+    <span class="na">endpointURL</span><span class="pi">:</span> <span class="s2">"</span><span class="s">https://api.epa.gov/environmental/v1"</span>
+    <span class="na">servesDataset</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="s2">"</span><span class="s">air-quality-2023"</span>
+    <span class="na">publisher</span><span class="pi">:</span>
+      <span class="na">name</span><span class="pi">:</span> <span class="s2">"</span><span class="s">Environmental</span><span class="nv"> </span><span class="s">Protection</span><span class="nv"> </span><span class="s">Agency"</span>
+  <span class="na">contactPoint</span><span class="pi">:</span>
+    <span class="na">hasEmail</span><span class="pi">:</span> <span class="s2">"</span><span class="s">api@epa.gov"</span>
+</code></pre></div></div>
+
+<p>This comprehensive catalog demonstrates:</p>
+<ul>
+  <li><strong>Rich metadata</strong> for discoverability and understanding</li>
+  <li><strong>Multiple access methods</strong> for different user needs</li>
+  <li><strong>Quality and compliance</strong> information for trust building</li>
+  <li><strong>Series management</strong> for ongoing data programs</li>
+  <li><strong>Unified services</strong> for streamlined access</li>
+</ul>
+
+<h2 id="18-best-practices-for-data-cataloging">1.8 Best Practices for Data Cataloging</h2>
+
+<p>Based on our progressive example, here are the key principles for effective data cataloging:</p>
+
+<h3 id="start-simple-build-incrementally">Start Simple, Build Incrementally</h3>
+<ul>
+  <li>Begin with basic identification (id, title, description)</li>
+  <li>Add discoverability features (keywords, publisher, temporal/spatial coverage)</li>
+  <li>Include access information (distributions, licensing)</li>
+  <li>Enhance with advanced features (versioning, quality, series)</li>
+</ul>
+
+<h3 id="focus-on-user-needs">Focus on User Needs</h3>
+<ul>
+  <li><strong>Discovery</strong>: Use descriptive titles and relevant keywords</li>
+  <li><strong>Understanding</strong>: Provide clear descriptions and context</li>
+  <li><strong>Access</strong>: Offer multiple distribution formats for different users</li>
+  <li><strong>Trust</strong>: Include publisher, contact, and quality information</li>
+</ul>
+
+<h3 id="maintain-consistency">Maintain Consistency</h3>
+<ul>
+  <li>Use unique, stable identifiers across your catalog</li>
+  <li>Apply consistent naming conventions</li>
+  <li>Keep contact information up to date</li>
+  <li>Follow the same metadata structure for related datasets</li>
+</ul>
+
+<h3 id="document-everything">Document Everything</h3>
+<ul>
+  <li>Explain what your data contains and how it was collected</li>
+  <li>Specify usage rights and licensing clearly</li>
+  <li>Provide contact points for questions and issues</li>
+  <li>Include quality assessments and limitations</li>
+</ul>
+
+<h3 id="plan-for-the-future">Plan for the Future</h3>
+<ul>
+  <li>Use version management for evolving datasets</li>
+  <li>Organize ongoing data into series</li>
+  <li>Follow established standards (DCAT) for interoperability</li>
+  <li>Design your catalog to scale as your data collection grows</li>
+</ul>
+
+<h3 id="technical-considerations">Technical Considerations</h3>
+<ul>
+  <li>Test all distribution URLs regularly</li>
+  <li>Use appropriate media types for all formats</li>
+  <li>Include file sizes to help users plan downloads</li>
+  <li>Provide checksums for data integrity verification</li>
+</ul>
+
+<p>By following these practices and building your catalog incrementally as demonstrated in this chapter, you’ll create a data catalog that serves both current users and future needs effectively.</p>
+
+<h2 id="19-managing-skos-concepts-as-dataset-themes">1.9 Managing SKOS Concepts as Dataset Themes</h2>
+
+<p>SKOS (Simple Knowledge Organization System) concepts provide a powerful way to organize and categorize your datasets using standardized, reusable themes. By defining concepts at the root level of your catalog and referencing them in dataset themes, you create a consistent, maintainable classification system that enhances discoverability and interoperability.</p>
+
+<h3 id="191-concept-definition-best-practices">1.9.1 Concept Definition Best Practices</h3>
+
+<p>When defining SKOS concepts for your catalog, follow these guidelines:</p>
+
+<h4 id="complete-concept-definitions">Complete Concept Definitions</h4>
+<p>Each concept should include all essential attributes to ensure clarity and reusability:</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">concepts</span><span class="pi">:</span>
+  <span class="pi">-</span> <span class="na">identifier</span><span class="pi">:</span> <span class="s2">"</span><span class="s">air-quality"</span>
+    <span class="na">prefLabel</span><span class="pi">:</span> <span class="s2">"</span><span class="s">Air</span><span class="nv"> </span><span class="s">Quality"</span>
+    <span class="na">definition</span><span class="pi">:</span> <span class="s2">"</span><span class="s">The</span><span class="nv"> </span><span class="s">degree</span><span class="nv"> </span><span class="s">to</span><span class="nv"> </span><span class="s">which</span><span class="nv"> </span><span class="s">air</span><span class="nv"> </span><span class="s">is</span><span class="nv"> </span><span class="s">suitable</span><span class="nv"> </span><span class="s">for</span><span class="nv"> </span><span class="s">breathing</span><span class="nv"> </span><span class="s">and</span><span class="nv"> </span><span class="s">other</span><span class="nv"> </span><span class="s">uses"</span>
+    <span class="na">altLabel</span><span class="pi">:</span> <span class="s2">"</span><span class="s">Atmospheric</span><span class="nv"> </span><span class="s">Quality"</span>
+    <span class="na">example</span><span class="pi">:</span> <span class="s2">"</span><span class="s">Air</span><span class="nv"> </span><span class="s">Quality</span><span class="nv"> </span><span class="s">Index</span><span class="nv"> </span><span class="s">(AQI)</span><span class="nv"> </span><span class="s">measurements"</span>
+  <span class="pi">-</span> <span class="na">identifier</span><span class="pi">:</span> <span class="s2">"</span><span class="s">water-quality"</span>
+    <span class="na">prefLabel</span><span class="pi">:</span> <span class="s2">"</span><span class="s">Water</span><span class="nv"> </span><span class="s">Quality"</span>
+    <span class="na">definition</span><span class="pi">:</span> <span class="s2">"</span><span class="s">The</span><span class="nv"> </span><span class="s">chemical,</span><span class="nv"> </span><span class="s">physical,</span><span class="nv"> </span><span class="s">and</span><span class="nv"> </span><span class="s">biological</span><span class="nv"> </span><span class="s">characteristics</span><span class="nv"> </span><span class="s">of</span><span class="nv"> </span><span class="s">water"</span>
+    <span class="na">example</span><span class="pi">:</span> <span class="s2">"</span><span class="s">pH</span><span class="nv"> </span><span class="s">levels,</span><span class="nv"> </span><span class="s">dissolved</span><span class="nv"> </span><span class="s">oxygen,</span><span class="nv"> </span><span class="s">contaminant</span><span class="nv"> </span><span class="s">concentrations"</span>
+</code></pre></div></div>
+
+<p><strong>Key attributes:</strong></p>
+<ul>
+  <li><strong><code class="language-plaintext highlighter-rouge">identifier</code></strong>: Required unique key for referencing the concept</li>
+  <li><strong><code class="language-plaintext highlighter-rouge">prefLabel</code></strong>: Required human-readable display name</li>
+  <li><strong><code class="language-plaintext highlighter-rouge">definition</code></strong>: Required clear explanation of what the concept means</li>
+  <li><strong><code class="language-plaintext highlighter-rouge">altLabel</code></strong>: Optional alternative terms or synonyms</li>
+  <li><strong><code class="language-plaintext highlighter-rouge">example</code></strong>: Optional example usage to clarify meaning</li>
+</ul>
+
+<h4 id="hierarchical-concept-organization">Hierarchical Concept Organization</h4>
+<p>Organize concepts in logical hierarchies to support browsing and discovery:</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">concepts</span><span class="pi">:</span>
+  <span class="c1"># Level 1: Broad categories</span>
+  <span class="pi">-</span> <span class="na">identifier</span><span class="pi">:</span> <span class="s2">"</span><span class="s">environmental"</span>
+    <span class="na">prefLabel</span><span class="pi">:</span> <span class="s2">"</span><span class="s">Environmental"</span>
+    <span class="na">definition</span><span class="pi">:</span> <span class="s2">"</span><span class="s">Relating</span><span class="nv"> </span><span class="s">to</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">natural</span><span class="nv"> </span><span class="s">world</span><span class="nv"> </span><span class="s">and</span><span class="nv"> </span><span class="s">human</span><span class="nv"> </span><span class="s">impact</span><span class="nv"> </span><span class="s">on</span><span class="nv"> </span><span class="s">it"</span>
+    
+  <span class="pi">-</span> <span class="na">identifier</span><span class="pi">:</span> <span class="s2">"</span><span class="s">social"</span>
+    <span class="na">prefLabel</span><span class="pi">:</span> <span class="s2">"</span><span class="s">Social"</span>
+    <span class="na">definition</span><span class="pi">:</span> <span class="s2">"</span><span class="s">Relating</span><span class="nv"> </span><span class="s">to</span><span class="nv"> </span><span class="s">human</span><span class="nv"> </span><span class="s">society</span><span class="nv"> </span><span class="s">and</span><span class="nv"> </span><span class="s">social</span><span class="nv"> </span><span class="s">relationships"</span>
+
+  <span class="c1"># Level 2: Specific domains</span>
+  <span class="pi">-</span> <span class="na">identifier</span><span class="pi">:</span> <span class="s2">"</span><span class="s">air-quality"</span>
+    <span class="na">prefLabel</span><span class="pi">:</span> <span class="s2">"</span><span class="s">Air</span><span class="nv"> </span><span class="s">Quality"</span>
+    <span class="na">definition</span><span class="pi">:</span> <span class="s2">"</span><span class="s">The</span><span class="nv"> </span><span class="s">degree</span><span class="nv"> </span><span class="s">to</span><span class="nv"> </span><span class="s">which</span><span class="nv"> </span><span class="s">air</span><span class="nv"> </span><span class="s">is</span><span class="nv"> </span><span class="s">suitable</span><span class="nv"> </span><span class="s">for</span><span class="nv"> </span><span class="s">breathing</span><span class="nv"> </span><span class="s">and</span><span class="nv"> </span><span class="s">other</span><span class="nv"> </span><span class="s">uses"</span>
+    
+  <span class="pi">-</span> <span class="na">identifier</span><span class="pi">:</span> <span class="s2">"</span><span class="s">water-quality"</span>
+    <span class="na">prefLabel</span><span class="pi">:</span> <span class="s2">"</span><span class="s">Water</span><span class="nv"> </span><span class="s">Quality"</span>
+    <span class="na">definition</span><span class="pi">:</span> <span class="s2">"</span><span class="s">The</span><span class="nv"> </span><span class="s">chemical,</span><span class="nv"> </span><span class="s">physical,</span><span class="nv"> </span><span class="s">and</span><span class="nv"> </span><span class="s">biological</span><span class="nv"> </span><span class="s">characteristics</span><span class="nv"> </span><span class="s">of</span><span class="nv"> </span><span class="s">water"</span>
+    
+  <span class="pi">-</span> <span class="na">identifier</span><span class="pi">:</span> <span class="s2">"</span><span class="s">demographics"</span>
+    <span class="na">prefLabel</span><span class="pi">:</span> <span class="s2">"</span><span class="s">Demographics"</span>
+    <span class="na">definition</span><span class="pi">:</span> <span class="s2">"</span><span class="s">Statistical</span><span class="nv"> </span><span class="s">data</span><span class="nv"> </span><span class="s">relating</span><span class="nv"> </span><span class="s">to</span><span class="nv"> </span><span class="s">population</span><span class="nv"> </span><span class="s">and</span><span class="nv"> </span><span class="s">population</span><span class="nv"> </span><span class="s">groups"</span>
+
+  <span class="c1"># Level 3: Detailed topics</span>
+  <span class="pi">-</span> <span class="na">identifier</span><span class="pi">:</span> <span class="s2">"</span><span class="s">pollution"</span>
+    <span class="na">prefLabel</span><span class="pi">:</span> <span class="s2">"</span><span class="s">Pollution"</span>
+    <span class="na">definition</span><span class="pi">:</span> <span class="s2">"</span><span class="s">The</span><span class="nv"> </span><span class="s">introduction</span><span class="nv"> </span><span class="s">of</span><span class="nv"> </span><span class="s">contaminants</span><span class="nv"> </span><span class="s">into</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">natural</span><span class="nv"> </span><span class="s">environment"</span>
+    
+  <span class="pi">-</span> <span class="na">identifier</span><span class="pi">:</span> <span class="s2">"</span><span class="s">climate-monitoring"</span>
+    <span class="na">prefLabel</span><span class="pi">:</span> <span class="s2">"</span><span class="s">Climate</span><span class="nv"> </span><span class="s">Monitoring"</span>
+    <span class="na">definition</span><span class="pi">:</span> <span class="s2">"</span><span class="s">Systematic</span><span class="nv"> </span><span class="s">observation</span><span class="nv"> </span><span class="s">and</span><span class="nv"> </span><span class="s">measurement</span><span class="nv"> </span><span class="s">of</span><span class="nv"> </span><span class="s">climate</span><span class="nv"> </span><span class="s">variables"</span>
+</code></pre></div></div>
+
+<h4 id="concept-consistency-standards">Concept Consistency Standards</h4>
+<p>Maintain consistency across your concept definitions:</p>
+
+<ul>
+  <li><strong>Naming conventions</strong>: Use lowercase with hyphens for identifiers (e.g., “air-quality”)</li>
+  <li><strong>Definition style</strong>: Write clear, concise definitions that avoid circular references</li>
+  <li><strong>Label consistency</strong>: Use consistent capitalization and terminology</li>
+  <li><strong>Scope clarity</strong>: Define clear boundaries between related concepts</li>
+</ul>
+
+<h3 id="192-concept-reuse-strategies">1.9.2 Concept Reuse Strategies</h3>
+
+<h4 id="cross-dataset-theme-application">Cross-Dataset Theme Application</h4>
+<p>Once defined, concepts can be reused across multiple datasets:</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">concepts</span><span class="pi">:</span>
+  <span class="pi">-</span> <span class="na">identifier</span><span class="pi">:</span> <span class="s2">"</span><span class="s">air-quality"</span>
+    <span class="na">prefLabel</span><span class="pi">:</span> <span class="s2">"</span><span class="s">Air</span><span class="nv"> </span><span class="s">Quality"</span>
+    <span class="na">definition</span><span class="pi">:</span> <span class="s2">"</span><span class="s">The</span><span class="nv"> </span><span class="s">degree</span><span class="nv"> </span><span class="s">to</span><span class="nv"> </span><span class="s">which</span><span class="nv"> </span><span class="s">air</span><span class="nv"> </span><span class="s">is</span><span class="nv"> </span><span class="s">suitable</span><span class="nv"> </span><span class="s">for</span><span class="nv"> </span><span class="s">breathing</span><span class="nv"> </span><span class="s">and</span><span class="nv"> </span><span class="s">other</span><span class="nv"> </span><span class="s">uses"</span>
+  <span class="pi">-</span> <span class="na">identifier</span><span class="pi">:</span> <span class="s2">"</span><span class="s">urban"</span>
+    <span class="na">prefLabel</span><span class="pi">:</span> <span class="s2">"</span><span class="s">Urban"</span>
+    <span class="na">definition</span><span class="pi">:</span> <span class="s2">"</span><span class="s">Relating</span><span class="nv"> </span><span class="s">to</span><span class="nv"> </span><span class="s">or</span><span class="nv"> </span><span class="s">characteristic</span><span class="nv"> </span><span class="s">of</span><span class="nv"> </span><span class="s">a</span><span class="nv"> </span><span class="s">city</span><span class="nv"> </span><span class="s">or</span><span class="nv"> </span><span class="s">town"</span>
+
+<span class="na">datasets</span><span class="pi">:</span>
+  <span class="pi">-</span> <span class="na">identifier</span><span class="pi">:</span> <span class="s2">"</span><span class="s">urban-air-quality-2023"</span>
+    <span class="na">title</span><span class="pi">:</span> <span class="s2">"</span><span class="s">Urban</span><span class="nv"> </span><span class="s">Air</span><span class="nv"> </span><span class="s">Quality</span><span class="nv"> </span><span class="s">Measurements</span><span class="nv"> </span><span class="s">-</span><span class="nv"> </span><span class="s">2023"</span>
+    <span class="na">theme</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="s2">"</span><span class="s">air-quality"</span>
+      <span class="pi">-</span> <span class="s2">"</span><span class="s">urban"</span>
+  
+  <span class="pi">-</span> <span class="na">identifier</span><span class="pi">:</span> <span class="s2">"</span><span class="s">urban-air-quality-2022"</span>
+    <span class="na">title</span><span class="pi">:</span> <span class="s2">"</span><span class="s">Urban</span><span class="nv"> </span><span class="s">Air</span><span class="nv"> </span><span class="s">Quality</span><span class="nv"> </span><span class="s">Measurements</span><span class="nv"> </span><span class="s">-</span><span class="nv"> </span><span class="s">2022"</span>
+    <span class="na">theme</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="s2">"</span><span class="s">air-quality"</span>
+      <span class="pi">-</span> <span class="s2">"</span><span class="s">urban"</span>
+      
+  <span class="pi">-</span> <span class="na">identifier</span><span class="pi">:</span> <span class="s2">"</span><span class="s">air-quality-trends"</span>
+    <span class="na">title</span><span class="pi">:</span> <span class="s2">"</span><span class="s">Historical</span><span class="nv"> </span><span class="s">Air</span><span class="nv"> </span><span class="s">Quality</span><span class="nv"> </span><span class="s">Trends"</span>
+    <span class="na">theme</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="s2">"</span><span class="s">air-quality"</span>
+</code></pre></div></div>
+
+<h4 id="multi-domain-concept-combination">Multi-Domain Concept Combination</h4>
+<p>Datasets often span multiple domains, requiring combination of concepts:</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">concepts</span><span class="pi">:</span>
+  <span class="pi">-</span> <span class="na">identifier</span><span class="pi">:</span> <span class="s2">"</span><span class="s">environmental"</span>
+    <span class="na">prefLabel</span><span class="pi">:</span> <span class="s2">"</span><span class="s">Environmental"</span>
+    <span class="na">definition</span><span class="pi">:</span> <span class="s2">"</span><span class="s">Relating</span><span class="nv"> </span><span class="s">to</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">natural</span><span class="nv"> </span><span class="s">world</span><span class="nv"> </span><span class="s">and</span><span class="nv"> </span><span class="s">human</span><span class="nv"> </span><span class="s">impact</span><span class="nv"> </span><span class="s">on</span><span class="nv"> </span><span class="s">it"</span>
+  <span class="pi">-</span> <span class="na">identifier</span><span class="pi">:</span> <span class="s2">"</span><span class="s">health"</span>
+    <span class="na">prefLabel</span><span class="pi">:</span> <span class="s2">"</span><span class="s">Health"</span>
+    <span class="na">definition</span><span class="pi">:</span> <span class="s2">"</span><span class="s">Relating</span><span class="nv"> </span><span class="s">to</span><span class="nv"> </span><span class="s">physical</span><span class="nv"> </span><span class="s">and</span><span class="nv"> </span><span class="s">mental</span><span class="nv"> </span><span class="s">well-being"</span>
+  <span class="pi">-</span> <span class="na">identifier</span><span class="pi">:</span> <span class="s2">"</span><span class="s">public-policy"</span>
+    <span class="na">prefLabel</span><span class="pi">:</span> <span class="s2">"</span><span class="s">Public</span><span class="nv"> </span><span class="s">Policy"</span>
+    <span class="na">definition</span><span class="pi">:</span> <span class="s2">"</span><span class="s">Government</span><span class="nv"> </span><span class="s">policies</span><span class="nv"> </span><span class="s">and</span><span class="nv"> </span><span class="s">regulations</span><span class="nv"> </span><span class="s">affecting</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">public"</span>
+
+<span class="na">datasets</span><span class="pi">:</span>
+  <span class="pi">-</span> <span class="na">identifier</span><span class="pi">:</span> <span class="s2">"</span><span class="s">environmental-health-impact"</span>
+    <span class="na">title</span><span class="pi">:</span> <span class="s2">"</span><span class="s">Environmental</span><span class="nv"> </span><span class="s">Impact</span><span class="nv"> </span><span class="s">on</span><span class="nv"> </span><span class="s">Public</span><span class="nv"> </span><span class="s">Health"</span>
+    <span class="na">theme</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="s2">"</span><span class="s">environmental"</span>
+      <span class="pi">-</span> <span class="s2">"</span><span class="s">health"</span>
+      
+  <span class="pi">-</span> <span class="na">identifier</span><span class="pi">:</span> <span class="s2">"</span><span class="s">environmental-policy-analysis"</span>
+    <span class="na">title</span><span class="pi">:</span> <span class="s2">"</span><span class="s">Environmental</span><span class="nv"> </span><span class="s">Policy</span><span class="nv"> </span><span class="s">Impact</span><span class="nv"> </span><span class="s">Analysis"</span>
+    <span class="na">theme</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="s2">"</span><span class="s">environmental"</span>
+      <span class="pi">-</span> <span class="s2">"</span><span class="s">public-policy"</span>
+</code></pre></div></div>
+
+<h3 id="193-concept-management-workflow">1.9.3 Concept Management Workflow</h3>
+
+<h4 id="establish-a-concept-governance-process">Establish a Concept Governance Process</h4>
+<ol>
+  <li><strong>Concept Proposal</strong>: Define process for proposing new concepts</li>
+  <li><strong>Review</strong>: Evaluate concepts for clarity, necessity, and fit</li>
+  <li><strong>Approval</strong>: Formal approval process for concept adoption</li>
+  <li><strong>Documentation</strong>: Maintain concept registry with version history</li>
+  <li><strong>Communication</strong>: Notify catalog maintainers of concept changes</li>
+</ol>
+
+<h4 id="version-control-for-concepts">Version Control for Concepts</h4>
+<p>When concepts need to evolve, maintain backward compatibility:</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">concepts</span><span class="pi">:</span>
+  <span class="pi">-</span> <span class="na">identifier</span><span class="pi">:</span> <span class="s2">"</span><span class="s">air-quality-v2"</span>
+    <span class="na">prefLabel</span><span class="pi">:</span> <span class="s2">"</span><span class="s">Air</span><span class="nv"> </span><span class="s">Quality</span><span class="nv"> </span><span class="s">(2023</span><span class="nv"> </span><span class="s">Standard)"</span>
+    <span class="na">definition</span><span class="pi">:</span> <span class="s2">"</span><span class="s">Air</span><span class="nv"> </span><span class="s">quality</span><span class="nv"> </span><span class="s">measured</span><span class="nv"> </span><span class="s">according</span><span class="nv"> </span><span class="s">to</span><span class="nv"> </span><span class="s">2023</span><span class="nv"> </span><span class="s">EPA</span><span class="nv"> </span><span class="s">standards"</span>
+    <span class="na">altLabel</span><span class="pi">:</span> <span class="s2">"</span><span class="s">air-quality"</span>
+    
+  <span class="pi">-</span> <span class="na">identifier</span><span class="pi">:</span> <span class="s2">"</span><span class="s">air-quality-v1"</span>
+    <span class="na">prefLabel</span><span class="pi">:</span> <span class="s2">"</span><span class="s">Air</span><span class="nv"> </span><span class="s">Quality</span><span class="nv"> </span><span class="s">(Legacy</span><span class="nv"> </span><span class="s">Standard)"</span>
+    <span class="na">definition</span><span class="pi">:</span> <span class="s2">"</span><span class="s">Air</span><span class="nv"> </span><span class="s">quality</span><span class="nv"> </span><span class="s">measured</span><span class="nv"> </span><span class="s">according</span><span class="nv"> </span><span class="s">to</span><span class="nv"> </span><span class="s">pre-2023</span><span class="nv"> </span><span class="s">standards"</span>
+    <span class="na">status</span><span class="pi">:</span> <span class="s2">"</span><span class="s">deprecated"</span>
+</code></pre></div></div>
+
+<h4 id="concept-quality-assurance">Concept Quality Assurance</h4>
+<p>Regularly review your concept library for:</p>
+
+<ul>
+  <li><strong>Orphaned concepts</strong>: Concepts not used by any datasets</li>
+  <li><strong>Underutilized concepts</strong>: Concepts used by very few datasets</li>
+  <li><strong>Concept gaps</strong>: Missing concepts that would improve organization</li>
+  <li><strong>Inconsistent definitions</strong>: Overlapping or conflicting definitions</li>
+</ul>
+
+<h3 id="194-integration-with-external-vocabularies">1.9.4 Integration with External Vocabularies</h3>
+
+<h4 id="link-to-established-standards">Link to Established Standards</h4>
+<p>Extend your concepts by referencing external vocabularies:</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">concepts</span><span class="pi">:</span>
+  <span class="pi">-</span> <span class="na">identifier</span><span class="pi">:</span> <span class="s2">"</span><span class="s">air-quality"</span>
+    <span class="na">prefLabel</span><span class="pi">:</span> <span class="s2">"</span><span class="s">Air</span><span class="nv"> </span><span class="s">Quality"</span>
+    <span class="na">definition</span><span class="pi">:</span> <span class="s2">"</span><span class="s">The</span><span class="nv"> </span><span class="s">degree</span><span class="nv"> </span><span class="s">to</span><span class="nv"> </span><span class="s">which</span><span class="nv"> </span><span class="s">air</span><span class="nv"> </span><span class="s">is</span><span class="nv"> </span><span class="s">suitable</span><span class="nv"> </span><span class="s">for</span><span class="nv"> </span><span class="s">breathing</span><span class="nv"> </span><span class="s">and</span><span class="nv"> </span><span class="s">other</span><span class="nv"> </span><span class="s">uses"</span>
+    <span class="c1"># Reference to external standard</span>
+    <span class="na">exactMatch</span><span class="pi">:</span> <span class="s2">"</span><span class="s">http://www.eionet.europa.eu/gemet/concept/7452"</span>
+    
+  <span class="pi">-</span> <span class="na">identifier</span><span class="pi">:</span> <span class="s2">"</span><span class="s">temperature"</span>
+    <span class="na">prefLabel</span><span class="pi">:</span> <span class="s2">"</span><span class="s">Temperature"</span>
+    <span class="na">definition</span><span class="pi">:</span> <span class="s2">"</span><span class="s">The</span><span class="nv"> </span><span class="s">degree</span><span class="nv"> </span><span class="s">of</span><span class="nv"> </span><span class="s">hotness</span><span class="nv"> </span><span class="s">or</span><span class="nv"> </span><span class="s">coldness</span><span class="nv"> </span><span class="s">of</span><span class="nv"> </span><span class="s">a</span><span class="nv"> </span><span class="s">body</span><span class="nv"> </span><span class="s">or</span><span class="nv"> </span><span class="s">environment"</span>
+    <span class="c1"># Reference to standard unit</span>
+    <span class="na">relatedMatch</span><span class="pi">:</span> <span class="s2">"</span><span class="s">http://qudt.org/vocab/unit/DEG_C"</span>
+</code></pre></div></div>
+
+<h4 id="adopt-domain-specific-vocabularies">Adopt Domain-Specific Vocabularies</h4>
+<p>Incorporate established domain vocabularies where available:</p>
+
+<ul>
+  <li><strong>Environmental</strong>: GEMET, ENVO, Environment Agency classifications</li>
+  <li><strong>Health</strong>: MeSH, SNOMED CT, ICD classifications</li>
+  <li><strong>Geographic</strong>: INSPIRE, Geonames, administrative hierarchies</li>
+  <li><strong>Scientific</strong>: AGROVOC, NASA Thesaurus, discipline-specific terms</li>
+</ul>
+
+<h3 id="195-practical-examples-of-concept-organization">1.9.5 Practical Examples of Concept Organization</h3>
+
+<h4 id="environmental-data-catalog">Environmental Data Catalog</h4>
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">concepts</span><span class="pi">:</span>
+  <span class="c1"># Environmental domains</span>
+  <span class="pi">-</span> <span class="na">identifier</span><span class="pi">:</span> <span class="s2">"</span><span class="s">air-quality"</span>
+    <span class="na">prefLabel</span><span class="pi">:</span> <span class="s2">"</span><span class="s">Air</span><span class="nv"> </span><span class="s">Quality"</span>
+    <span class="na">definition</span><span class="pi">:</span> <span class="s2">"</span><span class="s">Characteristics</span><span class="nv"> </span><span class="s">of</span><span class="nv"> </span><span class="s">air</span><span class="nv"> </span><span class="s">that</span><span class="nv"> </span><span class="s">affect</span><span class="nv"> </span><span class="s">human</span><span class="nv"> </span><span class="s">health</span><span class="nv"> </span><span class="s">and</span><span class="nv"> </span><span class="s">ecosystems"</span>
+    
+  <span class="pi">-</span> <span class="na">identifier</span><span class="pi">:</span> <span class="s2">"</span><span class="s">water-quality"</span>
+    <span class="na">prefLabel</span><span class="pi">:</span> <span class="s2">"</span><span class="s">Water</span><span class="nv"> </span><span class="s">Quality"</span>
+    <span class="na">definition</span><span class="pi">:</span> <span class="s2">"</span><span class="s">Chemical,</span><span class="nv"> </span><span class="s">physical,</span><span class="nv"> </span><span class="s">and</span><span class="nv"> </span><span class="s">biological</span><span class="nv"> </span><span class="s">characteristics</span><span class="nv"> </span><span class="s">of</span><span class="nv"> </span><span class="s">water"</span>
+    
+  <span class="pi">-</span> <span class="na">identifier</span><span class="pi">:</span> <span class="s2">"</span><span class="s">climate"</span>
+    <span class="na">prefLabel</span><span class="pi">:</span> <span class="s2">"</span><span class="s">Climate"</span>
+    <span class="na">definition</span><span class="pi">:</span> <span class="s2">"</span><span class="s">Long-term</span><span class="nv"> </span><span class="s">weather</span><span class="nv"> </span><span class="s">patterns</span><span class="nv"> </span><span class="s">and</span><span class="nv"> </span><span class="s">atmospheric</span><span class="nv"> </span><span class="s">conditions"</span>
+    
+  <span class="c1"># Environmental processes</span>
+  <span class="pi">-</span> <span class="na">identifier</span><span class="pi">:</span> <span class="s2">"</span><span class="s">pollution"</span>
+    <span class="na">prefLabel</span><span class="pi">:</span> <span class="s2">"</span><span class="s">Pollution"</span>
+    <span class="na">definition</span><span class="pi">:</span> <span class="s2">"</span><span class="s">Introduction</span><span class="nv"> </span><span class="s">of</span><span class="nv"> </span><span class="s">contaminants</span><span class="nv"> </span><span class="s">into</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">natural</span><span class="nv"> </span><span class="s">environment"</span>
+    
+  <span class="pi">-</span> <span class="na">identifier</span><span class="pi">:</span> <span class="s2">"</span><span class="s">monitoring"</span>
+    <span class="na">prefLabel</span><span class="pi">:</span> <span class="s2">"</span><span class="s">Monitoring"</span>
+    <span class="na">definition</span><span class="pi">:</span> <span class="s2">"</span><span class="s">Systematic</span><span class="nv"> </span><span class="s">observation</span><span class="nv"> </span><span class="s">and</span><span class="nv"> </span><span class="s">measurement</span><span class="nv"> </span><span class="s">of</span><span class="nv"> </span><span class="s">environmental</span><span class="nv"> </span><span class="s">conditions"</span>
+    
+  <span class="c1"># Geographic contexts</span>
+  <span class="pi">-</span> <span class="na">identifier</span><span class="pi">:</span> <span class="s2">"</span><span class="s">urban"</span>
+    <span class="na">prefLabel</span><span class="pi">:</span> <span class="s2">"</span><span class="s">Urban"</span>
+    <span class="na">definition</span><span class="pi">:</span> <span class="s2">"</span><span class="s">Relating</span><span class="nv"> </span><span class="s">to</span><span class="nv"> </span><span class="s">cities</span><span class="nv"> </span><span class="s">and</span><span class="nv"> </span><span class="s">densely</span><span class="nv"> </span><span class="s">populated</span><span class="nv"> </span><span class="s">areas"</span>
+    
+  <span class="pi">-</span> <span class="na">identifier</span><span class="pi">:</span> <span class="s2">"</span><span class="s">rural"</span>
+    <span class="na">prefLabel</span><span class="pi">:</span> <span class="s2">"</span><span class="s">Rural"</span>
+    <span class="na">definition</span><span class="pi">:</span> <span class="s2">"</span><span class="s">Relating</span><span class="nv"> </span><span class="s">to</span><span class="nv"> </span><span class="s">countryside</span><span class="nv"> </span><span class="s">and</span><span class="nv"> </span><span class="s">sparsely</span><span class="nv"> </span><span class="s">populated</span><span class="nv"> </span><span class="s">areas"</span>
+
+<span class="na">datasets</span><span class="pi">:</span>
+  <span class="pi">-</span> <span class="na">identifier</span><span class="pi">:</span> <span class="s2">"</span><span class="s">urban-air-quality"</span>
+    <span class="na">title</span><span class="pi">:</span> <span class="s2">"</span><span class="s">Urban</span><span class="nv"> </span><span class="s">Air</span><span class="nv"> </span><span class="s">Quality</span><span class="nv"> </span><span class="s">Monitoring"</span>
+    <span class="na">theme</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="s2">"</span><span class="s">air-quality"</span>
+      <span class="pi">-</span> <span class="s2">"</span><span class="s">urban"</span>
+      <span class="pi">-</span> <span class="s2">"</span><span class="s">monitoring"</span>
+      
+  <span class="pi">-</span> <span class="na">identifier</span><span class="pi">:</span> <span class="s2">"</span><span class="s">water-pollution-sources"</span>
+    <span class="na">title</span><span class="pi">:</span> <span class="s2">"</span><span class="s">Water</span><span class="nv"> </span><span class="s">Pollution</span><span class="nv"> </span><span class="s">Source</span><span class="nv"> </span><span class="s">Identification"</span>
+    <span class="na">theme</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="s2">"</span><span class="s">water-quality"</span>
+      <span class="pi">-</span> <span class="s2">"</span><span class="s">pollution"</span>
+</code></pre></div></div>
+
+<h3 id="196-common-pitfalls-and-solutions">1.9.6 Common Pitfalls and Solutions</h3>
+
+<h4 id="overly-granular-concepts">Overly Granular Concepts</h4>
+<p><strong>Problem</strong>: Creating concepts that are too specific leads to fragmentation.</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Too granular</span>
+<span class="pi">-</span> <span class="na">identifier</span><span class="pi">:</span> <span class="s2">"</span><span class="s">particulate-matter-2-5-micrograms"</span>
+  <span class="na">prefLabel</span><span class="pi">:</span> <span class="s2">"</span><span class="s">PM2.5</span><span class="nv"> </span><span class="s">Concentration"</span>
+  <span class="na">definition</span><span class="pi">:</span> <span class="s2">"</span><span class="s">Concentration</span><span class="nv"> </span><span class="s">of</span><span class="nv"> </span><span class="s">particles</span><span class="nv"> </span><span class="s">2.5</span><span class="nv"> </span><span class="s">micrometers</span><span class="nv"> </span><span class="s">or</span><span class="nv"> </span><span class="s">smaller"</span>
+
+<span class="c1"># Better approach</span>
+<span class="pi">-</span> <span class="na">identifier</span><span class="pi">:</span> <span class="s2">"</span><span class="s">air-pollution"</span>
+  <span class="na">prefLabel</span><span class="pi">:</span> <span class="s2">"</span><span class="s">Air</span><span class="nv"> </span><span class="s">Pollution"</span>
+  <span class="na">definition</span><span class="pi">:</span> <span class="s2">"</span><span class="s">Presence</span><span class="nv"> </span><span class="s">of</span><span class="nv"> </span><span class="s">harmful</span><span class="nv"> </span><span class="s">substances</span><span class="nv"> </span><span class="s">in</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">atmosphere"</span>
+</code></pre></div></div>
+
+<p><strong>Solution</strong>: Use broader concepts and let dataset descriptions provide specifics.</p>
+
+<h4 id="inconsistent-concept-usage">Inconsistent Concept Usage</h4>
+<p><strong>Problem</strong>: Similar datasets use different concept combinations.</p>
+
+<p><strong>Solution</strong>: Establish concept usage guidelines and review catalog regularly for consistency.</p>
+
+<h4 id="missing-concept-definitions">Missing Concept Definitions</h4>
+<p><strong>Problem</strong>: Using concept identifiers in themes without defining the concepts.</p>
+
+<p><strong>Solution</strong>: Always define concepts at root level before using them in dataset themes.</p>
+
+<p>By implementing these SKOS concept management practices, you create a robust, scalable system for organizing your datasets that enhances discoverability, supports consistent metadata practices, and integrates well with external data ecosystems.</p>
+
+<h2 id="110-understanding-catalogs-as-datasets">1.10 Understanding Catalogs as Datasets</h2>
+
+<p>Throughout this chapter, we’ve progressed from describing individual datasets to organizing them within catalogs. But here’s a fundamental insight: <strong>a catalog is itself a dataset</strong>. This concept is crucial for understanding how DCAT enables interoperability at scale.</p>
+
+<h3 id="the-catalog-as-dataset-concept">The Catalog-as-Dataset Concept</h3>
+
+<p>In DCAT, a catalog isn’t just a container - it’s a first-class dataset that describes other datasets. This recursive relationship means:</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># A catalog describes itself using the same structure as any dataset</span>
+<span class="na">dataCatalog</span><span class="pi">:</span>
+  <span class="na">identifier</span><span class="pi">:</span> <span class="s2">"</span><span class="s">environmental-catalog"</span>
+  <span class="na">title</span><span class="pi">:</span> <span class="s2">"</span><span class="s">Environmental</span><span class="nv"> </span><span class="s">Data</span><span class="nv"> </span><span class="s">Catalog"</span>
+  <span class="na">description</span><span class="pi">:</span> <span class="s2">"</span><span class="s">A</span><span class="nv"> </span><span class="s">catalog</span><span class="nv"> </span><span class="s">of</span><span class="nv"> </span><span class="s">environmental</span><span class="nv"> </span><span class="s">monitoring</span><span class="nv"> </span><span class="s">datasets"</span>
+  <span class="na">publisher</span><span class="pi">:</span>
+    <span class="na">name</span><span class="pi">:</span> <span class="s2">"</span><span class="s">Environmental</span><span class="nv"> </span><span class="s">Protection</span><span class="nv"> </span><span class="s">Agency"</span>
+  <span class="na">contactPoint</span><span class="pi">:</span>
+    <span class="na">hasEmail</span><span class="pi">:</span> <span class="s2">"</span><span class="s">catalog@epa.gov"</span>
+  <span class="na">theme</span><span class="pi">:</span>
+    <span class="pi">-</span> <span class="s2">"</span><span class="s">environmental-data"</span>
+    <span class="pi">-</span> <span class="s2">"</span><span class="s">government-catalog"</span>
+  <span class="na">license</span><span class="pi">:</span>
+    <span class="na">title</span><span class="pi">:</span> <span class="s2">"</span><span class="s">https://creativecommons.org/licenses/by/4.0/"</span>
+  <span class="c1"># This catalog contains other datasets</span>
+  <span class="na">dataset</span><span class="pi">:</span>
+    <span class="pi">-</span> <span class="s2">"</span><span class="s">air-quality-data"</span>
+    <span class="pi">-</span> <span class="s2">"</span><span class="s">water-quality-data"</span>
+</code></pre></div></div>
+
+<h3 id="why-this-matters">Why This Matters</h3>
+
+<h4 id="interoperability-and-federation">Interoperability and Federation</h4>
+<p>When catalogs are themselves datasets, they can be:</p>
+<ul>
+  <li><strong>Indexed by other catalogs</strong>: National catalogs can discover and index organizational catalogs</li>
+  <li><strong>Linked across systems</strong>: Cross-references enable federated search across multiple catalogs</li>
+  <li><strong>Standardized exchange</strong>: All catalogs use the same metadata structure regardless of content</li>
+</ul>
+
+<h4 id="hierarchical-organization">Hierarchical Organization</h4>
+<p>The catalog-as-dataset model enables natural hierarchies:</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>National Data Portal
+├── EPA Data Catalog
+│   ├── Air Quality Sub-catalog
+│   └── Water Quality Sub-catalog
+└── NOAA Data Catalog
+    ├── Climate Data Sub-catalog
+    └── Weather Data Sub-catalog
+</code></pre></div></div>
+
+<p>Each level in this hierarchy is a catalog that is itself a dataset, searchable and discoverable by catalogs above it.</p>
+
+<h4 id="metadata-inheritance-and-overriding">Metadata Inheritance and Overriding</h4>
+<p>Since catalogs are datasets, they can:</p>
+<ul>
+  <li><strong>Define default values</strong>: Publisher, license, or contact information that applies to contained datasets</li>
+  <li><strong>Establish standards</strong>: Specify required metadata fields for all datasets within the catalog</li>
+  <li><strong>Provide context</strong>: Domain-specific themes and concepts that apply to catalog contents</li>
+</ul>
+
+<h3 id="catalog-metadata-best-practices">Catalog Metadata Best Practices</h3>
+
+<p>When treating your catalog as a dataset, follow these guidelines:</p>
+
+<h4 id="complete-catalog-description">Complete Catalog Description</h4>
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">dataCatalog</span><span class="pi">:</span>
+  <span class="na">identifier</span><span class="pi">:</span> <span class="s2">"</span><span class="s">city-data-portal"</span>
+  <span class="na">title</span><span class="pi">:</span> <span class="s2">"</span><span class="s">City</span><span class="nv"> </span><span class="s">of</span><span class="nv"> </span><span class="s">Springfield</span><span class="nv"> </span><span class="s">Open</span><span class="nv"> </span><span class="s">Data</span><span class="nv"> </span><span class="s">Portal"</span>
+  <span class="na">description</span><span class="pi">:</span> <span class="s2">"</span><span class="s">Official</span><span class="nv"> </span><span class="s">catalog</span><span class="nv"> </span><span class="s">of</span><span class="nv"> </span><span class="s">datasets</span><span class="nv"> </span><span class="s">published</span><span class="nv"> </span><span class="s">by</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">City</span><span class="nv"> </span><span class="s">of</span><span class="nv"> </span><span class="s">Springfield,</span><span class="nv"> </span><span class="s">including</span><span class="nv"> </span><span class="s">city</span><span class="nv"> </span><span class="s">services,</span><span class="nv"> </span><span class="s">geographic</span><span class="nv"> </span><span class="s">data,</span><span class="nv"> </span><span class="s">and</span><span class="nv"> </span><span class="s">performance</span><span class="nv"> </span><span class="s">metrics"</span>
+  <span class="na">publisher</span><span class="pi">:</span>
+    <span class="na">name</span><span class="pi">:</span> <span class="s2">"</span><span class="s">City</span><span class="nv"> </span><span class="s">of</span><span class="nv"> </span><span class="s">Springfield"</span>
+    <span class="na">contactPoint</span><span class="pi">:</span>
+      <span class="na">hasEmail</span><span class="pi">:</span> <span class="s2">"</span><span class="s">opendata@springfield.gov"</span>
+  <span class="na">license</span><span class="pi">:</span>
+    <span class="na">title</span><span class="pi">:</span> <span class="s2">"</span><span class="s">https://creativecommons.org/licenses/by/4.0/"</span>
+  <span class="na">issued</span><span class="pi">:</span> <span class="s2">"</span><span class="s">2023-01-15"</span>
+  <span class="na">modified</span><span class="pi">:</span> <span class="s2">"</span><span class="s">2024-03-10"</span>
+  <span class="na">language</span><span class="pi">:</span> <span class="s2">"</span><span class="s">en"</span>
+  <span class="na">theme</span><span class="pi">:</span>
+    <span class="pi">-</span> <span class="s2">"</span><span class="s">municipal-data"</span>
+    <span class="pi">-</span> <span class="s2">"</span><span class="s">open-government"</span>
+    <span class="pi">-</span> <span class="s2">"</span><span class="s">city-services"</span>
+</code></pre></div></div>
+
+<h4 id="catalog-scope-and-coverage">Catalog Scope and Coverage</h4>
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">dataCatalog</span><span class="pi">:</span>
+  <span class="c1"># ... basic metadata</span>
+  <span class="na">spatial</span><span class="pi">:</span>
+    <span class="pi">-</span> <span class="na">identifier</span><span class="pi">:</span> <span class="s2">"</span><span class="s">springfield-city-limits"</span>
+      <span class="na">title</span><span class="pi">:</span> <span class="s2">"</span><span class="s">Springfield</span><span class="nv"> </span><span class="s">City</span><span class="nv"> </span><span class="s">Limits"</span>
+  <span class="na">temporal</span><span class="pi">:</span>
+    <span class="na">hasBeginning</span><span class="pi">:</span> <span class="s2">"</span><span class="s">2020-01-01"</span>
+    <span class="na">description</span><span class="pi">:</span> <span class="s2">"</span><span class="s">Contains</span><span class="nv"> </span><span class="s">data</span><span class="nv"> </span><span class="s">from</span><span class="nv"> </span><span class="s">2020</span><span class="nv"> </span><span class="s">onwards,</span><span class="nv"> </span><span class="s">with</span><span class="nv"> </span><span class="s">selected</span><span class="nv"> </span><span class="s">historical</span><span class="nv"> </span><span class="s">datasets</span><span class="nv"> </span><span class="s">included"</span>
+</code></pre></div></div>
+
+<h4 id="catalog-services-and-apis">Catalog Services and APIs</h4>
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">dataCatalog</span><span class="pi">:</span>
+  <span class="c1"># ... other metadata</span>
+  <span class="na">service</span><span class="pi">:</span>
+    <span class="pi">-</span> <span class="na">identifier</span><span class="pi">:</span> <span class="s2">"</span><span class="s">catalog-api"</span>
+      <span class="na">title</span><span class="pi">:</span> <span class="s2">"</span><span class="s">Catalog</span><span class="nv"> </span><span class="s">API"</span>
+      <span class="na">description</span><span class="pi">:</span> <span class="s2">"</span><span class="s">RESTful</span><span class="nv"> </span><span class="s">API</span><span class="nv"> </span><span class="s">for</span><span class="nv"> </span><span class="s">accessing</span><span class="nv"> </span><span class="s">catalog</span><span class="nv"> </span><span class="s">metadata</span><span class="nv"> </span><span class="s">and</span><span class="nv"> </span><span class="s">dataset</span><span class="nv"> </span><span class="s">listings"</span>
+      <span class="na">endpointURL</span><span class="pi">:</span> <span class="s2">"</span><span class="s">https://data.springfield.gov/api/v1"</span>
+      <span class="na">conformsTo</span><span class="pi">:</span> <span class="s2">"</span><span class="s">https://api.springfield.gov/docs/catalog"</span>
+</code></pre></div></div>
+
+<h3 id="practical-implementation">Practical Implementation</h3>
+
+<h4 id="step-1-define-your-catalog-identity">Step 1: Define Your Catalog Identity</h4>
+<p>Start by treating your catalog as a dataset with clear identification:</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">dataCatalog</span><span class="pi">:</span>
+  <span class="na">identifier</span><span class="pi">:</span> <span class="s2">"</span><span class="s">research-lab-catalog"</span>
+  <span class="na">title</span><span class="pi">:</span> <span class="s2">"</span><span class="s">Climate</span><span class="nv"> </span><span class="s">Research</span><span class="nv"> </span><span class="s">Laboratory</span><span class="nv"> </span><span class="s">Data</span><span class="nv"> </span><span class="s">Catalog"</span>
+  <span class="na">description</span><span class="pi">:</span> <span class="s2">"</span><span class="s">Catalog</span><span class="nv"> </span><span class="s">of</span><span class="nv"> </span><span class="s">datasets</span><span class="nv"> </span><span class="s">produced</span><span class="nv"> </span><span class="s">by</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">Climate</span><span class="nv"> </span><span class="s">Research</span><span class="nv"> </span><span class="s">Laboratory,</span><span class="nv"> </span><span class="s">including</span><span class="nv"> </span><span class="s">experimental</span><span class="nv"> </span><span class="s">results,</span><span class="nv"> </span><span class="s">model</span><span class="nv"> </span><span class="s">outputs,</span><span class="nv"> </span><span class="s">and</span><span class="nv"> </span><span class="s">observational</span><span class="nv"> </span><span class="s">data"</span>
+</code></pre></div></div>
+
+<h4 id="step-2-establish-catalog-wide-standards">Step 2: Establish Catalog-Wide Standards</h4>
+<p>Set expectations for all contained datasets:</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">dataCatalog</span><span class="pi">:</span>
+  <span class="c1"># ... identification</span>
+  <span class="na">conformsTo</span><span class="pi">:</span>
+    <span class="pi">-</span> <span class="s2">"</span><span class="s">https://www.w3.org/TR/vocab-dcat-3/"</span>
+    <span class="pi">-</span> <span class="s2">"</span><span class="s">https://research-lab.edu/metadata-standards/v2"</span>
+  <span class="na">theme</span><span class="pi">:</span>
+    <span class="pi">-</span> <span class="s2">"</span><span class="s">climate-research"</span>
+    <span class="pi">-</span> <span class="s2">"</span><span class="s">experimental-data"</span>
+    <span class="pi">-</span> <span class="s2">"</span><span class="s">model-outputs"</span>
+</code></pre></div></div>
+
+<h4 id="step-3-link-to-external-catalogs">Step 3: Link to External Catalogs</h4>
+<p>Enable discovery by broader catalog ecosystems:</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">dataCatalog</span><span class="pi">:</span>
+  <span class="c1"># ... catalog metadata</span>
+  <span class="na">isPartOf</span><span class="pi">:</span>
+    <span class="pi">-</span> <span class="s2">"</span><span class="s">https://data.gov/"</span>
+    <span class="pi">-</span> <span class="s2">"</span><span class="s">https://researchdata.org/"</span>
+</code></pre></div></div>
+
+<h3 id="catalog-evolution-and-management">Catalog Evolution and Management</h3>
+
+<p>Since catalogs are datasets, they follow the same lifecycle management practices:</p>
+
+<h4 id="version-management-1">Version Management</h4>
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">dataCatalog</span><span class="pi">:</span>
+  <span class="na">identifier</span><span class="pi">:</span> <span class="s2">"</span><span class="s">research-catalog-v3"</span>
+  <span class="na">title</span><span class="pi">:</span> <span class="s2">"</span><span class="s">Climate</span><span class="nv"> </span><span class="s">Research</span><span class="nv"> </span><span class="s">Laboratory</span><span class="nv"> </span><span class="s">Data</span><span class="nv"> </span><span class="s">Catalog</span><span class="nv"> </span><span class="s">v3.0"</span>
+  <span class="na">version</span><span class="pi">:</span> <span class="s2">"</span><span class="s">3.0"</span>
+  <span class="na">wasDerivedFrom</span><span class="pi">:</span> <span class="s2">"</span><span class="s">research-catalog-v2"</span>
+  <span class="na">modificationReason</span><span class="pi">:</span> <span class="s2">"</span><span class="s">Added</span><span class="nv"> </span><span class="s">new</span><span class="nv"> </span><span class="s">datasets</span><span class="nv"> </span><span class="s">and</span><span class="nv"> </span><span class="s">improved</span><span class="nv"> </span><span class="s">metadata</span><span class="nv"> </span><span class="s">quality"</span>
+</code></pre></div></div>
+
+<h4 id="quality-assessment">Quality Assessment</h4>
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">dataCatalog</span><span class="pi">:</span>
+  <span class="c1"># ... other metadata</span>
+  <span class="na">hasQualityAnnotation</span><span class="pi">:</span>
+    <span class="pi">-</span> <span class="na">assertedBy</span><span class="pi">:</span> <span class="s2">"</span><span class="s">metadata-auditor@university.edu"</span>
+      <span class="na">qualityMeasure</span><span class="pi">:</span> <span class="s2">"</span><span class="s">metadata-completeness"</span>
+      <span class="na">value</span><span class="pi">:</span> <span class="s2">"</span><span class="s">0.95"</span>  <span class="c1"># 95% completeness</span>
+    <span class="pi">-</span> <span class="na">assertedBy</span><span class="pi">:</span> <span class="s2">"</span><span class="s">user-feedback@university.edu"</span>
+      <span class="na">qualityMeasure</span><span class="pi">:</span> <span class="s2">"</span><span class="s">user-satisfaction"</span>
+      <span class="na">value</span><span class="pi">:</span> <span class="s2">"</span><span class="s">4.2/5.0"</span>
+</code></pre></div></div>
+
+          </div>
+        </main>
+        
+        <footer class="site-footer">
+          <div class="footer-content">
+            This site is open source. <a href="/edit//docs/02_chapter1_dcat.md">Improve this page</a>.
+          </div>
+        </footer>
+      </div>
+    </div>
+    
+    <!-- JavaScript -->
+    <script src="/simple_data_catalog_how-to/assets/js/sidebar.js"></script>
+  </body>
+</html>

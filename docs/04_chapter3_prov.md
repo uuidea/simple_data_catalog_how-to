@@ -1,3 +1,10 @@
+---
+layout: default
+title: "Data Lineage (PROV)"
+nav_order: 3
+sidebar_label: "🔗 PROV"
+---
+
 # Chapter 3: Data Lineage (PROV)
 
 ## 3.1 Theory and Concepts
@@ -152,42 +159,53 @@ These features make the simple_data_catalog particularly valuable for organizati
 The simplest provenance scenario involves a dataset that is directly derived from a single source dataset. This example demonstrates the fundamental PROV concept in action, showing how to document the basic story of data transformation.
 
 ```yaml
-# Basic derivation example
+# Basic derivation example - LinkML compliant
+concepts:
+  - identifier: "temperature"
+    prefLabel: "Temperature"
+    definition: "The degree of hotness or coldness of a body or environment"
+  - identifier: "climate"
+    prefLabel: "Climate"
+    definition: "The weather conditions prevailing in an area in general"
+  - identifier: "weather"
+    prefLabel: "Weather"
+    definition: "The state of atmosphere at a specific time and place"
+
 datasets:
-  - id: temperature-readings
+  - identifier: "temperature-readings"
     title: "Daily Temperature Readings"
     description: "Temperature measurements collected from weather station"
-    keywords:
-      - temperature
-      - climate
-      - weather
+    theme:
+      - "temperature"
+      - "climate"
+      - "weather"
     publisher:
       name: "Weather Service"
-      email: "data@weather.gov"
+    contactPoint:
+      hasEmail: "data@weather.gov"
     issued: "2024-01-15"
     modified: "2024-01-20"
-    distributions:
-      - id: csv-data
+    distribution:
+      - identifier: "csv-data"
         title: "CSV format"
         description: "Temperature data in CSV format"
-        downloadURL: "https://data.gov.climate/temperature.csv"
-        mediaType: "text/csv"
-        byteSize: "15000000"
+        accessURL: "https://data.gov.climate/temperature.csv"
+        format: "text/csv"
 
-  - id: processed-temperature-data
+  - identifier: "processed-temperature-data"
     title: "Quality-Controlled Temperature Data"
     description: "Temperature measurements after quality control processing"
-    keywords:
-      - temperature
-      - climate
-      - quality-controlled
+    theme:
+      - "temperature"
+      - "climate"
     publisher:
       name: "Climate Data Center"
-      email: "data@climate.gov"
+    contactPoint:
+      hasEmail: "data@climate.gov"
     issued: "2024-01-21"
     modified: "2024-01-21"
     wasDerivedFrom:
-      - temperature-readings
+      - "temperature-readings"
 ```
 
 This example shows how processed temperature data is derived from raw temperature readings. The `wasDerivedFrom` property creates a clear link between the two datasets, enabling users to trace the data processing history. The derived dataset maintains its own metadata while explicitly referencing its source, creating a transparent provenance chain.
@@ -197,53 +215,72 @@ This example shows how processed temperature data is derived from raw temperatur
 A common scenario involves datasets that are created by combining multiple source datasets. This example demonstrates how to document complex derivation relationships where a single dataset draws from multiple sources.
 
 ```yaml
-# Multi-source derivation example
+# Multi-source derivation example - LinkML compliant
+concepts:
+  - identifier: "temperature"
+    prefLabel: "Temperature"
+    definition: "The degree of hotness or coldness of a body or environment"
+  - identifier: "precipitation"
+    prefLabel: "Precipitation"
+    definition: "Any product of condensation of atmospheric water vapor"
+  - identifier: "climate"
+    prefLabel: "Climate"
+    definition: "The weather conditions prevailing in an area in general"
+  - identifier: "historical"
+    prefLabel: "Historical"
+    definition: "Relating to past events or periods"
+  - identifier: "climate-index"
+    prefLabel: "Climate Index"
+    definition: "A numerical value representing climate conditions"
+
 datasets:
-  - id: temperature-series
+  - identifier: "temperature-series"
     title: "Historical Temperature Series"
     description: "Monthly temperature measurements from 1990-2020"
-    keywords:
-      - temperature
-      - historical
-      - climate
+    theme:
+      - "temperature"
+      - "historical"
+      - "climate"
     temporal:
-      start: "1990-01-01"
-      end: "2020-12-31"
+      hasBeginning: "1990-01-01"
+      hasEnd: "2020-12-31"
     publisher:
       name: "National Weather Service"
-      email: "data@weather.gov"
+    contactPoint:
+      hasEmail: "data@weather.gov"
 
-  - id: precipitation-series
+  - identifier: "precipitation-series"
     title: "Historical Precipitation Series"
     description: "Monthly precipitation measurements from 1990-2020"
-    keywords:
-      - precipitation
-      - historical
-      - climate
+    theme:
+      - "precipitation"
+      - "historical"
+      - "climate"
     temporal:
-      start: "1990-01-01"
-      end: "2020-12-31"
+      hasBeginning: "1990-01-01"
+      hasEnd: "2020-12-31"
     publisher:
       name: "National Weather Service"
-      email: "data@weather.gov"
+    contactPoint:
+      hasEmail: "data@weather.gov"
 
-  - id: climate-index
+  - identifier: "climate-index"
     title: "Combined Climate Index"
     description: "Climate index calculated from temperature and precipitation data"
-    keywords:
-      - climate-index
-      - temperature
-      - precipitation
-      - combined
+    theme:
+      - "climate-index"
+      - "temperature"
+      - "precipitation"
     temporal:
-      start: "1990-01-01"
-      end: "2020-12-31"
+      hasBeginning: "1990-01-01"
+      hasEnd: "2020-12-31"
     publisher:
       name: "Climate Research Institute"
-      email: "data@climate-institute.gov"
+    contactPoint:
+      hasEmail: "data@climate-institute.gov"
     wasDerivedFrom:
-      - temperature-series
-      - precipitation-series
+      - "temperature-series"
+      - "precipitation-series"
 ```
 
 This example shows how a climate index dataset is derived from both temperature and precipitation series. The multi-valued `wasDerivedFrom` property creates links to both source datasets, documenting the complete provenance of the derived dataset. Users can trace back to understand exactly what data sources contributed to the climate index calculation.
@@ -253,57 +290,93 @@ This example shows how a climate index dataset is derived from both temperature 
 Complex data processing workflows often create chains of derived datasets, where each step builds upon the previous one. This example demonstrates how to document multi-level derivation chains that show the complete data processing history.
 
 ```yaml
-# Derivation chain example
+# Derivation chain example - LinkML compliant
+concepts:
+  - identifier: "raw"
+    prefLabel: "Raw"
+    definition: "Unprocessed data as originally collected"
+  - identifier: "sensor"
+    prefLabel: "Sensor"
+    definition: "Device that detects or measures physical properties"
+  - identifier: "weather"
+    prefLabel: "Weather"
+    definition: "The state of atmosphere at a specific time and place"
+  - identifier: "cleaned"
+    prefLabel: "Cleaned"
+    definition: "Data that has been processed for quality control"
+  - identifier: "validated"
+    prefLabel: "Validated"
+    definition: "Data that has undergone validation procedures"
+  - identifier: "aggregated"
+    prefLabel: "Aggregated"
+    definition: "Data that has been combined or summarized"
+  - identifier: "monthly"
+    prefLabel: "Monthly"
+    definition: "Data aggregated to monthly time periods"
+  - identifier: "climate"
+    prefLabel: "Climate"
+    definition: "The weather conditions prevailing in an area in general"
+  - identifier: "trends"
+    prefLabel: "Trends"
+    definition: "Pattern of change over time"
+  - identifier: "analysis"
+    prefLabel: "Analysis"
+    definition: "Examination of data to extract meaning"
+
 datasets:
-  - id: raw-sensor-data
+  - identifier: "raw-sensor-data"
     title: "Raw Weather Station Sensor Data"
     description: "Direct readings from weather station sensors"
-    keywords:
-      - raw
-      - sensor
-      - weather
+    theme:
+      - "raw"
+      - "sensor"
+      - "weather"
     publisher:
       name: "Weather Station Network"
-      email: "data@stations.weather.gov"
+    contactPoint:
+      hasEmail: "data@stations.weather.gov"
 
-  - id: cleaned-sensor-data
+  - identifier: "cleaned-sensor-data"
     title: "Cleaned Weather Station Data"
     description: "Sensor data after automated cleaning and validation"
-    keywords:
-      - cleaned
-      - validated
-      - weather
+    theme:
+      - "cleaned"
+      - "validated"
+      - "weather"
     publisher:
       name: "Weather Data Processing Center"
-      email: "processing@weather.gov"
+    contactPoint:
+      hasEmail: "processing@weather.gov"
     wasDerivedFrom:
-      - raw-sensor-data
+      - "raw-sensor-data"
 
-  - id: aggregated-climate-data
+  - identifier: "aggregated-climate-data"
     title: "Monthly Aggregated Climate Data"
     description: "Climate data aggregated to monthly resolution"
-    keywords:
-      - aggregated
-      - monthly
-      - climate
+    theme:
+      - "aggregated"
+      - "monthly"
+      - "climate"
     publisher:
       name: "Climate Data Center"
-      email: "data@climate.gov"
+    contactPoint:
+      hasEmail: "data@climate.gov"
     wasDerivedFrom:
-      - cleaned-sensor-data
+      - "cleaned-sensor-data"
 
-  - id: climate-trends-analysis
+  - identifier: "climate-trends-analysis"
     title: "Climate Trends Analysis Report"
     description: "Statistical analysis of long-term climate trends"
-    keywords:
-      - trends
-      - analysis
-      - climate
+    theme:
+      - "trends"
+      - "analysis"
+      - "climate"
     publisher:
       name: "Climate Research Institute"
-      email: "research@climate-institute.gov"
+    contactPoint:
+      hasEmail: "research@climate-institute.gov"
     wasDerivedFrom:
-      - aggregated-climate-data
+      - "aggregated-climate-data"
 ```
 
 This example demonstrates a complete derivation chain from raw sensor data to final climate trends analysis. Each dataset in the chain explicitly references its immediate predecessor, creating a clear trail of data transformations. Users can follow this chain backward to understand the complete processing history, or forward to see how the data evolves through each processing step.
@@ -313,81 +386,112 @@ This example demonstrates a complete derivation chain from raw sensor data to fi
 Provenance information integrates seamlessly with the DCAT metadata structures from Chapter 1. This example shows how derivation relationships complement the descriptive metadata to create a comprehensive dataset description.
 
 ```yaml
-# Complete dataset with DCAT metadata and PROV provenance
+# Complete dataset with DCAT metadata and PROV provenance - LinkML compliant
+concepts:
+  - identifier: "air-quality"
+    prefLabel: "Air Quality"
+    definition: "The degree to which air is suitable for breathing and other uses"
+  - identifier: "pollution"
+    prefLabel: "Pollution"
+    definition: "The introduction of contaminants into natural environment"
+  - identifier: "environmental"
+    prefLabel: "Environmental"
+    definition: "Relating to natural world and impact of human activity on it"
+  - identifier: "health"
+    prefLabel: "Health"
+    definition: "The state of physical and mental well-being"
+  - identifier: "environment"
+    prefLabel: "Environment"
+    definition: "The natural world and surroundings"
+  - identifier: "pm25"
+    prefLabel: "PM2.5"
+    definition: "Particulate matter 2.5 micrometers in diameter"
+  - identifier: "particulate-matter"
+    prefLabel: "Particulate Matter"
+    definition: "Tiny solid particles or liquid droplets suspended in air"
+  - identifier: "no2"
+    prefLabel: "NO2"
+    definition: "Nitrogen dioxide gas"
+  - identifier: "nitrogen-dioxide"
+    prefLabel: "Nitrogen Dioxide"
+    definition: "Chemical compound NO2, a reddish-brown gas"
+  - identifier: "ozone"
+    prefLabel: "Ozone"
+    definition: "Triatomic molecule O3, pale blue gas"
+  - identifier: "o3"
+    prefLabel: "O3"
+    definition: "Molecular form of ozone"
+
 datasets:
-  - id: national-air-quality-index
+  - identifier: "national-air-quality-index"
     title: "National Air Quality Index"
     description: "Daily air quality index calculated from multiple pollutant measurements"
-    keywords:
-      - air-quality
-      - pollution
-      - environmental
-      - health
+    theme:
+      - "air-quality"
+      - "pollution"
+      - "environmental"
+      - "health"
+      - "environment"
     temporal:
-      start: "2023-01-01"
-      end: "2023-12-31"
-    spatial:
-      - "Country of Exampleland"
-    accrualPeriodicity: "daily"
+      hasBeginning: "2023-01-01"
+      hasEnd: "2023-12-31"
     publisher:
       name: "Environmental Protection Agency"
-      email: "data@epa.gov"
-      type: "organization"
-    theme:
-      - environment
-      - health
-      - air-quality
-    license: "https://creativecommons.org/licenses/by/4.0/"
+    contactPoint:
+      hasEmail: "data@epa.gov"
+    license:
+      title: "https://creativecommons.org/licenses/by/4.0/"
     wasDerivedFrom:
-      - pm25-measurements
-      - no2-measurements
-      - o3-measurements
-    distributions:
-      - id: aqi-daily-csv
+      - "pm25-measurements"
+      - "no2-measurements"
+      - "o3-measurements"
+    distribution:
+      - identifier: "aqi-daily-csv"
         title: "Daily AQI CSV Data"
         description: "Air quality index values in CSV format"
-        downloadURL: "https://data.epa.gov/aqi/daily/2023.csv"
-        mediaType: "text/csv"
-        byteSize: "5000000"
-      - id: aqi-api
+        accessURL: "https://data.epa.gov/aqi/daily/2023.csv"
+        format: "csv"
+      - identifier: "aqi-api"
         title: "AQI REST API"
         description: "Real-time air quality index API"
         accessURL: "https://api.epa.gov/aqi/v1"
-        mediaType: "application/json"
         conformsTo: "https://api.epa.gov/docs/aqi/v1"
 
-  - id: pm25-measurements
+  - identifier: "pm25-measurements"
     title: "PM2.5 Concentration Measurements"
     description: "Particulate matter 2.5 micrometer measurements from monitoring stations"
-    keywords:
-      - pm25
-      - particulate-matter
-      - pollution
+    theme:
+      - "pm25"
+      - "particulate-matter"
+      - "pollution"
     publisher:
       name: "Air Quality Monitoring Network"
-      email: "data@air-quality.gov"
+    contactPoint:
+      hasEmail: "data@air-quality.gov"
 
-  - id: no2-measurements
+  - identifier: "no2-measurements"
     title: "NO2 Concentration Measurements"
     description: "Nitrogen dioxide measurements from monitoring stations"
-    keywords:
-      - no2
-      - nitrogen-dioxide
-      - pollution
+    theme:
+      - "no2"
+      - "nitrogen-dioxide"
+      - "pollution"
     publisher:
       name: "Air Quality Monitoring Network"
-      email: "data@air-quality.gov"
+    contactPoint:
+      hasEmail: "data@air-quality.gov"
 
-  - id: o3-measurements
+  - identifier: "o3-measurements"
     title: "Ozone Concentration Measurements"
     description: "Ground-level ozone measurements from monitoring stations"
-    keywords:
-      - ozone
-      - o3
-      - pollution
+    theme:
+      - "ozone"
+      - "o3"
+      - "pollution"
     publisher:
       name: "Air Quality Monitoring Network"
-      email: "data@air-quality.gov"
+    contactPoint:
+      hasEmail: "data@air-quality.gov"
 ```
 
 This comprehensive example shows how provenance information enhances the rich DCAT metadata from Chapter 1. The national air quality index dataset includes complete descriptive metadata while also documenting its derivation from three pollutant measurement datasets. This integration creates a complete picture that tells users both what the dataset contains and where it came from.
@@ -438,23 +542,46 @@ This example demonstrates how to track dataset versions using explicit derivatio
 When documenting provenance across multiple datasets, you may need to reference datasets that are defined in separate YAML files or in other catalogs. PROV supports this through the use of full dataset identifiers.
 
 ```yaml
-# Cross-referencing provenance example
+# Cross-referencing provenance example - LinkML compliant
+concepts:
+  - identifier: "temperature"
+    prefLabel: "Temperature"
+    definition: "The degree of hotness or coldness of a body or environment"
+  - identifier: "global"
+    prefLabel: "Global"
+    definition: "Relating to the entire world or earth"
+  - identifier: "historical"
+    prefLabel: "Historical"
+    definition: "Relating to past events or periods"
+  - identifier: "regional"
+    prefLabel: "Regional"
+    definition: "Relating to a specific geographic region"
+
 datasets:
-  - id: https://data.weather.gov/datasets/temperature-series
+  - identifier: "https://data.weather.gov/datasets/temperature-series"
     title: "Historical Temperature Series"
     description: "Global temperature measurements from 1880-2020"
+    theme:
+      - "temperature"
+      - "global"
+      - "historical"
     publisher:
       name: "Global Climate Organization"
-      email: "data@globalclimate.org"
+    contactPoint:
+      hasEmail: "data@globalclimate.org"
 
-  - id: local-climate-analysis
+  - identifier: "local-climate-analysis"
     title: "Regional Climate Impact Analysis"
     description: "Regional analysis based on global temperature data"
+    theme:
+      - "regional"
+      - "climate"
     publisher:
       name: "Regional Climate Center"
-      email: "data@regional-climate.gov"
+    contactPoint:
+      hasEmail: "data@regional-climate.gov"
     wasDerivedFrom:
-      - https://data.weather.gov/datasets/temperature-series
+      - "https://data.weather.gov/datasets/temperature-series"
 ```
 
 This example shows how to reference datasets in external catalogs using their full identifiers. This approach enables provenance tracking across organizational boundaries, supporting federated data catalogs and collaborative data ecosystems.

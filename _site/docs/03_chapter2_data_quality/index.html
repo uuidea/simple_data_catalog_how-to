@@ -1,0 +1,756 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <!-- SEO tags -->
+    <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Data Quality (DQV) | Data Management for Data Publishers</title>
+<meta name="generator" content="Jekyll v4.3.4" />
+<meta property="og:title" content="Data Quality (DQV)" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="How-to guide for simple_data_catalog framework" />
+<meta property="og:description" content="How-to guide for simple_data_catalog framework" />
+<link rel="canonical" href="https://uuidea.github.io/simple_data_catalog_how-to/docs/03_chapter2_data_quality/" />
+<meta property="og:url" content="https://uuidea.github.io/simple_data_catalog_how-to/docs/03_chapter2_data_quality/" />
+<meta property="og:site_name" content="Data Management for Data Publishers" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Data Quality (DQV)" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","description":"How-to guide for simple_data_catalog framework","headline":"Data Quality (DQV)","url":"https://uuidea.github.io/simple_data_catalog_how-to/docs/03_chapter2_data_quality/"}</script>
+<!-- End Jekyll SEO tag -->
+
+    
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="/simple_data_catalog_how-to/assets/css/style.css?v=">
+    
+    <!-- Custom fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  </head>
+  <body class="sidebar-visible">
+    <div class="site-container">
+      <!-- Sidebar -->
+      <aside class="sidebar" id="sidebar">
+  <div class="sidebar-content">
+    <header class="sidebar-header">
+      <h2 class="sidebar-title">
+        <a href="/simple_data_catalog_how-to/" class="logo-link">
+          📖 Documentation Guide
+        </a>
+      </h2>
+    </header>
+    
+    <nav class="sidebar-nav">
+      <ul class="nav-list">
+        
+          
+            <li class="nav-item">
+              <a href="/" class="nav-link ">
+                📖 Introduction
+              </a>
+            </li>
+          
+        
+          
+            <li class="nav-item">
+              <a href="/docs/02_chapter1_dcat.html" class="nav-link ">
+                📊 DCAT
+              </a>
+            </li>
+          
+        
+          
+            <li class="nav-item">
+              <a href="/docs/03_chapter2_data_quality.html" class="nav-link ">
+                ✅ DQV
+              </a>
+            </li>
+          
+        
+          
+            <li class="nav-item">
+              <a href="/docs/04_chapter3_prov.html" class="nav-link ">
+                🔗 PROV
+              </a>
+            </li>
+          
+        
+          
+            <li class="nav-item">
+              <a href="/docs/05_chapter4_data_policy.html" class="nav-link ">
+                🛡️ ODRL
+              </a>
+            </li>
+          
+        
+          
+            <li class="nav-item nav-parent">
+              <button class="nav-toggle" aria-expanded="false">
+                📚 Resources
+                <span class="toggle-icon">▼</span>
+              </button>
+              <ul class="nav-children">
+                
+                  
+                    <li class="nav-item">
+                      <a href="https://github.com/uuidea/simple_data_catalog" 
+                         target="_blank" rel="noopener"
+                         class="nav-link">
+                        simple_data_catalog
+                      </a>
+                    </li>
+                  
+                
+                  
+                    <li class="nav-item nav-parent">
+                      <button class="nav-toggle">
+                        W3C Standards
+                        <span class="toggle-icon">▼</span>
+                      </button>
+                      <ul class="nav-children">
+                        
+                          <li class="nav-item">
+                            <a href="https://www.w3.org/TR/vocab-dcat-3/" 
+                               target="_blank" rel="noopener"
+                               class="nav-link">
+                              DCAT 3
+                            </a>
+                          </li>
+                        
+                          <li class="nav-item">
+                            <a href="https://www.w3.org/TR/prov-o/" 
+                               target="_blank" rel="noopener"
+                               class="nav-link">
+                              PROV-O
+                            </a>
+                          </li>
+                        
+                          <li class="nav-item">
+                            <a href="https://www.w3.org/TR/vocab-dqv/" 
+                               target="_blank" rel="noopener"
+                               class="nav-link">
+                              DQV
+                            </a>
+                          </li>
+                        
+                          <li class="nav-item">
+                            <a href="https://www.w3.org/TR/odrl-model/" 
+                               target="_blank" rel="noopener"
+                               class="nav-link">
+                              ODRL
+                            </a>
+                          </li>
+                        
+                      </ul>
+                    </li>
+                  
+                
+              </ul>
+            </li>
+          
+        
+      </ul>
+    </nav>
+  </div>
+</aside>
+      
+      <!-- Main Content -->
+      <div class="main-content">
+        <header class="site-header">
+          <button class="sidebar-toggle" aria-label="Toggle navigation">
+            <span></span>
+            <span></span>
+            <span></span>
+          </button>
+          <div class="header-content">
+            
+              <h1>Data Quality (DQV)</h1>
+            
+          </div>
+        </header>
+        
+        <main class="content-area">
+          <div class="content-wrapper">
+            <h1 id="chapter-2-data-quality-dqv">Chapter 2: Data Quality (DQV)</h1>
+
+<h2 id="21-theory-and-concepts">2.1 Theory and Concepts</h2>
+
+<p>Data quality represents the cornerstone of trustworthy data ecosystems. While previous chapters explored how to describe datasets and trace their provenance, this chapter addresses the critical question of how good that data actually is. The Data Quality Vocabulary (DQV) provides a standardized framework for assessing, documenting, and communicating data quality information in a way that enables data consumers to make informed decisions about data usage.</p>
+
+<h3 id="what-is-dqv">What is DQV?</h3>
+
+<p>The Data Quality Vocabulary (DQV) is a W3C Recommendation that defines a set of classes and properties for representing data quality information. DQV enables data publishers to express quality assessments, measurements, and annotations in a standardized format that can be understood and processed by both humans and machines. The vocabulary supports a wide range of quality assessment approaches, from automated metrics to human evaluations, from single measurements to comprehensive quality certificates.</p>
+
+<p>DQV addresses the fundamental challenge of data quality communication: how do we express that data is good or bad, complete or incomplete, accurate or inaccurate, in a way that is meaningful, comparable, and actionable? The vocabulary provides the semantic foundation for answering these questions while maintaining flexibility to accommodate diverse quality assessment methodologies and domain-specific requirements.</p>
+
+<h3 id="core-dqv-concepts">Core DQV Concepts</h3>
+
+<p>DQV is built around a hierarchical framework that organizes quality information into meaningful categories. At the foundation are <strong>Metrics</strong>, which define specific measurable aspects of data quality such as completeness, accuracy, or availability. These metrics are applied to datasets through <strong>QualityMeasurements</strong>, which capture the actual observed values and the context in which they were measured.</p>
+
+<p>The metrics themselves are organized into <strong>Dimensions</strong>, which group related metrics into broader quality categories. Common dimensions include completeness (how much data is missing), accuracy (how correct the data is), availability (whether the data can be accessed), and timeliness (how current the data is). These dimensions can be further organized into <strong>Categories</strong> that represent high-level quality frameworks such as ISO 25012 or domain-specific quality models.</p>
+
+<pre><code class="language-mermaid">graph TD
+    A[QualityMeasurement] --&gt;|isMeasurementOf| B[Metric]
+    B --&gt;|inDimension| C[Dimension]
+    C --&gt;|inCategory| D[Category]
+    A --&gt;|computedOn| E[Dataset]
+    A --&gt;|generatedAtTime| F[Timestamp]
+    
+    style A fill:#e8f5e8
+    style B fill:#e1f5fe
+    style C fill:#fff3e0
+    style D fill:#fce4ec
+    style E fill:#f3e5f5
+</code></pre>
+
+<p>This hierarchical structure enables both detailed quality assessments and high-level quality summaries. Data consumers can drill down to specific metric values for detailed analysis, or examine dimension-level summaries for quick quality assessments. The framework also supports quality annotations that capture user feedback, expert evaluations, and quality certificates that provide formal attestations of data quality.</p>
+
+<h3 id="quality-dimensions-and-their-importance">Quality Dimensions and Their Importance</h3>
+
+<p>Different applications and domains prioritize different quality dimensions. Understanding these dimensions helps data publishers focus their quality assessment efforts on the aspects that matter most to their users.</p>
+
+<p><strong>Completeness</strong> measures the presence of expected data elements. Incomplete data can lead to biased analyses and incorrect conclusions. For example, a dataset with missing demographic information may not be suitable for population studies.</p>
+
+<p><strong>Accuracy</strong> measures how closely data values represent the real-world phenomena they describe. Inaccurate data can undermine decision making and lead to costly errors. GPS coordinates with systematic bias, for instance, could misguide navigation systems.</p>
+
+<p><strong>Availability</strong> measures whether data can be accessed when needed. Even high-quality data is useless if it cannot be retrieved. This dimension includes both technical accessibility and licensing accessibility.</p>
+
+<p><strong>Timeliness</strong> measures how current the data is relative to the needs of the application. Financial market data from yesterday may be too old for trading decisions, while historical climate data from decades ago may be perfectly suitable for climate change studies.</p>
+
+<p><strong>Consistency</strong> measures the absence of contradictions within and across datasets. Inconsistent data can confuse automated systems and lead to incorrect inferences. A customer database with different addresses for the same customer in different tables exemplifies consistency issues.</p>
+
+<h3 id="dqv-integration-with-dcat-and-prov">DQV Integration with DCAT and PROV</h3>
+
+<p>DQV builds upon the foundations established in previous chapters. While DCAT (Chapter 1) describes what datasets are available and how to access them, DQV tells us how good those datasets are for their intended purposes. This integration creates a comprehensive view of data resources that includes descriptive metadata and quality assessments. Provenance information will be covered in Chapter 3.</p>
+
+<p>The integration works through quality annotations that link to DCAT datasets and distributions. Each quality measurement is associated with a specific dataset or distribution, creating a clear connection between quality information and the data resource it describes. This enables data consumers to evaluate quality alongside other metadata when making decisions about data usage.</p>
+
+<p>PROV provenance information enhances quality assessments by providing context for quality measurements. When a dataset is derived from high-quality source data, consumers may have greater confidence in its quality. Conversely, datasets derived from low-quality sources may require additional scrutiny. The combination of provenance and quality information creates a complete picture of data trustworthiness.</p>
+
+<h2 id="22-dqv-in-simple-data-catalog">2.2 DQV in Simple Data Catalog</h2>
+
+<p>Simple Data Catalog implements a practical subset of DQV that focuses on the most commonly needed quality assessment capabilities. The implementation provides a straightforward interface for defining metrics, capturing measurements, and organizing quality information while maintaining compatibility with the DQV standard.</p>
+
+<p>The framework supports both automated quality assessments and manual quality evaluations. Automated assessments can be captured through programmatic metric calculations, while manual evaluations can be documented through quality annotations and expert assessments. This flexibility accommodates diverse quality assessment workflows and organizational capabilities.</p>
+
+<h3 id="quality-measurement-framework">Quality Measurement Framework</h3>
+
+<p>The simple_data_catalog_model provides three main classes for quality information: <code class="language-plaintext highlighter-rouge">Metric</code>, <code class="language-plaintext highlighter-rouge">QualityMeasurement</code>, and quality annotations on datasets. The <code class="language-plaintext highlighter-rouge">Metric</code> class defines specific quality aspects that can be measured, including their definitions, expected data types, and organizational categorization. The <code class="language-plaintext highlighter-rouge">QualityMeasurement</code> class captures actual observations of those metrics applied to specific datasets.</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Example metric definition</span>
+<span class="na">metrics</span><span class="pi">:</span>
+  <span class="pi">-</span> <span class="na">identifier</span><span class="pi">:</span> <span class="s2">"</span><span class="s">completeness-ratio"</span>
+    <span class="na">definition</span><span class="pi">:</span> <span class="s2">"</span><span class="s">Ratio</span><span class="nv"> </span><span class="s">of</span><span class="nv"> </span><span class="s">non-null</span><span class="nv"> </span><span class="s">values</span><span class="nv"> </span><span class="s">to</span><span class="nv"> </span><span class="s">total</span><span class="nv"> </span><span class="s">expected</span><span class="nv"> </span><span class="s">values"</span>
+    <span class="na">prefLabel</span><span class="pi">:</span> <span class="s2">"</span><span class="s">Completeness</span><span class="nv"> </span><span class="s">Ratio"</span>
+    <span class="na">expectedDataType</span><span class="pi">:</span> <span class="s2">"</span><span class="s">xsd:double"</span>
+    <span class="na">inDimension</span><span class="pi">:</span> <span class="s2">"</span><span class="s">completeness"</span>
+</code></pre></div></div>
+
+<p>The framework supports multiple data types for metric values, including boolean values for pass/fail assessments, numeric values for continuous measurements, and string values for categorical assessments. This flexibility enables diverse quality assessment approaches while maintaining standardized representation.</p>
+
+<h3 id="metric-definitions-and-calculations">Metric Definitions and Calculations</h3>
+
+<p>Metrics in Simple Data Catalog can be defined at multiple levels of specificity. Some metrics may be generic and applicable across domains, such as availability or completeness ratios. Other metrics may be domain-specific, such as spatial accuracy for geographic data or temporal consistency for time-series data.</p>
+
+<p>The framework supports both simple metrics that capture single values and complex metrics that may involve multiple calculations or sub-metrics. For example, a data quality index might combine several individual metrics into a single composite score. These complex metrics can be documented through their definitions and relationships to simpler metrics.</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Complex metric example</span>
+<span class="na">metrics</span><span class="pi">:</span>
+  <span class="pi">-</span> <span class="na">identifier</span><span class="pi">:</span> <span class="s2">"</span><span class="s">overall-quality-index"</span>
+    <span class="na">definition</span><span class="pi">:</span> <span class="s2">"</span><span class="s">Weighted</span><span class="nv"> </span><span class="s">combination</span><span class="nv"> </span><span class="s">of</span><span class="nv"> </span><span class="s">completeness,</span><span class="nv"> </span><span class="s">accuracy,</span><span class="nv"> </span><span class="s">and</span><span class="nv"> </span><span class="s">availability</span><span class="nv"> </span><span class="s">metrics"</span>
+    <span class="na">prefLabel</span><span class="pi">:</span> <span class="s2">"</span><span class="s">Overall</span><span class="nv"> </span><span class="s">Quality</span><span class="nv"> </span><span class="s">Index"</span>
+    <span class="na">expectedDataType</span><span class="pi">:</span> <span class="s2">"</span><span class="s">xsd:double"</span>
+    <span class="na">inDimension</span><span class="pi">:</span> <span class="s2">"</span><span class="s">overall-quality"</span>
+    <span class="c1"># Calculation method documented in description</span>
+</code></pre></div></div>
+
+<h3 id="quality-reporting-structures">Quality Reporting Structures</h3>
+
+<p>Quality measurements are organized to support both detailed analysis and summary reporting. Individual measurements can be aggregated at the dimension level to provide quality overviews, or examined in detail for specific quality issues. The framework supports trend analysis by capturing measurement timestamps, enabling quality monitoring over time.</p>
+
+<p>The reporting structure also supports quality certificates and compliance attestations. These formal quality statements can be documented alongside metric measurements, providing both quantitative assessments and qualitative evaluations. This combination supports comprehensive quality communication that addresses both technical quality requirements and business quality expectations.</p>
+
+<h2 id="23-practical-examples">2.3 Practical Examples</h2>
+
+<h3 id="231-basic-quality-measurements">2.3.1 Basic Quality Measurements</h3>
+
+<p>The simplest quality assessment scenario involves measuring a single metric for a dataset. This example demonstrates the fundamental DQV concepts in action, showing how to document basic quality information that helps users evaluate dataset fitness for purpose.</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Basic quality measurement example - LinkML compliant</span>
+<span class="na">datasets</span><span class="pi">:</span>
+  <span class="pi">-</span> <span class="na">identifier</span><span class="pi">:</span> <span class="s2">"</span><span class="s">temperature-readings"</span>
+    <span class="na">title</span><span class="pi">:</span> <span class="s2">"</span><span class="s">Daily</span><span class="nv"> </span><span class="s">Temperature</span><span class="nv"> </span><span class="s">Readings"</span>
+    <span class="na">description</span><span class="pi">:</span> <span class="s2">"</span><span class="s">Temperature</span><span class="nv"> </span><span class="s">measurements</span><span class="nv"> </span><span class="s">collected</span><span class="nv"> </span><span class="s">from</span><span class="nv"> </span><span class="s">weather</span><span class="nv"> </span><span class="s">station"</span>
+    <span class="na">publisher</span><span class="pi">:</span>
+      <span class="na">name</span><span class="pi">:</span> <span class="s2">"</span><span class="s">Weather</span><span class="nv"> </span><span class="s">Service"</span>
+    <span class="na">issued</span><span class="pi">:</span> <span class="s2">"</span><span class="s">2024-01-15"</span>
+    <span class="na">modified</span><span class="pi">:</span> <span class="s2">"</span><span class="s">2024-01-20"</span>
+    <span class="na">distribution</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="na">identifier</span><span class="pi">:</span> <span class="s2">"</span><span class="s">csv-data"</span>
+        <span class="na">title</span><span class="pi">:</span> <span class="s2">"</span><span class="s">CSV</span><span class="nv"> </span><span class="s">format"</span>
+        <span class="na">description</span><span class="pi">:</span> <span class="s2">"</span><span class="s">Temperature</span><span class="nv"> </span><span class="s">data</span><span class="nv"> </span><span class="s">in</span><span class="nv"> </span><span class="s">CSV</span><span class="nv"> </span><span class="s">format"</span>
+        <span class="na">accessURL</span><span class="pi">:</span> <span class="s2">"</span><span class="s">https://data.gov.climate/temperature.csv"</span>
+        <span class="na">format</span><span class="pi">:</span> <span class="s2">"</span><span class="s">text/csv"</span>
+
+<span class="na">metrics</span><span class="pi">:</span>
+  <span class="pi">-</span> <span class="na">identifier</span><span class="pi">:</span> <span class="s2">"</span><span class="s">availability-check"</span>
+    <span class="na">definition</span><span class="pi">:</span> <span class="s2">"</span><span class="s">Binary</span><span class="nv"> </span><span class="s">check</span><span class="nv"> </span><span class="s">if</span><span class="nv"> </span><span class="s">dataset</span><span class="nv"> </span><span class="s">is</span><span class="nv"> </span><span class="s">accessible</span><span class="nv"> </span><span class="s">via</span><span class="nv"> </span><span class="s">its</span><span class="nv"> </span><span class="s">distributions"</span>
+    <span class="na">prefLabel</span><span class="pi">:</span> <span class="s2">"</span><span class="s">Availability</span><span class="nv"> </span><span class="s">Check"</span>
+    <span class="na">expectedDataType</span><span class="pi">:</span> <span class="s2">"</span><span class="s">xsd:boolean"</span>
+    <span class="na">inDimension</span><span class="pi">:</span> <span class="s2">"</span><span class="s">availability"</span>
+
+<span class="na">qualityMeasurements</span><span class="pi">:</span>
+  <span class="pi">-</span> <span class="na">identifier</span><span class="pi">:</span> <span class="s2">"</span><span class="s">availability-measurement-2024-01-15"</span>
+    <span class="na">computedOn</span><span class="pi">:</span> <span class="s2">"</span><span class="s">temperature-readings"</span>
+    <span class="na">isMeasurementOf</span><span class="pi">:</span> <span class="s2">"</span><span class="s">availability-check"</span>
+    <span class="na">value</span><span class="pi">:</span> <span class="kc">true</span>
+    <span class="na">generatedAtTime</span><span class="pi">:</span> <span class="s2">"</span><span class="s">2024-01-15T10:30:00Z"</span>
+
+<span class="na">dataCatalog</span><span class="pi">:</span>
+  <span class="na">title</span><span class="pi">:</span> <span class="s2">"</span><span class="s">Environmental</span><span class="nv"> </span><span class="s">Data</span><span class="nv"> </span><span class="s">Catalog"</span>
+  <span class="na">description</span><span class="pi">:</span> <span class="s2">"</span><span class="s">Catalog</span><span class="nv"> </span><span class="s">of</span><span class="nv"> </span><span class="s">environmental</span><span class="nv"> </span><span class="s">monitoring</span><span class="nv"> </span><span class="s">datasets"</span>
+  <span class="na">publisher</span><span class="pi">:</span>
+    <span class="na">name</span><span class="pi">:</span> <span class="s2">"</span><span class="s">Weather</span><span class="nv"> </span><span class="s">Data</span><span class="nv"> </span><span class="s">Service"</span>
+</code></pre></div></div>
+
+<p>This example shows a basic availability measurement for the temperature readings dataset. The metric defines what is being measured (availability), and the quality measurement captures the actual observation (true, indicating the dataset is accessible). The measurement includes a timestamp, enabling quality tracking over time.</p>
+
+<h3 id="232-multiple-quality-metrics">2.3.2 Multiple Quality Metrics</h3>
+
+<p>Real-world quality assessments typically involve multiple metrics across different quality dimensions. This example demonstrates how to capture comprehensive quality information that provides a complete picture of dataset quality.</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Multiple quality metrics example - LinkML compliant</span>
+<span class="na">concepts</span><span class="pi">:</span>
+  <span class="pi">-</span> <span class="na">identifier</span><span class="pi">:</span> <span class="s2">"</span><span class="s">air-quality"</span>
+    <span class="na">prefLabel</span><span class="pi">:</span> <span class="s2">"</span><span class="s">Air</span><span class="nv"> </span><span class="s">Quality"</span>
+    <span class="na">definition</span><span class="pi">:</span> <span class="s2">"</span><span class="s">The</span><span class="nv"> </span><span class="s">degree</span><span class="nv"> </span><span class="s">to</span><span class="nv"> </span><span class="s">which</span><span class="nv"> </span><span class="s">air</span><span class="nv"> </span><span class="s">is</span><span class="nv"> </span><span class="s">suitable</span><span class="nv"> </span><span class="s">for</span><span class="nv"> </span><span class="s">breathing</span><span class="nv"> </span><span class="s">and</span><span class="nv"> </span><span class="s">other</span><span class="nv"> </span><span class="s">uses"</span>
+  <span class="pi">-</span> <span class="na">identifier</span><span class="pi">:</span> <span class="s2">"</span><span class="s">pollution"</span>
+    <span class="na">prefLabel</span><span class="pi">:</span> <span class="s2">"</span><span class="s">Pollution"</span>
+    <span class="na">definition</span><span class="pi">:</span> <span class="s2">"</span><span class="s">The</span><span class="nv"> </span><span class="s">introduction</span><span class="nv"> </span><span class="s">of</span><span class="nv"> </span><span class="s">contaminants</span><span class="nv"> </span><span class="s">into</span><span class="nv"> </span><span class="s">natural</span><span class="nv"> </span><span class="s">environment"</span>
+  <span class="pi">-</span> <span class="na">identifier</span><span class="pi">:</span> <span class="s2">"</span><span class="s">urban"</span>
+    <span class="na">prefLabel</span><span class="pi">:</span> <span class="s2">"</span><span class="s">Urban"</span>
+    <span class="na">definition</span><span class="pi">:</span> <span class="s2">"</span><span class="s">Relating</span><span class="nv"> </span><span class="s">to</span><span class="nv"> </span><span class="s">or</span><span class="nv"> </span><span class="s">characteristic</span><span class="nv"> </span><span class="s">of</span><span class="nv"> </span><span class="s">a</span><span class="nv"> </span><span class="s">city</span><span class="nv"> </span><span class="s">or</span><span class="nv"> </span><span class="s">town"</span>
+
+<span class="na">datasets</span><span class="pi">:</span>
+  <span class="pi">-</span> <span class="na">identifier</span><span class="pi">:</span> <span class="s2">"</span><span class="s">air-quality-data"</span>
+    <span class="na">title</span><span class="pi">:</span> <span class="s2">"</span><span class="s">Urban</span><span class="nv"> </span><span class="s">Air</span><span class="nv"> </span><span class="s">Quality</span><span class="nv"> </span><span class="s">Measurements"</span>
+    <span class="na">description</span><span class="pi">:</span> <span class="s2">"</span><span class="s">Air</span><span class="nv"> </span><span class="s">quality</span><span class="nv"> </span><span class="s">index</span><span class="nv"> </span><span class="s">measurements</span><span class="nv"> </span><span class="s">from</span><span class="nv"> </span><span class="s">urban</span><span class="nv"> </span><span class="s">monitoring</span><span class="nv"> </span><span class="s">stations"</span>
+    <span class="na">theme</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="s2">"</span><span class="s">air-quality"</span>
+      <span class="pi">-</span> <span class="s2">"</span><span class="s">pollution"</span>
+      <span class="pi">-</span> <span class="s2">"</span><span class="s">urban"</span>
+    <span class="na">publisher</span><span class="pi">:</span>
+      <span class="na">name</span><span class="pi">:</span> <span class="s2">"</span><span class="s">Environmental</span><span class="nv"> </span><span class="s">Protection</span><span class="nv"> </span><span class="s">Agency"</span>
+    <span class="na">contactPoint</span><span class="pi">:</span>
+      <span class="na">hasEmail</span><span class="pi">:</span> <span class="s2">"</span><span class="s">data@epa.gov"</span>
+    <span class="na">issued</span><span class="pi">:</span> <span class="s2">"</span><span class="s">2024-01-15"</span>
+    <span class="na">modified</span><span class="pi">:</span> <span class="s2">"</span><span class="s">2024-01-20"</span>
+    <span class="na">wasDerivedFrom</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="s2">"</span><span class="s">raw-sensor-readings"</span>
+
+<span class="na">metrics</span><span class="pi">:</span>
+  <span class="pi">-</span> <span class="na">identifier</span><span class="pi">:</span> <span class="s2">"</span><span class="s">completeness-ratio"</span>
+    <span class="na">definition</span><span class="pi">:</span> <span class="s2">"</span><span class="s">Ratio</span><span class="nv"> </span><span class="s">of</span><span class="nv"> </span><span class="s">non-null</span><span class="nv"> </span><span class="s">values</span><span class="nv"> </span><span class="s">to</span><span class="nv"> </span><span class="s">total</span><span class="nv"> </span><span class="s">expected</span><span class="nv"> </span><span class="s">values"</span>
+    <span class="na">prefLabel</span><span class="pi">:</span> <span class="s2">"</span><span class="s">Completeness</span><span class="nv"> </span><span class="s">Ratio"</span>
+    <span class="na">expectedDataType</span><span class="pi">:</span> <span class="s2">"</span><span class="s">xsd:double"</span>
+    <span class="na">inDimension</span><span class="pi">:</span> <span class="s2">"</span><span class="s">completeness"</span>
+
+  <span class="pi">-</span> <span class="na">identifier</span><span class="pi">:</span> <span class="s2">"</span><span class="s">accuracy-percentage"</span>
+    <span class="na">definition</span><span class="pi">:</span> <span class="s2">"</span><span class="s">Percentage</span><span class="nv"> </span><span class="s">of</span><span class="nv"> </span><span class="s">values</span><span class="nv"> </span><span class="s">that</span><span class="nv"> </span><span class="s">pass</span><span class="nv"> </span><span class="s">accuracy</span><span class="nv"> </span><span class="s">validation"</span>
+    <span class="na">prefLabel</span><span class="pi">:</span> <span class="s2">"</span><span class="s">Accuracy</span><span class="nv"> </span><span class="s">Percentage"</span>
+    <span class="na">expectedDataType</span><span class="pi">:</span> <span class="s2">"</span><span class="s">xsd:double"</span>
+    <span class="na">inDimension</span><span class="pi">:</span> <span class="s2">"</span><span class="s">accuracy"</span>
+
+  <span class="pi">-</span> <span class="na">identifier</span><span class="pi">:</span> <span class="s2">"</span><span class="s">timeliness-score"</span>
+    <span class="na">definition</span><span class="pi">:</span> <span class="s2">"</span><span class="s">Score</span><span class="nv"> </span><span class="s">based</span><span class="nv"> </span><span class="s">on</span><span class="nv"> </span><span class="s">data</span><span class="nv"> </span><span class="s">recency</span><span class="nv"> </span><span class="s">relative</span><span class="nv"> </span><span class="s">to</span><span class="nv"> </span><span class="s">expected</span><span class="nv"> </span><span class="s">update</span><span class="nv"> </span><span class="s">frequency"</span>
+    <span class="na">prefLabel</span><span class="pi">:</span> <span class="s2">"</span><span class="s">Timeliness</span><span class="nv"> </span><span class="s">Score"</span>
+    <span class="na">expectedDataType</span><span class="pi">:</span> <span class="s2">"</span><span class="s">xsd:double"</span>
+    <span class="na">inDimension</span><span class="pi">:</span> <span class="s2">"</span><span class="s">timeliness"</span>
+
+<span class="na">qualityMeasurements</span><span class="pi">:</span>
+  <span class="pi">-</span> <span class="na">identifier</span><span class="pi">:</span> <span class="s2">"</span><span class="s">completeness-measurement-2024-01-15"</span>
+    <span class="na">computedOn</span><span class="pi">:</span> <span class="s2">"</span><span class="s">air-quality-data"</span>
+    <span class="na">isMeasurementOf</span><span class="pi">:</span> <span class="s2">"</span><span class="s">completeness-ratio"</span>
+    <span class="na">value</span><span class="pi">:</span> <span class="m">0.95</span>
+    <span class="na">generatedAtTime</span><span class="pi">:</span> <span class="s2">"</span><span class="s">2024-01-15T10:30:00Z"</span>
+
+  <span class="pi">-</span> <span class="na">identifier</span><span class="pi">:</span> <span class="s2">"</span><span class="s">accuracy-measurement-2024-01-15"</span>
+    <span class="na">computedOn</span><span class="pi">:</span> <span class="s2">"</span><span class="s">air-quality-data"</span>
+    <span class="na">isMeasurementOf</span><span class="pi">:</span> <span class="s2">"</span><span class="s">accuracy-percentage"</span>
+    <span class="na">value</span><span class="pi">:</span> <span class="m">0.87</span>
+    <span class="na">generatedAtTime</span><span class="pi">:</span> <span class="s2">"</span><span class="s">2024-01-15T10:30:00Z"</span>
+
+  <span class="pi">-</span> <span class="na">identifier</span><span class="pi">:</span> <span class="s2">"</span><span class="s">timeliness-measurement-2024-01-15"</span>
+    <span class="na">computedOn</span><span class="pi">:</span> <span class="s2">"</span><span class="s">air-quality-data"</span>
+    <span class="na">isMeasurementOf</span><span class="pi">:</span> <span class="s2">"</span><span class="s">timeliness-score"</span>
+    <span class="na">value</span><span class="pi">:</span> <span class="m">0.92</span>
+    <span class="na">generatedAtTime</span><span class="pi">:</span> <span class="s2">"</span><span class="s">2024-01-15T10:30:00Z"</span>
+
+<span class="na">dataCatalog</span><span class="pi">:</span>
+  <span class="na">title</span><span class="pi">:</span> <span class="s2">"</span><span class="s">Environmental</span><span class="nv"> </span><span class="s">Data</span><span class="nv"> </span><span class="s">Catalog"</span>
+  <span class="na">description</span><span class="pi">:</span> <span class="s2">"</span><span class="s">Catalog</span><span class="nv"> </span><span class="s">of</span><span class="nv"> </span><span class="s">environmental</span><span class="nv"> </span><span class="s">monitoring</span><span class="nv"> </span><span class="s">datasets"</span>
+  <span class="na">publisher</span><span class="pi">:</span>
+    <span class="na">name</span><span class="pi">:</span> <span class="s2">"</span><span class="s">Environmental</span><span class="nv"> </span><span class="s">Protection</span><span class="nv"> </span><span class="s">Agency"</span>
+</code></pre></div></div>
+
+<p>This example shows comprehensive quality assessment for an air quality dataset, measuring three different quality dimensions. The completeness ratio of 0.95 indicates that 95% of expected data values are present, the accuracy percentage of 0.87 shows that 87% of values pass accuracy validation, and the timeliness score of 0.92 indicates relatively current data. Together, these measurements provide a complete quality picture that helps users evaluate the dataset for their specific needs.</p>
+
+<h3 id="233-quality-dimensions-and-categories">2.3.3 Quality Dimensions and Categories</h3>
+
+<p>Organizing metrics into dimensions and categories helps users understand quality assessments in context. This example demonstrates how to structure quality information using standard quality frameworks.</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Quality dimensions and categories example</span>
+<span class="na">datasets</span><span class="pi">:</span>
+  <span class="pi">-</span> <span class="na">identifier</span><span class="pi">:</span> <span class="s2">"</span><span class="s">population-census"</span>
+    <span class="na">title</span><span class="pi">:</span> <span class="s2">"</span><span class="s">Annual</span><span class="nv"> </span><span class="s">Population</span><span class="nv"> </span><span class="s">Census"</span>
+    <span class="na">description</span><span class="pi">:</span> <span class="s2">"</span><span class="s">Demographic</span><span class="nv"> </span><span class="s">data</span><span class="nv"> </span><span class="s">collected</span><span class="nv"> </span><span class="s">through</span><span class="nv"> </span><span class="s">annual</span><span class="nv"> </span><span class="s">census</span><span class="nv"> </span><span class="s">surveys"</span>
+    <span class="na">keywords</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="s">demographics</span>
+      <span class="pi">-</span> <span class="s">population</span>
+      <span class="pi">-</span> <span class="s">census</span>
+    <span class="na">publisher</span><span class="pi">:</span>
+      <span class="na">name</span><span class="pi">:</span> <span class="s2">"</span><span class="s">National</span><span class="nv"> </span><span class="s">Statistics</span><span class="nv"> </span><span class="s">Office"</span>
+    <span class="na">issued</span><span class="pi">:</span> <span class="s2">"</span><span class="s">2024-01-15"</span>
+    <span class="na">modified</span><span class="pi">:</span> <span class="s2">"</span><span class="s">2024-01-20"</span>
+
+<span class="na">metrics</span><span class="pi">:</span>
+  <span class="c1"># Completeness dimension</span>
+  <span class="pi">-</span> <span class="na">identifier</span><span class="pi">:</span> <span class="s2">"</span><span class="s">record-completeness"</span>
+    <span class="na">definition</span><span class="pi">:</span> <span class="s2">"</span><span class="s">Percentage</span><span class="nv"> </span><span class="s">of</span><span class="nv"> </span><span class="s">complete</span><span class="nv"> </span><span class="s">records</span><span class="nv"> </span><span class="s">in</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">dataset"</span>
+    <span class="na">prefLabel</span><span class="pi">:</span> <span class="s2">"</span><span class="s">Record</span><span class="nv"> </span><span class="s">Completeness"</span>
+    <span class="na">expectedDataType</span><span class="pi">:</span> <span class="s2">"</span><span class="s">xsd:double"</span>
+    <span class="na">inDimension</span><span class="pi">:</span> <span class="s2">"</span><span class="s">completeness"</span>
+
+  <span class="pi">-</span> <span class="na">identifier</span><span class="pi">:</span> <span class="s2">"</span><span class="s">field-completeness"</span>
+    <span class="na">definition</span><span class="pi">:</span> <span class="s2">"</span><span class="s">Percentage</span><span class="nv"> </span><span class="s">of</span><span class="nv"> </span><span class="s">non-null</span><span class="nv"> </span><span class="s">values</span><span class="nv"> </span><span class="s">across</span><span class="nv"> </span><span class="s">all</span><span class="nv"> </span><span class="s">fields"</span>
+    <span class="na">prefLabel</span><span class="pi">:</span> <span class="s2">"</span><span class="s">Field</span><span class="nv"> </span><span class="s">Completeness"</span>
+    <span class="na">expectedDataType</span><span class="pi">:</span> <span class="s2">"</span><span class="s">xsd:double"</span>
+    <span class="na">inDimension</span><span class="pi">:</span> <span class="s2">"</span><span class="s">completeness"</span>
+
+  <span class="c1"># Accuracy dimension</span>
+  <span class="pi">-</span> <span class="na">identifier</span><span class="pi">:</span> <span class="s2">"</span><span class="s">format-accuracy"</span>
+    <span class="na">definition</span><span class="pi">:</span> <span class="s2">"</span><span class="s">Percentage</span><span class="nv"> </span><span class="s">of</span><span class="nv"> </span><span class="s">values</span><span class="nv"> </span><span class="s">in</span><span class="nv"> </span><span class="s">correct</span><span class="nv"> </span><span class="s">format"</span>
+    <span class="na">prefLabel</span><span class="pi">:</span> <span class="s2">"</span><span class="s">Format</span><span class="nv"> </span><span class="s">Accuracy"</span>
+    <span class="na">expectedDataType</span><span class="pi">:</span> <span class="s2">"</span><span class="s">xsd:double"</span>
+    <span class="na">inDimension</span><span class="pi">:</span> <span class="s2">"</span><span class="s">accuracy"</span>
+
+  <span class="pi">-</span> <span class="na">identifier</span><span class="pi">:</span> <span class="s2">"</span><span class="s">value-accuracy"</span>
+    <span class="na">definition</span><span class="pi">:</span> <span class="s2">"</span><span class="s">Percentage</span><span class="nv"> </span><span class="s">of</span><span class="nv"> </span><span class="s">values</span><span class="nv"> </span><span class="s">within</span><span class="nv"> </span><span class="s">expected</span><span class="nv"> </span><span class="s">ranges"</span>
+    <span class="na">prefLabel</span><span class="pi">:</span> <span class="s2">"</span><span class="s">Value</span><span class="nv"> </span><span class="s">Accuracy"</span>
+    <span class="na">expectedDataType</span><span class="pi">:</span> <span class="s2">"</span><span class="s">xsd:double"</span>
+    <span class="na">inDimension</span><span class="pi">:</span> <span class="s2">"</span><span class="s">accuracy"</span>
+
+  <span class="c1"># Consistency dimension</span>
+  <span class="pi">-</span> <span class="na">identifier</span><span class="pi">:</span> <span class="s2">"</span><span class="s">internal-consistency"</span>
+    <span class="na">definition</span><span class="pi">:</span> <span class="s2">"</span><span class="s">Percentage</span><span class="nv"> </span><span class="s">of</span><span class="nv"> </span><span class="s">records</span><span class="nv"> </span><span class="s">without</span><span class="nv"> </span><span class="s">internal</span><span class="nv"> </span><span class="s">contradictions"</span>
+    <span class="na">prefLabel</span><span class="pi">:</span> <span class="s2">"</span><span class="s">Internal</span><span class="nv"> </span><span class="s">Consistency"</span>
+    <span class="na">expectedDataType</span><span class="pi">:</span> <span class="s2">"</span><span class="s">xsd:double"</span>
+    <span class="na">inDimension</span><span class="pi">:</span> <span class="s2">"</span><span class="s">consistency"</span>
+
+<span class="na">qualityMeasurements</span><span class="pi">:</span>
+  <span class="pi">-</span> <span class="na">identifier</span><span class="pi">:</span> <span class="s2">"</span><span class="s">record-completeness-measurement"</span>
+    <span class="na">computedOn</span><span class="pi">:</span> <span class="s2">"</span><span class="s">population-census"</span>
+    <span class="na">isMeasurementOf</span><span class="pi">:</span> <span class="s2">"</span><span class="s">record-completeness"</span>
+    <span class="na">value</span><span class="pi">:</span> <span class="m">0.98</span>
+    <span class="na">generatedAtTime</span><span class="pi">:</span> <span class="s2">"</span><span class="s">2024-01-15T10:30:00Z"</span>
+
+  <span class="pi">-</span> <span class="na">identifier</span><span class="pi">:</span> <span class="s2">"</span><span class="s">field-completeness-measurement"</span>
+    <span class="na">computedOn</span><span class="pi">:</span> <span class="s2">"</span><span class="s">population-census"</span>
+    <span class="na">isMeasurementOf</span><span class="pi">:</span> <span class="s2">"</span><span class="s">field-completeness"</span>
+    <span class="na">value</span><span class="pi">:</span> <span class="m">0.94</span>
+    <span class="na">generatedAtTime</span><span class="pi">:</span> <span class="s2">"</span><span class="s">2024-01-15T10:30:00Z"</span>
+
+  <span class="pi">-</span> <span class="na">identifier</span><span class="pi">:</span> <span class="s2">"</span><span class="s">format-accuracy-measurement"</span>
+    <span class="na">computedOn</span><span class="pi">:</span> <span class="s2">"</span><span class="s">population-census"</span>
+    <span class="na">isMeasurementOf</span><span class="pi">:</span> <span class="s2">"</span><span class="s">format-accuracy"</span>
+    <span class="na">value</span><span class="pi">:</span> <span class="m">0.99</span>
+    <span class="na">generatedAtTime</span><span class="pi">:</span> <span class="s2">"</span><span class="s">2024-01-15T10:30:00Z"</span>
+
+  <span class="pi">-</span> <span class="na">identifier</span><span class="pi">:</span> <span class="s2">"</span><span class="s">value-accuracy-measurement"</span>
+    <span class="na">computedOn</span><span class="pi">:</span> <span class="s2">"</span><span class="s">population-census"</span>
+    <span class="na">isMeasurementOf</span><span class="pi">:</span> <span class="s2">"</span><span class="s">value-accuracy"</span>
+    <span class="na">value</span><span class="pi">:</span> <span class="m">0.96</span>
+    <span class="na">generatedAtTime</span><span class="pi">:</span> <span class="s2">"</span><span class="s">2024-01-15T10:30:00Z"</span>
+
+  <span class="pi">-</span> <span class="na">identifier</span><span class="pi">:</span> <span class="s2">"</span><span class="s">internal-consistency-measurement"</span>
+    <span class="na">computedOn</span><span class="pi">:</span> <span class="s2">"</span><span class="s">population-census"</span>
+    <span class="na">isMeasurementOf</span><span class="pi">:</span> <span class="s2">"</span><span class="s">internal-consistency"</span>
+    <span class="na">value</span><span class="pi">:</span> <span class="m">0.97</span>
+    <span class="na">generatedAtTime</span><span class="pi">:</span> <span class="s2">"</span><span class="s">2024-01-15T10:30:00Z"</span>
+
+<span class="na">dataCatalog</span><span class="pi">:</span>
+  <span class="na">title</span><span class="pi">:</span> <span class="s2">"</span><span class="s">National</span><span class="nv"> </span><span class="s">Data</span><span class="nv"> </span><span class="s">Catalog"</span>
+  <span class="na">description</span><span class="pi">:</span> <span class="s2">"</span><span class="s">Catalog</span><span class="nv"> </span><span class="s">of</span><span class="nv"> </span><span class="s">national</span><span class="nv"> </span><span class="s">statistical</span><span class="nv"> </span><span class="s">datasets"</span>
+  <span class="na">publisher</span><span class="pi">:</span>
+    <span class="na">name</span><span class="pi">:</span> <span class="s2">"</span><span class="s">National</span><span class="nv"> </span><span class="s">Statistics</span><span class="nv"> </span><span class="s">Office"</span>
+</code></pre></div></div>
+
+<p>This example demonstrates quality assessment organized across three dimensions: completeness, accuracy, and consistency. Each dimension includes multiple specific metrics that provide detailed quality information. The dimension-level organization helps users understand quality patterns and identify areas that may need attention or improvement.</p>
+
+<h3 id="234-quality-trend-analysis">2.3.4 Quality Trend Analysis</h3>
+
+<p>Quality often changes over time as datasets are updated, processed, or maintained. Tracking quality trends helps users understand data reliability and identify potential quality issues. This example shows how to capture quality measurements over time to support trend analysis.</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Quality trend analysis example</span>
+<span class="na">datasets</span><span class="pi">:</span>
+  <span class="pi">-</span> <span class="na">identifier</span><span class="pi">:</span> <span class="s2">"</span><span class="s">climate-data"</span>
+    <span class="na">title</span><span class="pi">:</span> <span class="s2">"</span><span class="s">Monthly</span><span class="nv"> </span><span class="s">Climate</span><span class="nv"> </span><span class="s">Data"</span>
+    <span class="na">description</span><span class="pi">:</span> <span class="s2">"</span><span class="s">Climate</span><span class="nv"> </span><span class="s">measurements</span><span class="nv"> </span><span class="s">updated</span><span class="nv"> </span><span class="s">monthly"</span>
+    <span class="na">keywords</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="s">climate</span>
+      <span class="pi">-</span> <span class="s">weather</span>
+      <span class="pi">-</span> <span class="s">environmental</span>
+    <span class="na">publisher</span><span class="pi">:</span>
+      <span class="na">name</span><span class="pi">:</span> <span class="s2">"</span><span class="s">Climate</span><span class="nv"> </span><span class="s">Data</span><span class="nv"> </span><span class="s">Center"</span>
+    <span class="na">issued</span><span class="pi">:</span> <span class="s2">"</span><span class="s">2024-01-01"</span>
+    <span class="na">modified</span><span class="pi">:</span> <span class="s2">"</span><span class="s">2024-03-31"</span>
+
+<span class="na">metrics</span><span class="pi">:</span>
+  <span class="pi">-</span> <span class="na">identifier</span><span class="pi">:</span> <span class="s2">"</span><span class="s">completeness-ratio"</span>
+    <span class="na">definition</span><span class="pi">:</span> <span class="s2">"</span><span class="s">Ratio</span><span class="nv"> </span><span class="s">of</span><span class="nv"> </span><span class="s">non-null</span><span class="nv"> </span><span class="s">values</span><span class="nv"> </span><span class="s">to</span><span class="nv"> </span><span class="s">total</span><span class="nv"> </span><span class="s">expected</span><span class="nv"> </span><span class="s">values"</span>
+    <span class="na">prefLabel</span><span class="pi">:</span> <span class="s2">"</span><span class="s">Completeness</span><span class="nv"> </span><span class="s">Ratio"</span>
+    <span class="na">expectedDataType</span><span class="pi">:</span> <span class="s2">"</span><span class="s">xsd:double"</span>
+    <span class="na">inDimension</span><span class="pi">:</span> <span class="s2">"</span><span class="s">completeness"</span>
+
+  <span class="pi">-</span> <span class="na">identifier</span><span class="pi">:</span> <span class="s2">"</span><span class="s">accuracy-percentage"</span>
+    <span class="na">definition</span><span class="pi">:</span> <span class="s2">"</span><span class="s">Percentage</span><span class="nv"> </span><span class="s">of</span><span class="nv"> </span><span class="s">values</span><span class="nv"> </span><span class="s">that</span><span class="nv"> </span><span class="s">pass</span><span class="nv"> </span><span class="s">accuracy</span><span class="nv"> </span><span class="s">validation"</span>
+    <span class="na">prefLabel</span><span class="pi">:</span> <span class="s2">"</span><span class="s">Accuracy</span><span class="nv"> </span><span class="s">Percentage"</span>
+    <span class="na">expectedDataType</span><span class="pi">:</span> <span class="s2">"</span><span class="s">xsd:double"</span>
+    <span class="na">inDimension</span><span class="pi">:</span> <span class="s2">"</span><span class="s">accuracy"</span>
+
+<span class="na">qualityMeasurements</span><span class="pi">:</span>
+  <span class="c1"># January measurements</span>
+  <span class="pi">-</span> <span class="na">identifier</span><span class="pi">:</span> <span class="s2">"</span><span class="s">completeness-jan-2024"</span>
+    <span class="na">computedOn</span><span class="pi">:</span> <span class="s2">"</span><span class="s">climate-data"</span>
+    <span class="na">isMeasurementOf</span><span class="pi">:</span> <span class="s2">"</span><span class="s">completeness-ratio"</span>
+    <span class="na">value</span><span class="pi">:</span> <span class="m">0.92</span>
+    <span class="na">generatedAtTime</span><span class="pi">:</span> <span class="s2">"</span><span class="s">2024-01-31T23:59:59Z"</span>
+
+  <span class="pi">-</span> <span class="na">identifier</span><span class="pi">:</span> <span class="s2">"</span><span class="s">accuracy-jan-2024"</span>
+    <span class="na">computedOn</span><span class="pi">:</span> <span class="s2">"</span><span class="s">climate-data"</span>
+    <span class="na">isMeasurementOf</span><span class="pi">:</span> <span class="s2">"</span><span class="s">accuracy-percentage"</span>
+    <span class="na">value</span><span class="pi">:</span> <span class="m">0.89</span>
+    <span class="na">generatedAtTime</span><span class="pi">:</span> <span class="s2">"</span><span class="s">2024-01-31T23:59:59Z"</span>
+
+  <span class="c1"># February measurements</span>
+  <span class="pi">-</span> <span class="na">identifier</span><span class="pi">:</span> <span class="s2">"</span><span class="s">completeness-feb-2024"</span>
+    <span class="na">computedOn</span><span class="pi">:</span> <span class="s2">"</span><span class="s">climate-data"</span>
+    <span class="na">isMeasurementOf</span><span class="pi">:</span> <span class="s2">"</span><span class="s">completeness-ratio"</span>
+    <span class="na">value</span><span class="pi">:</span> <span class="m">0.94</span>
+    <span class="na">generatedAtTime</span><span class="pi">:</span> <span class="s2">"</span><span class="s">2024-02-29T23:59:59Z"</span>
+
+  <span class="pi">-</span> <span class="na">identifier</span><span class="pi">:</span> <span class="s2">"</span><span class="s">accuracy-feb-2024"</span>
+    <span class="na">computedOn</span><span class="pi">:</span> <span class="s2">"</span><span class="s">climate-data"</span>
+    <span class="na">isMeasurementOf</span><span class="pi">:</span> <span class="s2">"</span><span class="s">accuracy-percentage"</span>
+    <span class="na">value</span><span class="pi">:</span> <span class="m">0.91</span>
+    <span class="na">generatedAtTime</span><span class="pi">:</span> <span class="s2">"</span><span class="s">2024-02-29T23:59:59Z"</span>
+
+  <span class="c1"># March measurements</span>
+  <span class="pi">-</span> <span class="na">identifier</span><span class="pi">:</span> <span class="s2">"</span><span class="s">completeness-mar-2024"</span>
+    <span class="na">computedOn</span><span class="pi">:</span> <span class="s2">"</span><span class="s">climate-data"</span>
+    <span class="na">isMeasurementOf</span><span class="pi">:</span> <span class="s2">"</span><span class="s">completeness-ratio"</span>
+    <span class="na">value</span><span class="pi">:</span> <span class="m">0.96</span>
+    <span class="na">generatedAtTime</span><span class="pi">:</span> <span class="s2">"</span><span class="s">2024-03-31T23:59:59Z"</span>
+
+  <span class="pi">-</span> <span class="na">identifier</span><span class="pi">:</span> <span class="s2">"</span><span class="s">accuracy-mar-2024"</span>
+    <span class="na">computedOn</span><span class="pi">:</span> <span class="s2">"</span><span class="s">climate-data"</span>
+    <span class="na">isMeasurementOf</span><span class="pi">:</span> <span class="s2">"</span><span class="s">accuracy-percentage"</span>
+    <span class="na">value</span><span class="pi">:</span> <span class="m">0.93</span>
+    <span class="na">generatedAtTime</span><span class="pi">:</span> <span class="s2">"</span><span class="s">2024-03-31T23:59:59Z"</span>
+
+<span class="na">dataCatalog</span><span class="pi">:</span>
+  <span class="na">title</span><span class="pi">:</span> <span class="s2">"</span><span class="s">Climate</span><span class="nv"> </span><span class="s">Data</span><span class="nv"> </span><span class="s">Catalog"</span>
+  <span class="na">description</span><span class="pi">:</span> <span class="s2">"</span><span class="s">Catalog</span><span class="nv"> </span><span class="s">of</span><span class="nv"> </span><span class="s">climate</span><span class="nv"> </span><span class="s">and</span><span class="nv"> </span><span class="s">environmental</span><span class="nv"> </span><span class="s">datasets"</span>
+  <span class="na">publisher</span><span class="pi">:</span>
+    <span class="na">name</span><span class="pi">:</span> <span class="s2">"</span><span class="s">Climate</span><span class="nv"> </span><span class="s">Data</span><span class="nv"> </span><span class="s">Center"</span>
+</code></pre></div></div>
+
+<p>This example shows quality measurements captured over three months, revealing improvement trends in both completeness (from 0.92 to 0.96) and accuracy (from 0.89 to 0.93). Such trend analysis helps users understand data reliability and can inform decisions about when to use the data or when additional quality validation may be needed.</p>
+
+<pre><code class="language-mermaid">graph LR
+    title[Quality Trend Analysis]
+    
+    subgraph Completeness
+        C1[Jan: 0.92] --&gt; C2[Feb: 0.94] --&gt; C3[Mar: 0.96]
+    end
+    
+    subgraph Accuracy
+        A1[Jan: 0.89] --&gt; A2[Feb: 0.91] --&gt; A3[Mar: 0.93]
+    end
+    
+    style C1 fill:#e8f5e8
+    style C2 fill:#c8e6c9
+    style C3 fill:#a5d6a7
+    style A1 fill:#e1f5fe
+    style A2 fill:#b3e5fc
+    style A3 fill:#81d4fa
+</code></pre>
+
+<h3 id="235-integration-with-provenance">2.3.5 Integration with Provenance</h3>
+
+<p>Quality assessments become more meaningful when combined with provenance information. This example shows how quality measurements can be interpreted in the context of data derivation chains, helping users understand how quality evolves through data processing workflows.</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Quality with provenance integration example</span>
+<span class="na">datasets</span><span class="pi">:</span>
+  <span class="pi">-</span> <span class="na">identifier</span><span class="pi">:</span> <span class="s2">"</span><span class="s">raw-sensor-data"</span>
+    <span class="na">title</span><span class="pi">:</span> <span class="s2">"</span><span class="s">Raw</span><span class="nv"> </span><span class="s">Weather</span><span class="nv"> </span><span class="s">Station</span><span class="nv"> </span><span class="s">Sensor</span><span class="nv"> </span><span class="s">Data"</span>
+    <span class="na">description</span><span class="pi">:</span> <span class="s2">"</span><span class="s">Direct</span><span class="nv"> </span><span class="s">readings</span><span class="nv"> </span><span class="s">from</span><span class="nv"> </span><span class="s">weather</span><span class="nv"> </span><span class="s">station</span><span class="nv"> </span><span class="s">sensors"</span>
+    <span class="na">publisher</span><span class="pi">:</span>
+      <span class="na">name</span><span class="pi">:</span> <span class="s2">"</span><span class="s">Weather</span><span class="nv"> </span><span class="s">Station</span><span class="nv"> </span><span class="s">Network"</span>
+
+  <span class="pi">-</span> <span class="na">identifier</span><span class="pi">:</span> <span class="s2">"</span><span class="s">cleaned-sensor-data"</span>
+    <span class="na">title</span><span class="pi">:</span> <span class="s2">"</span><span class="s">Cleaned</span><span class="nv"> </span><span class="s">Weather</span><span class="nv"> </span><span class="s">Station</span><span class="nv"> </span><span class="s">Data"</span>
+    <span class="na">description</span><span class="pi">:</span> <span class="s2">"</span><span class="s">Sensor</span><span class="nv"> </span><span class="s">data</span><span class="nv"> </span><span class="s">after</span><span class="nv"> </span><span class="s">automated</span><span class="nv"> </span><span class="s">cleaning</span><span class="nv"> </span><span class="s">and</span><span class="nv"> </span><span class="s">validation"</span>
+    <span class="na">publisher</span><span class="pi">:</span>
+      <span class="na">name</span><span class="pi">:</span> <span class="s2">"</span><span class="s">Weather</span><span class="nv"> </span><span class="s">Data</span><span class="nv"> </span><span class="s">Processing</span><span class="nv"> </span><span class="s">Center"</span>
+    <span class="na">wasDerivedFrom</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="s2">"</span><span class="s">raw-sensor-data"</span>
+
+  <span class="pi">-</span> <span class="na">identifier</span><span class="pi">:</span> <span class="s2">"</span><span class="s">aggregated-climate-data"</span>
+    <span class="na">title</span><span class="pi">:</span> <span class="s2">"</span><span class="s">Monthly</span><span class="nv"> </span><span class="s">Aggregated</span><span class="nv"> </span><span class="s">Climate</span><span class="nv"> </span><span class="s">Data"</span>
+    <span class="na">description</span><span class="pi">:</span> <span class="s2">"</span><span class="s">Climate</span><span class="nv"> </span><span class="s">data</span><span class="nv"> </span><span class="s">aggregated</span><span class="nv"> </span><span class="s">to</span><span class="nv"> </span><span class="s">monthly</span><span class="nv"> </span><span class="s">resolution"</span>
+    <span class="na">publisher</span><span class="pi">:</span>
+      <span class="na">name</span><span class="pi">:</span> <span class="s2">"</span><span class="s">Climate</span><span class="nv"> </span><span class="s">Data</span><span class="nv"> </span><span class="s">Center"</span>
+    <span class="na">wasDerivedFrom</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="s2">"</span><span class="s">cleaned-sensor-data"</span>
+
+<span class="na">metrics</span><span class="pi">:</span>
+  <span class="pi">-</span> <span class="na">identifier</span><span class="pi">:</span> <span class="s2">"</span><span class="s">completeness-ratio"</span>
+    <span class="na">definition</span><span class="pi">:</span> <span class="s2">"</span><span class="s">Ratio</span><span class="nv"> </span><span class="s">of</span><span class="nv"> </span><span class="s">non-null</span><span class="nv"> </span><span class="s">values</span><span class="nv"> </span><span class="s">to</span><span class="nv"> </span><span class="s">total</span><span class="nv"> </span><span class="s">expected</span><span class="nv"> </span><span class="s">values"</span>
+    <span class="na">prefLabel</span><span class="pi">:</span> <span class="s2">"</span><span class="s">Completeness</span><span class="nv"> </span><span class="s">Ratio"</span>
+    <span class="na">expectedDataType</span><span class="pi">:</span> <span class="s2">"</span><span class="s">xsd:double"</span>
+    <span class="na">inDimension</span><span class="pi">:</span> <span class="s2">"</span><span class="s">completeness"</span>
+
+<span class="na">qualityMeasurements</span><span class="pi">:</span>
+  <span class="pi">-</span> <span class="na">identifier</span><span class="pi">:</span> <span class="s2">"</span><span class="s">raw-data-quality"</span>
+    <span class="na">computedOn</span><span class="pi">:</span> <span class="s2">"</span><span class="s">raw-sensor-data"</span>
+    <span class="na">isMeasurementOf</span><span class="pi">:</span> <span class="s2">"</span><span class="s">completeness-ratio"</span>
+    <span class="na">value</span><span class="pi">:</span> <span class="m">0.85</span>
+    <span class="na">generatedAtTime</span><span class="pi">:</span> <span class="s2">"</span><span class="s">2024-01-15T10:30:00Z"</span>
+
+  <span class="pi">-</span> <span class="na">identifier</span><span class="pi">:</span> <span class="s2">"</span><span class="s">cleaned-data-quality"</span>
+    <span class="na">computedOn</span><span class="pi">:</span> <span class="s2">"</span><span class="s">cleaned-sensor-data"</span>
+    <span class="na">isMeasurementOf</span><span class="pi">:</span> <span class="s2">"</span><span class="s">completeness-ratio"</span>
+    <span class="na">value</span><span class="pi">:</span> <span class="m">0.92</span>
+    <span class="na">generatedAtTime</span><span class="pi">:</span> <span class="s2">"</span><span class="s">2024-01-15T11:45:00Z"</span>
+
+  <span class="pi">-</span> <span class="na">identifier</span><span class="pi">:</span> <span class="s2">"</span><span class="s">aggregated-data-quality"</span>
+    <span class="na">computedOn</span><span class="pi">:</span> <span class="s2">"</span><span class="s">aggregated-climate-data"</span>
+    <span class="na">isMeasurementOf</span><span class="pi">:</span> <span class="s2">"</span><span class="s">completeness-ratio"</span>
+    <span class="na">value</span><span class="pi">:</span> <span class="m">0.96</span>
+    <span class="na">generatedAtTime</span><span class="pi">:</span> <span class="s2">"</span><span class="s">2024-01-15T14:20:00Z"</span>
+
+<span class="na">dataCatalog</span><span class="pi">:</span>
+  <span class="na">title</span><span class="pi">:</span> <span class="s2">"</span><span class="s">Weather</span><span class="nv"> </span><span class="s">Data</span><span class="nv"> </span><span class="s">Catalog"</span>
+  <span class="na">description</span><span class="pi">:</span> <span class="s2">"</span><span class="s">Catalog</span><span class="nv"> </span><span class="s">of</span><span class="nv"> </span><span class="s">weather</span><span class="nv"> </span><span class="s">and</span><span class="nv"> </span><span class="s">climate</span><span class="nv"> </span><span class="s">datasets"</span>
+  <span class="na">publisher</span><span class="pi">:</span>
+    <span class="na">name</span><span class="pi">:</span> <span class="s2">"</span><span class="s">Weather</span><span class="nv"> </span><span class="s">Data</span><span class="nv"> </span><span class="s">Processing</span><span class="nv"> </span><span class="s">Center"</span>
+</code></pre></div></div>
+
+<p>This example demonstrates how quality improves through data processing steps. The raw sensor data has 85% completeness, which improves to 92% after cleaning and validation, and reaches 96% after aggregation. This quality progression, documented alongside the provenance chain, helps users understand how data processing affects quality and builds trust in the final dataset.</p>
+
+<pre><code class="language-mermaid">graph TD
+    A[Raw Sensor Data&lt;br/&gt;Completeness: 85%] --&gt;|wasDerivedFrom| B[Cleaned Sensor Data&lt;br/&gt;Completeness: 92%]
+    B --&gt;|wasDerivedFrom| C[Aggregated Climate Data&lt;br/&gt;Completeness: 96%]
+    
+    style A fill:#ffcdd2
+    style B fill:#c8e6c9
+    style C fill:#a5d6a7
+</code></pre>
+
+<h3 id="236-quality-certificates-and-compliance">2.3.6 Quality Certificates and Compliance</h3>
+
+<p>Formal quality assessments often include certificates or compliance attestations that provide authoritative statements about data quality. This example shows how to document such formal quality evaluations alongside metric measurements.</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Quality certificate example</span>
+<span class="na">datasets</span><span class="pi">:</span>
+  <span class="pi">-</span> <span class="na">identifier</span><span class="pi">:</span> <span class="s2">"</span><span class="s">certified-dataset"</span>
+    <span class="na">title</span><span class="pi">:</span> <span class="s2">"</span><span class="s">ISO</span><span class="nv"> </span><span class="s">25012</span><span class="nv"> </span><span class="s">Certified</span><span class="nv"> </span><span class="s">Dataset"</span>
+    <span class="na">description</span><span class="pi">:</span> <span class="s2">"</span><span class="s">Dataset</span><span class="nv"> </span><span class="s">certified</span><span class="nv"> </span><span class="s">as</span><span class="nv"> </span><span class="s">compliant</span><span class="nv"> </span><span class="s">with</span><span class="nv"> </span><span class="s">ISO</span><span class="nv"> </span><span class="s">25012</span><span class="nv"> </span><span class="s">data</span><span class="nv"> </span><span class="s">quality</span><span class="nv"> </span><span class="s">standards"</span>
+    <span class="na">keywords</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="s">certified</span>
+      <span class="pi">-</span> <span class="s">iso-25012</span>
+      <span class="pi">-</span> <span class="s">high-quality</span>
+    <span class="na">publisher</span><span class="pi">:</span>
+      <span class="na">name</span><span class="pi">:</span> <span class="s2">"</span><span class="s">Quality</span><span class="nv"> </span><span class="s">Certified</span><span class="nv"> </span><span class="s">Data</span><span class="nv"> </span><span class="s">Provider"</span>
+    <span class="na">license</span><span class="pi">:</span> <span class="s2">"</span><span class="s">https://creativecommons.org/licenses/by/4.0/"</span>
+
+<span class="na">metrics</span><span class="pi">:</span>
+  <span class="pi">-</span> <span class="na">identifier</span><span class="pi">:</span> <span class="s2">"</span><span class="s">iso-25012-compliance"</span>
+    <span class="na">definition</span><span class="pi">:</span> <span class="s2">"</span><span class="s">Compliance</span><span class="nv"> </span><span class="s">with</span><span class="nv"> </span><span class="s">ISO</span><span class="nv"> </span><span class="s">25012</span><span class="nv"> </span><span class="s">data</span><span class="nv"> </span><span class="s">quality</span><span class="nv"> </span><span class="s">standards"</span>
+    <span class="na">prefLabel</span><span class="pi">:</span> <span class="s2">"</span><span class="s">ISO</span><span class="nv"> </span><span class="s">25012</span><span class="nv"> </span><span class="s">Compliance"</span>
+    <span class="na">expectedDataType</span><span class="pi">:</span> <span class="s2">"</span><span class="s">xsd:boolean"</span>
+    <span class="na">inDimension</span><span class="pi">:</span> <span class="s2">"</span><span class="s">compliance"</span>
+
+  <span class="pi">-</span> <span class="na">identifier</span><span class="pi">:</span> <span class="s2">"</span><span class="s">quality-index"</span>
+    <span class="na">definition</span><span class="pi">:</span> <span class="s2">"</span><span class="s">Overall</span><span class="nv"> </span><span class="s">quality</span><span class="nv"> </span><span class="s">index</span><span class="nv"> </span><span class="s">combining</span><span class="nv"> </span><span class="s">multiple</span><span class="nv"> </span><span class="s">quality</span><span class="nv"> </span><span class="s">dimensions"</span>
+    <span class="na">prefLabel</span><span class="pi">:</span> <span class="s2">"</span><span class="s">Quality</span><span class="nv"> </span><span class="s">Index"</span>
+    <span class="na">expectedDataType</span><span class="pi">:</span> <span class="s2">"</span><span class="s">xsd:double"</span>
+    <span class="na">inDimension</span><span class="pi">:</span> <span class="s2">"</span><span class="s">overall-quality"</span>
+
+<span class="na">qualityMeasurements</span><span class="pi">:</span>
+  <span class="pi">-</span> <span class="na">identifier</span><span class="pi">:</span> <span class="s2">"</span><span class="s">iso-compliance-measurement"</span>
+    <span class="na">computedOn</span><span class="pi">:</span> <span class="s2">"</span><span class="s">certified-dataset"</span>
+    <span class="na">isMeasurementOf</span><span class="pi">:</span> <span class="s2">"</span><span class="s">iso-25012-compliance"</span>
+    <span class="na">value</span><span class="pi">:</span> <span class="kc">true</span>
+    <span class="na">generatedAtTime</span><span class="pi">:</span> <span class="s2">"</span><span class="s">2024-01-15T10:30:00Z"</span>
+
+  <span class="pi">-</span> <span class="na">identifier</span><span class="pi">:</span> <span class="s2">"</span><span class="s">overall-quality-score"</span>
+    <span class="na">computedOn</span><span class="pi">:</span> <span class="s2">"</span><span class="s">certified-dataset"</span>
+    <span class="na">isMeasurementOf</span><span class="pi">:</span> <span class="s2">"</span><span class="s">quality-index"</span>
+    <span class="na">value</span><span class="pi">:</span> <span class="m">0.94</span>
+    <span class="na">generatedAtTime</span><span class="pi">:</span> <span class="s2">"</span><span class="s">2024-01-15T10:30:00Z"</span>
+
+<span class="na">dataCatalog</span><span class="pi">:</span>
+  <span class="na">title</span><span class="pi">:</span> <span class="s2">"</span><span class="s">Quality</span><span class="nv"> </span><span class="s">Certified</span><span class="nv"> </span><span class="s">Data</span><span class="nv"> </span><span class="s">Catalog"</span>
+  <span class="na">description</span><span class="pi">:</span> <span class="s2">"</span><span class="s">Catalog</span><span class="nv"> </span><span class="s">of</span><span class="nv"> </span><span class="s">high-quality</span><span class="nv"> </span><span class="s">certified</span><span class="nv"> </span><span class="s">datasets"</span>
+  <span class="na">publisher</span><span class="pi">:</span>
+    <span class="na">name</span><span class="pi">:</span> <span class="s2">"</span><span class="s">Quality</span><span class="nv"> </span><span class="s">Certified</span><span class="nv"> </span><span class="s">Data</span><span class="nv"> </span><span class="s">Provider"</span>
+</code></pre></div></div>
+
+<p>This example shows a dataset with formal quality certification. The ISO 25012 compliance measurement indicates that the dataset meets international data quality standards, while the quality index provides a quantitative assessment. Such formal quality information helps users trust the data for critical applications and supports regulatory compliance requirements.</p>
+
+<h2 id="best-practices">Best Practices</h2>
+
+<p>Effective data quality assessment requires attention to both technical and organizational considerations. The following practices help ensure that quality information is meaningful, actionable, and trustworthy.</p>
+
+<p><strong>Define Clear Quality Metrics</strong>: Always provide clear definitions for quality metrics that explain exactly what is being measured and how. Ambiguous metric definitions can lead to misinterpretation and incorrect quality assessments.</p>
+
+<p><strong>Use Standard Quality Frameworks</strong>: When possible, organize metrics using established quality frameworks like ISO 25012. This provides context for quality assessments and enables comparison across datasets and organizations.</p>
+
+<p><strong>Document Measurement Methods</strong>: Include information about how quality measurements were obtained, including whether they were automated calculations, manual assessments, or expert evaluations. This context helps users trust the quality information.</p>
+
+<p><strong>Capture Quality Timestamps</strong>: Always include timestamps for quality measurements to support trend analysis and ensure that quality information remains current. Outdated quality measurements can mislead users about current data quality.</p>
+
+<p><strong>Balance Detail and Usability</strong>: Provide comprehensive quality information but organize it in ways that support both detailed analysis and quick assessments. Dimension-level summaries help users quickly evaluate quality while detailed metrics support in-depth analysis.</p>
+
+<p><strong>Integrate Quality with Provenance</strong>: Connect quality assessments with provenance information to show how quality evolves through data processing workflows. This integration helps users understand the context of quality measurements.</p>
+
+<p><strong>Update Quality Regularly</strong>: Establish processes for regular quality assessment and update quality measurements as datasets change. Current quality information is essential for maintaining user trust.</p>
+
+<p><strong>Consider User Perspectives</strong>: Assess quality from the perspective of intended users and use cases. Quality requirements vary significantly across applications, and quality assessments should reflect the needs of target users.</p>
+
+<p><strong>Document Quality Limitations</strong>: Be transparent about quality limitations and known issues. Honest communication about quality problems builds trust and helps users make informed decisions.</p>
+
+<p><strong>Support Quality Improvement</strong>: Use quality assessments not just for evaluation but also for identifying improvement opportunities. Quality measurements should guide data quality enhancement efforts.</p>
+
+          </div>
+        </main>
+        
+        <footer class="site-footer">
+          <div class="footer-content">
+            This site is open source. <a href="/edit//docs/03_chapter2_data_quality.md">Improve this page</a>.
+          </div>
+        </footer>
+      </div>
+    </div>
+    
+    <!-- JavaScript -->
+    <script src="/simple_data_catalog_how-to/assets/js/sidebar.js"></script>
+  </body>
+</html>
