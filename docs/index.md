@@ -1,8 +1,6 @@
 ---
+title: "Data Management for Data Publishers - How-to Guide"
 layout: default
-title: "Introduction"
-nav_order: 0
-sidebar_label: "📖 Introduction"
 ---
 
 # Introduction

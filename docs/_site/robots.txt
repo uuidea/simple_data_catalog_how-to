@@ -1,1 +1,0 @@
-Sitemap: https://uuidea.github.io/simple_data_catalog_how-to/sitemap.xml

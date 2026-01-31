@@ -53,8 +53,6 @@ This repository uses GitHub Pages for documentation publishing. Changes are auto
 - Include internal links using relative paths (e.g., `[Chapter 1](#chapter-1)`)
 - Include external links to standards: [DCAT 3](https://www.w3.org/TR/vocab-dcat-3/), [PROV-O](https://www.w3.org/TR/prov-o/), [DQV](https://www.w3.org/TR/vocab-dqv/), [ODRL 2.2](https://www.w3.org/TR/odrl-model/)
 - Use clear, concise language suitable for technical documentation
-- This is a book, write as such and avoid overuseing bullet points 
-- Where relevant or appropriate use (mermaid) diagrams for illustration
 - Include code examples with proper syntax highlighting using triple backticks for inline and triple backticks for blocks
 - Add line breaks before headings for readability
 - Use bullet points and numbered lists for structured information

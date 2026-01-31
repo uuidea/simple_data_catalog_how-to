@@ -70,18 +70,18 @@ Chapter 1: Data Catalog Metadata (DCAT)
 - Benefits of using DCAT for data discovery
 - DCAT vs other metadata standards
 1.2 DCAT in Simple Data Catalog
-- How simple_data_catalog implements DCAT (LinkML compliance)
+- How simple_data_catalog implements DCAT
 - DCAT classes and properties available in framework
 - Mapping between DCAT terms and YAML structure
-- Integration with other vocabularies (Dublin Core, FOAF, SKOS)
+- Integration with other vocabularies (Dublin Core, FOAF, etc.)
 1.3 Practical Examples
 1.3.1 Creating a Basic Catalog
 - Setting up catalog metadata
 - Defining catalog publisher and themes
-- Adding datasets to catalog
+- Adding datasets to the catalog
 1.3.2 Describing Datasets
 - Basic: Single dataset with title and description
-- Intermediate: Dataset with temporal/spatial coverage and themes
+- Intermediate: Dataset with temporal/spatial coverage and keywords
 - Advanced: Dataset with multiple distributions and thematic classification
 1.3.3 Working with Distributions
 - File distributions (CSV, JSON, etc.)
@@ -91,12 +91,7 @@ Chapter 1: Data Catalog Metadata (DCAT)
 - Defining API endpoints
 - Service documentation and parameters
 - Linking services to datasets
-1.3.5 Managing SKOS Concepts as Themes
-- Concept definition best practices
-- Reusable concept structures
-- Cross-dataset theme application
-- Concept management workflows
-1.3.6 Catalog Management
+1.3.5 Catalog Management
 - Updating catalog metadata
 - Versioning catalogs and datasets
 - Managing dataset series
@@ -225,20 +220,15 @@ Chapter 6: Best Practices
 - Certification processes
 Appendices
 A. Reference Guide
-- DCAT quick reference (LinkML-compliant)
+- DCAT quick reference
 - PROV quick reference
 - DQV quick reference
 - ODRL quick reference
-- SKOS concepts reference
 B. Glossary
 - Technical terms and definitions
 - Acronyms and abbreviations
 - Cross-reference index
 C. Troubleshooting
 - Common issues and solutions
-- LinkML compliance checking
+- Performance optimization
 - Migration and upgrade
-D. Model Compliance Updates
-- Changes made for LinkML model compliance
-- SKOS concept migration guide
-- Best practices for maintaining compliance
