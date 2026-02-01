@@ -17,7 +17,7 @@ DQV is built around a hierarchical framework that organizes quality information 
 
 The metrics themselves are organized into *Dimensions*, which group related metrics into broader quality categories. Common dimensions include completeness (how much data is missing), accuracy (how correct the data is), availability (whether the data can be accessed), and timeliness (how current the data is). These dimensions can be further organized into *Categories* that represent high-level quality frameworks such as ISO 25012 or domain-specific quality models.
 
-[source,mermaid]
+[mermaid, dqv-quality-framework, svg]
 ----
 graph TD
     A[QualityMeasurement] -->|isMeasurementOf| B[Metric]
@@ -370,10 +370,10 @@ datasets:
 
 This example shows quality measurements captured over three months, revealing improvement trends in both completeness (from 0.92 to 0.96) and accuracy (from 0.89 to 0.93). Such trend analysis helps users understand data reliability and can inform decisions about when to use the data or when additional quality validation may be needed.
 
-[source,mermaid]
+[mermaid, dqv-quality-trends, svg]
 ----
 graph LR
-    title[Quality Trend Analysis]
+    %% Quality Trend Analysis
     
     subgraph Completeness
         C1[Jan: 0.92] --> C2[Feb: 0.94] --> C3[Mar: 0.96]
@@ -446,7 +446,7 @@ datasets:
 
 This example demonstrates how quality improves through data processing steps. The raw sensor data has 85% completeness, which improves to 92% after cleaning and validation, and reaches 96% after aggregation. This quality progression, documented alongside the provenance chain, helps users understand how data processing affects quality and builds trust in the final dataset.
 
-[source,mermaid]
+[mermaid, dqv-provenance-quality, svg]
 ----
 graph TD
     A[Raw Sensor Data<br/>Completeness: 85%] -->|wasDerivedFrom| B[Cleaned Sensor Data<br/>Completeness: 92%]

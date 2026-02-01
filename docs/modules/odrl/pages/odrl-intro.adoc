@@ -36,7 +36,7 @@ ODRL is built around a set of interconnected concepts that work together to crea
 
 The rules within policies come in three fundamental types. **Permissions** grant users the right to perform specific actions, such as reading, copying, or redistributing data. **Prohibitions** explicitly forbid certain actions, such as commercial use or reverse engineering. **Duties** represent obligations that must be fulfilled, either as standalone requirements or as conditions attached to permissions. These rule types can be combined to create sophisticated policy frameworks that balance access with responsibility.
 
-[source,mermaid]
+[mermaid, odrl-policy-structure, svg]
 ----
 graph TD
     A[Policy] -->|permission| B[Permission]

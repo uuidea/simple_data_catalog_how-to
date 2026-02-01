@@ -12,7 +12,7 @@ The Provenance Ontology (PROV-O) is a W3C Recommendation that defines a set of c
 
 PROV is built around three fundamental concepts that work together to create a complete provenance story. **Entities** represent the data artifacts themselves - datasets, distributions, or any data-bearing resources. **Activities** describe the processes that transform these artifacts, though these are not currently implemented in the simple_data_catalog_model. **Agents** are the entities responsible for carrying out those activities, also not yet implemented in our model.
 
-[source,mermaid]
+[mermaid, prov-core-concepts, svg]
 ----
 graph TD
     A[Entity] -->|wasDerivedFrom| A[Entity]
@@ -69,7 +69,7 @@ The simple_data_catalog integrates with the https://github.com/uuidea/simple-dat
 
 When datasets include `wasDerivedFrom` relationships, the generator creates Mermaid flowchart diagrams that visualize the complete data lineage. These diagrams show how datasets are connected through derivation relationships, making it easy to trace data transformations and identify upstream dependencies.
 
-[source,mermaid]
+[mermaid, prov-lineage-example, svg]
 ----
 graph TD
     B[cleaned-sensor-data] --> A[raw-sensor-data]
@@ -86,7 +86,7 @@ The lineage diagrams are automatically generated from the YAML provenance relati
 
 The generator also performs supply chain analysis by examining upstream data quality annotations. This analysis helps users understand the quality landscape of their data dependencies by aggregating quality measurements from all source datasets.
 
-[source,mermaid]
+[mermaid, prov-quality-coverage, svg]
 ----
 pie title Input Datasets Quality Measurements
     "with quality measurements" : 3

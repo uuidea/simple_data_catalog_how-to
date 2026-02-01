@@ -39,7 +39,7 @@ The Data Catalog Vocabulary (DCAT) is a W3C standard that provides a common lang
 * *Future-proof*: Your catalog follows established best practices that won't become obsolete
 
 .Main DCAT Elements Used in This Document
-[source,mermaid]
+[mermaid, dcat-class-structure, svg]
 ----
 classDiagram
     class DataCatalog {
