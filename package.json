@@ -1,6 +1,8 @@
 {
   "dependencies": {
     "@antora/lunr-extension": "^1.0.0-alpha.12",
-    "@sntke/antora-mermaid-extension": "^0.0.8"
+    "@djencks/asciidoctor-mathjax": "^0.0.9",
+    "@sntke/antora-mermaid-extension": "^0.0.8",
+    "asciidoctor-kroki": "^0.18.1"
   }
 }
