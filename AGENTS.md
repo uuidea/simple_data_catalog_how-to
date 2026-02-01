@@ -19,11 +19,11 @@ Antora-based documentation repository for simple_data_catalog project - a LinkML
 ## Commands
 
 ### Antora Build Commands
-- Build documentation: `npx antora antora-playbook.yml --to-dir public`
-- Build with clean output: `npx antora antora-playbook.yml --clean --to-dir public`
+- Build documentation: `npx antora antora-playbook.yml --to-dir build/site`
+- Build with clean output: `npx antora antora-playbook.yml --clean --to-dir build/site`
 - Validate playbook: `npx antora antora-playbook.yml --dry-run`
-- Serve locally: `cd public && python -m http.server 8000`
-- Build and serve: `npx antora antora-playbook.yml --to-dir public && cd public && python -m http.server 8000`
+- Serve locally: `cd build/site && python -m http.server 8000`
+- Build and serve: `npx antora antora-playbook.yml --to-dir build/site && cd build/site && python -m http.server 8000`
 
 ### Documentation Validation
 - Validate AsciiDoc: `find modules/ -name "*.adoc" -exec asciidoctor {} \;`
@@ -50,7 +50,7 @@ Antora-based documentation repository for simple_data_catalog project - a LinkML
 ### GitHub Pages Publishing
 - Automatic deployment on push to main branch
 - Documentation site: https://uuidea.github.io/simple_data_catalog_how-to/
-- Local preview: `cd public && python -m http.server 8000`
+- Local preview: `cd build/site && python -m http.server 8000`
 
 ## Code Style Guidelines
 
