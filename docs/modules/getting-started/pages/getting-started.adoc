@@ -1,0 +1,187 @@
+= Getting Started with Simple Data Catalog
+
+This section helps you get up and running with the simple_data_catalog framework quickly.
+
+== Prerequisites
+
+Before you begin, ensure you have the following installed:
+
+* **Python 3.8+** - Required for the framework
+* **Git** - For version control and template management
+* **Copier** - Template tool for creating catalogs
+
+== Installation Steps
+
+=== Step 1: Install Python
+
+Ensure you have Python 3.8 or later installed:
+
+[source,bash]
+----
+python --version
+# Should show Python 3.8.x or later
+----
+
+=== Step 2: Install Copier
+
+Install Copier using pip:
+
+[source,bash]
+----
+pip install copier
+----
+
+=== Step 3: Clone the Simple Data Catalog Template
+
+Get the template repository:
+
+[source,bash]
+----
+git clone https://github.com/uuidea/simple_data_catalog.git
+cd simple_data_catalog
+----
+
+== Creating Your First Catalog
+
+=== Step 1: Generate Catalog Structure
+
+Use Copier to create a new catalog from the template:
+
+[source,bash]
+----
+copier copy gh:uuidea/simple_data_catalog my-data-catalog
+----
+
+=== Step 2: Navigate to Your Catalog
+
+[source,bash]
+----
+cd my-data-catalog
+----
+
+=== Step 3: Basic Catalog Structure
+
+Your new catalog will have this structure:
+
+[source,bash]
+----
+my-data-catalog/
+├── catalog.yaml          # Main catalog configuration
+├── datasets/              # Dataset descriptions
+│   ├── dataset1.yaml
+│   └── dataset2.yaml
+├── examples/              # Example configurations
+└── README.md
+----
+
+=== Step 4: Configure Your Catalog
+
+Edit the main `catalog.yaml` file:
+
+[source,yaml]
+----
+# catalog.yaml
+dcat:Catalog:
+  dcterms:title: "My Data Catalog"
+  dcterms:description: "A comprehensive data catalog"
+  dcterms:publisher:
+    foaf:name: "Your Organization"
+    foaf:mbox: "contact@yourorg.org"
+  dcat:dataset: []
+----
+
+=== Step 5: Add Your First Dataset
+
+Create a simple dataset in `datasets/example.yaml`:
+
+[source,yaml]
+----
+# datasets/example.yaml
+dcat:Dataset:
+  dcterms:title: "Example Dataset"
+  dcterms:description: "A sample dataset to demonstrate the catalog"
+  dcterms:identifier: "example-dataset-001"
+  dcat:distribution:
+    - dcat:Distribution:
+        dcterms:title: "CSV Download"
+        dcterms:format: "text/csv"
+        dcat:accessURL: "https://example.org/data.csv"
+----
+
+=== Step 6: Update Catalog to Include Dataset
+
+Modify `catalog.yaml` to reference your dataset:
+
+[source,yaml]
+----
+dcat:Catalog:
+  dcterms:title: "My Data Catalog"
+  dcterms:description: "A comprehensive data catalog"
+  dcterms:publisher:
+    foaf:name: "Your Organization"
+    foaf:mbox: "contact@yourorg.org"
+  dcat:dataset:
+    - !include datasets/example.yaml
+----
+
+== Generating Your Catalog
+
+=== Step 1: Install Dependencies
+
+[source,bash]
+----
+pip install -r requirements.txt
+----
+
+=== Step 2: Generate RDF Output
+
+[source,bash]
+----
+python generate_catalog.py
+----
+
+This will generate:
+* `catalog.ttl` - RDF/Turtle format
+* `catalog.jsonld` - JSON-LD format
+* `catalog.html` - Human-readable HTML view
+
+=== Step 3: View Your Catalog
+
+Open the generated HTML file in your browser:
+
+[source,bash]
+# If you have a local web server
+python -m http.server 8000
+# Then visit http://localhost:8000/catalog.html
+----
+
+== Next Steps
+
+Congratulations! You now have a basic working data catalog. Continue with these chapters to expand your catalog:
+
+* xref:dcat:ROOT:dcat-intro.adoc[Data Catalog Metadata (DCAT)] - Learn comprehensive cataloging
+* xref:dqv:ROOT:dqv-intro.adoc[Data Quality (DQV)] - Add quality metrics
+* xref:prov:ROOT:prov-intro.adoc[Data Lineage (PROV)] - Track data provenance  
+* xref:odrl:ROOT:odrl-intro.adoc[Data Policy (ODRL)] - Manage usage rights
+
+== Troubleshooting
+
+=== Common Issues
+
+**Issue:** Python version not supported
+*Solution:* Install Python 3.8+ from https://python.org/downloads/
+
+**Issue:** Copier command not found
+*Solution:* Ensure pip install copier completed successfully and your PATH includes pip packages
+
+**Issue:** Template generation fails
+*Solution:* Check your internet connection and ensure the GitHub repository is accessible
+
+**Issue:** RDF generation errors
+*Solution:* Validate your YAML syntax and ensure all required fields are present
+
+=== Getting Help
+
+* Check the link:https://github.com/uuidea/simple_data_catalog[main repository] for documentation
+* Review the link:https://github.com/uuidea/simple_data_catalog_model[data model specification]
+* Open an issue on GitHub for specific problems

@@ -1,3 +1,8 @@
+---
+title: "Data Management for Data Publishers - How-to Guide"
+layout: default
+---
+
 # Introduction
 
 ## Purpose and Scope
@@ -55,13 +60,75 @@ Each chapter includes:
 
 This guide is organized into chapters covering each metadata area:
 
-1. **Getting Started** - Setup and basic catalog creation
-2. **Data Catalog Metadata (DCAT)** - Core catalog concepts and dataset description
+1. **Data Catalog Metadata (DCAT)** - Core catalog concepts and dataset description
+2. **Data Quality (DQV)** - Measuring and improving data quality
 3. **Data Lineage (PROV)** - Tracking data provenance and transformations
-4. **Data Quality (DQV)** - Measuring and improving data quality
-5. **Data Policy (ODRL)** - Managing usage rights and permissions
-6. **Advanced Topics** - Complex scenarios and enterprise considerations
-7. **Best Practices** - Governance, maintenance, and community engagement
-8. **Appendices** - Quick references and troubleshooting
+4. **Data Policy (ODRL)** - Managing usage rights and permissions
 
-By following this guide, readers will gain both theoretical understanding and practical skills for creating and managing comprehensive data catalogs using simple_data_catalog.
+## 📚 Documentation Chapters
+
+### 📊 [1. Data Catalog Metadata (DCAT)](02_chapter1_dcat.md)
+Learn the fundamentals of data cataloging using DCAT 3 standards.
+
+**Topics covered:**
+- DCAT 3 core concepts and vocabulary
+- Creating datasets and distributions
+- Catalog organization and structure
+- Best practices for metadata completeness
+
+### ✅ [2. Data Quality (DQV)](03_chapter2_data_quality.md)
+Implement data quality measurement and reporting using DQV.
+
+**Topics covered:**
+- DQV quality metrics and measurements
+- Quality assessment workflows
+- Quality annotation and reporting
+- Continuous quality improvement
+
+### 🔗 [3. Data Lineage (PROV)](04_chapter3_prov.md)
+Master data provenance tracking using PROV-O standards.
+
+**Topics covered:**
+- PROV-O entities, activities, and agents
+- Recording data transformations
+- Building lineage graphs
+- Provenance documentation strategies
+
+### 🛡️ [4. Data Policy (ODRL)](05_chapter4_data_policy.md)
+Manage usage rights and permissions using ODRL 2.2.
+
+**Topics covered:**
+- ODRL policies and permissions
+- Rights expression and licensing
+- Usage constraint management
+- Policy implementation strategies
+
+## 🎯 Learning Path
+
+This guide is designed for progressive learning:
+
+1. **Beginner** → Start with this Introduction for foundational concepts
+2. **Intermediate** → Progress through [DCAT](02_chapter1_dcat.md) and [DQV](03_chapter2_data_quality.md) for core cataloging skills  
+3. **Advanced** → Explore [PROV](04_chapter3_prov.md) and [ODRL](05_chapter4_data_policy.md) for comprehensive catalog management
+
+## 🔧 Related Resources
+
+### Framework Documentation
+- [simple_data_catalog](https://github.com/uuidea/simple_data_catalog) - Main data catalog tool
+- [simple_data_catalog_model](https://github.com/uuidea/simple_data_catalog_model) - Data model definitions
+
+### W3C Standards
+- [DCAT 3 Specification](https://www.w3.org/TR/vocab-dcat-3/) - Data Catalog Vocabulary
+- [PROV-O Specification](https://www.w3.org/TR/prov-o/) - Provenance Ontology  
+- [DQV Specification](https://www.w3.org/TR/vocab-dqv/) - Data Quality Vocabulary
+- [ODRL 2.2 Specification](https://www.w3.org/TR/odrl-model/) - Open Digital Rights Language
+
+## 📖 How to Navigate
+
+- **Sequential Reading** - Follow chapters in order for comprehensive learning
+- **Topic-Based** - Jump directly to chapters relevant to your immediate needs
+- **Cross-Reference** - Use internal links to explore related concepts across chapters
+
+---
+
+**Ready to get started?** Continue with the [Data Catalog Metadata (DCAT)](02_chapter1_dcat.md) chapter to begin building your data catalog management skills.

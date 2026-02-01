@@ -1,42 +1,46 @@
-# Chapter 2: Data Lineage (PROV)
+= Chapter 3: Data Lineage (PROV)
 
-## 2.1 Theory and Concepts
+== 3.1 Theory and Concepts
 
 Data lineage tells the story of how datasets come into existence, how they transform over time, and how they relate to one another through derivation chains. The Provenance Ontology (PROV-O) provides a standardized framework for capturing this narrative, enabling data consumers to understand the origins and transformations of datasets.
 
-### What is PROV?
+=== What is PROV?
 
 The Provenance Ontology (PROV-O) is a W3C Recommendation that defines a set of classes and properties for representing and exchanging provenance information. PROV captures the relationships between entities, activities, and agents that participate in the creation and evolution of data. PROV answers the fundamental questions about data: where did it come from, how was it transformed, and what is its relationship to other data?
 
-### Core PROV Concepts
+=== Core PROV Concepts
 
 PROV is built around three fundamental concepts that work together to create a complete provenance story. **Entities** represent the data artifacts themselves - datasets, distributions, or any data-bearing resources. **Activities** describe the processes that transform these artifacts, though these are not currently implemented in the simple_data_catalog_model. **Agents** are the entities responsible for carrying out those activities, also not yet implemented in our model.
 
-```mermaid
+[source,mermaid]
+----
 graph TD
-    A[Entity] -->|wasDerivedFrom| B[Entity]
+    A[Entity] -->|wasDerivedFrom| A[Entity]
+    D[Activity] -->|used| A
+    A -->|wasGeneratedBy| D
     A -->|wasAttributedTo| C[Agent]
-    C -->|actedOnBehalfOf| D[Agent]
+    C -->|actedOnBehalfOf| C
+    D -->|wasAssociatedWith| C
+
     
     style A fill:#e8f5e8
-    style B fill:#e8f5e8
     style C fill:#e1f5fe
     style D fill:#e1f5fe
-```
+----
 
-The current simple_data_catalog_model implements a subset of PROV concepts, focusing on entity-to-entity relationships. The `wasDerivedFrom` relationship captures how one dataset was transformed into another, even when the specific transformation activity is unknown. This forms the foundation of provenance tracking in our data catalog, enabling the reconstruction of data processing histories.
+The current simple_data_catalog_model implements a subset of PROV concepts, focusing on entity-to-entity relationships. The `wasDerivedFrom` relationship captures how one dataset relied on another, even when the specific transformation activity is unknown. Think of this as references and the bibliography in scientific literature. This forms the foundation of provenance tracking in our data catalog, enabling the reconstruction of data processing histories.
 
-### Provenance for Data Trust
+=== Provenance for Data Trust
 
 The importance of provenance for data trust cannot be overstated. In data-driven decision making, understanding the origins and transformations of data is essential for assessing reliability and fitness for purpose. Provenance information enables data consumers to evaluate data quality, identify potential biases, and make informed decisions about data usage. It also supports regulatory compliance, scientific reproducibility, and data governance requirements.
 
-### PROV Integration with DCAT
+=== PROV Integration with DCAT
 
 PROV can be combined DCAT to provide comprehensive metadata about datasets. While DCAT describes what datasets are available and how to access them, PROV explains where those datasets came from and how they relate to other datasets. This integration creates a complete picture of data resources, combining descriptive metadata with provenance information. In our implementation, this means every dataset can optionally include provenance relationships that trace its derivation from other datasets in the catalog.
 
 In the previous chapter, we explored how to create datasets with rich descriptive metadata. Now we extend those datasets with provenance information that shows their place in the broader data ecosystem. A dataset that describes temperature readings might be derived from raw sensor data, which itself might be derived from weather station logs. This derivation chain helps users understand the processing history and assess data quality.
 
-## 2.2 PROV in Simple Data Catalog
+== 3.2 PROV in Simple Data Catalog
 
 Simple Data Catalog implements a focused subset of PROV. The current implementation prioritizes practical usability while maintaining compatibility with the PROV-O standard. The framework provides a straightforward interface for defining derivation relationships between datasets, making provenance capture accessible without requiring deep expertise in semantic web technologies.
 
@@ -44,24 +48,113 @@ The current implementation includes one primary PROV property: `wasDerivedFrom`,
 
 The implementation focuses on the most common provenance use case: tracking how datasets are derived from other datasets. This approach covers the majority of real-world scenarios where data consumers need to understand data origins, while keeping the complexity manageable. Future versions of the data model may expand to include full PROV support with activities and agents, but the current implementation provides a solid foundation for provenance tracking.
 
-### Current PROV Support
+=== Current PROV Support
 
-| YAML Element | PROV Property | Description |
-|---------------|---------------|-------------|
-| `wasDerivedFrom` | `prov:wasDerivedFrom` | Links a dataset to its source datasets |
-| `generatedAtTime` | `prov:generatedAtTime` | Timestamp when an entity was generated (available in QualityMeasurement) |
+[cols="1,1,2"]
+|===
+| YAML Element | PROV Property | Description
+| `wasDerivedFrom` | `prov:wasDerivedFrom` | Links a dataset to its source datasets
+| `generatedAtTime` | `prov:generatedAtTime` | Timestamp when an entity was generated (available in QualityMeasurement)
+|===
 
-### Integration with DCAT
+=== Integration with DCAT
 
 The PROV properties extend the DCAT dataset definitions from Chapter 1. Every dataset can optionally include provenance information that traces its derivation chain. This provenance information is stored alongside the descriptive metadata, creating a comprehensive view of each dataset that includes both what it contains and where it came from.
 
-## 2.3 Practical Examples
+=== 2.2.1 Lineage Visualization and Supply Chain Analysis
 
-### 2.3.1 Basic Derivation Tracking
+The simple_data_catalog integrates with the https://github.com/uuidea/simple-data-catalog-generator/[simple-data-catalog-generator] library to automatically generate lineage visualizations and supply chain analysis from PROV relationships. These visualizations help users understand data dependencies and assess data quality across the entire data supply chain.
+
+==== Lineage Diagrams
+
+When datasets include `wasDerivedFrom` relationships, the generator creates Mermaid flowchart diagrams that visualize the complete data lineage. These diagrams show how datasets are connected through derivation relationships, making it easy to trace data transformations and identify upstream dependencies.
+
+[source,mermaid]
+----
+graph TD
+    B[cleaned-sensor-data] --> A[raw-sensor-data]
+    C[aggregated-climate-data] --> B[cleaned-sensor-data]
+    D[climate-trends-analysis] --> C[aggregated-climate-data]
+    F[climate-index] --> E[temperature-series]
+    F[climate-index] --> G[precipitation-series]
+    D[climate-trends-analysis] --> F[climate-index]
+----
+
+The lineage diagrams are automatically generated from the YAML provenance relationships and displayed on dataset detail pages. Each node represents a dataset, and arrows indicate derivation relationships following the `wasDerivedFrom` property.
+
+==== Supply Chain Analysis
+
+The generator also performs supply chain analysis by examining upstream data quality annotations. This analysis helps users understand the quality landscape of their data dependencies by aggregating quality measurements from all source datasets.
+
+[source,mermaid]
+----
+pie title Input Datasets Quality Measurements
+    "with quality measurements" : 3
+    "without quality measurements" : 2
+----
+
+The supply chain analysis provides insights into **Quality Coverage**. It shows the percentage of upstream datasets that have quality measurements
+
+==== Implementation Example
+
+To enable lineage visualization and supply chain analysis, simply include `wasDerivedFrom` relationships in your dataset definitions:
+
+[source,yaml]
+----
+datasets:
+  - id: climate-trends-analysis
+    title: "Climate Trends Analysis Report"
+    description: "Statistical analysis of long-term climate trends"
+    wasDerivedFrom:
+      - aggregated-climate-data
+      - climate-index
+    hasQualityAnnotation: true
+    qualityMeasurements:
+      - metric: completeness
+        value: 0.95
+        method: automated_check
+
+  - id: aggregated-climate-data
+    title: "Monthly Aggregated Climate Data"
+    wasDerivedFrom:
+      - cleaned-sensor-data
+    hasQualityAnnotation: true
+    qualityMeasurements:
+      - metric: accuracy
+        value: 0.88
+        method: manual_validation
+
+  - id: cleaned-sensor-data
+    title: "Cleaned Weather Station Data"
+    wasDerivedFrom:
+      - raw-sensor-data
+----
+
+When processed by the simple-data-catalog-generator, this configuration will:
+1. Generate a lineage diagram showing the derivation chain
+2. Create a supply chain analysis showing that 2 out of 3 upstream datasets have quality measurements
+3. Provide clickable navigation between related datasets
+
+==== Benefits for Data Governance
+
+The lineage visualization and supply chain analysis capabilities provide several benefits for data governance:
+
+- **Transparency**: Clear visualization of data dependencies and transformations
+- **Quality Assessment**: Quick identification of data quality gaps in the supply chain
+- **Impact Analysis**: Understanding how changes in upstream datasets affect downstream products
+- **Compliance Support**: Documentation of data provenance for regulatory requirements
+- **Trust Building**: Visual evidence of data processing and quality controls
+
+These features make the simple_data_catalog particularly valuable for organizations that need to demonstrate data governance, track data quality across complex data ecosystems, and provide stakeholders with clear understanding of data origins and reliability.
+
+== 3.3 Practical Examples
+
+=== 3.3.1 Basic Derivation Tracking
 
 The simplest provenance scenario involves a dataset that is directly derived from a single source dataset. This example demonstrates the fundamental PROV concept in action, showing how to document the basic story of data transformation.
 
-```yaml
+[source,yaml]
+----
 # Basic derivation example
 datasets:
   - id: temperature-readings
@@ -98,15 +191,16 @@ datasets:
     modified: "2024-01-21"
     wasDerivedFrom:
       - temperature-readings
-```
+----
 
 This example shows how processed temperature data is derived from raw temperature readings. The `wasDerivedFrom` property creates a clear link between the two datasets, enabling users to trace the data processing history. The derived dataset maintains its own metadata while explicitly referencing its source, creating a transparent provenance chain.
 
-### 2.3.2 Multi-Source Derivation
+=== 3.3.2 Multi-Source Derivation
 
 A common scenario involves datasets that are created by combining multiple source datasets. This example demonstrates how to document complex derivation relationships where a single dataset draws from multiple sources.
 
-```yaml
+[source,yaml]
+----
 # Multi-source derivation example
 datasets:
   - id: temperature-series
@@ -154,15 +248,16 @@ datasets:
     wasDerivedFrom:
       - temperature-series
       - precipitation-series
-```
+----
 
 This example shows how a climate index dataset is derived from both temperature and precipitation series. The multi-valued `wasDerivedFrom` property creates links to both source datasets, documenting the complete provenance of the derived dataset. Users can trace back to understand exactly what data sources contributed to the climate index calculation.
 
-### 2.3.3 Derivation Chains
+=== 3.3.3 Derivation Chains
 
 Complex data processing workflows often create chains of derived datasets, where each step builds upon the previous one. This example demonstrates how to document multi-level derivation chains that show the complete data processing history.
 
-```yaml
+[source,yaml]
+----
 # Derivation chain example
 datasets:
   - id: raw-sensor-data
@@ -214,15 +309,16 @@ datasets:
       email: "research@climate-institute.gov"
     wasDerivedFrom:
       - aggregated-climate-data
-```
+----
 
 This example demonstrates a complete derivation chain from raw sensor data to final climate trends analysis. Each dataset in the chain explicitly references its immediate predecessor, creating a clear trail of data transformations. Users can follow this chain backward to understand the complete processing history, or forward to see how the data evolves through each processing step.
 
-### 2.3.4 Integration with DCAT Metadata
+=== 3.3.4 Integration with DCAT Metadata
 
 Provenance information integrates seamlessly with the DCAT metadata structures from Chapter 1. This example shows how derivation relationships complement the descriptive metadata to create a comprehensive dataset description.
 
-```yaml
+[source,yaml]
+----
 # Complete dataset with DCAT metadata and PROV provenance
 datasets:
   - id: national-air-quality-index
@@ -298,56 +394,16 @@ datasets:
     publisher:
       name: "Air Quality Monitoring Network"
       email: "data@air-quality.gov"
-```
+----
 
 This comprehensive example shows how provenance information enhances the rich DCAT metadata from Chapter 1. The national air quality index dataset includes complete descriptive metadata while also documenting its derivation from three pollutant measurement datasets. This integration creates a complete picture that tells users both what the dataset contains and where it came from.
 
-<!-- ### 2.3.5 Version Control and Provenance
-
-Data catalogs often need to track how datasets evolve over time. While PROV provides mechanisms for versioning through derivation relationships, simple_data_catalog_model allows you to document dataset evolution using the `version` property combined with provenance relationships.
-
-```yaml
-# Version control with provenance
-datasets:
-  - id: climate-data-v1
-    title: "Climate Dataset Version 1.0"
-    description: "Initial version of climate measurements dataset"
-    version: "1.0"
-    issued: "2023-01-15"
-    publisher:
-      name: "Climate Data Center"
-      email: "data@climate.gov"
-
-  - id: climate-data-v2
-    title: "Climate Dataset Version 2.0"
-    description: "Updated climate dataset with additional stations and improved quality control"
-    version: "2.0"
-    issued: "2023-06-01"
-    publisher:
-      name: "Climate Data Center"
-      email: "data@climate.gov"
-    wasDerivedFrom:
-      - climate-data-v1
-
-  - id: climate-data-v3
-    title: "Climate Dataset Version 3.0"
-    description: "Latest version with extended temporal coverage and new variables"
-    version: "3.0"
-    issued: "2024-01-15"
-    publisher:
-      name: "Climate Data Center"
-      email: "data@climate.gov"
-    wasDerivedFrom:
-      - climate-data-v2
-```
-
-This example demonstrates how to track dataset versions using explicit derivation relationships. Each version references its predecessor, creating a clear lineage of dataset evolution. This approach helps users understand how datasets have changed over time and choose appropriate versions for their needs. -->
-
-### 2.3.6 Cross-Referencing Provenance
+=== 3.3.6 Cross-Referencing Provenance
 
 When documenting provenance across multiple datasets, you may need to reference datasets that are defined in separate YAML files or in other catalogs. PROV supports this through the use of full dataset identifiers.
 
-```yaml
+[source,yaml]
+----
 # Cross-referencing provenance example
 datasets:
   - id: https://data.weather.gov/datasets/temperature-series
@@ -365,13 +421,13 @@ datasets:
       email: "data@regional-climate.gov"
     wasDerivedFrom:
       - https://data.weather.gov/datasets/temperature-series
-```
+----
 
 This example shows how to reference datasets in external catalogs using their full identifiers. This approach enables provenance tracking across organizational boundaries, supporting federated data catalogs and collaborative data ecosystems.
 
-## 2.4 Current Limitations and Future Enhancements
+== 3.4 Current Limitations and Future Enhancements
 
-### Current Implementation Limitations
+=== Current Implementation Limitations
 
 The current simple_data_catalog_model implements a focused subset of PROV that prioritizes practical usability over comprehensive provenance tracking. This approach has several limitations that users should understand:
 
@@ -386,31 +442,19 @@ The current simple_data_catalog_model implements a focused subset of PROV that p
 - Simple entity-to-entity derivation relationships
 - Basic attribution through dataset publishers. 
 
-### Future Enhancement Roadmap
+=== Future Enhancement Roadmap
 
 The simple_data_catalog_model roadmap includes plans for progressive PROV enhancement:
 
-**Phase 1 - Enhanced Derivation Support**:
-- Support for `hadPrimarySource`, `wasRevisionOf`, `wasQuotedFrom`
-- Temporal properties for entities (`generatedAtTime`, `invalidatedAtTime`)
-- Multi-level derivation chains with relationship types
-
-**Phase 2 - Activity and Agent Support**:
 - Import of full LinkML PROV schema
 - Activity definitions with temporal properties
 - Agent classes (Person, Organization, SoftwareAgent)
-- Qualified relationships for detailed provenance
 
-**Phase 3 - Advanced Provenance Features**:
-- Bundle support for provenance of provenance
-- Collection and specialization relationships
-- Influence relationships for complex workflows
-
-### Migration Strategy
+=== Migration Strategy
 
 When future enhancements are implemented, existing YAML configurations will remain backward compatible. New properties will be added as optional elements, allowing gradual adoption of enhanced provenance features.
 
-## Best Practices
+== Best Practices
 
 Effective provenance documentation with current capabilities requires attention to several key principles:
 

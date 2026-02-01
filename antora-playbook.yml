@@ -1,0 +1,17 @@
+site:
+  title: Data Management for Data Publishers
+  url: https://uuidea.github.io/simple_data_catalog_how-to
+  start_page: docs:ROOT:index.adoc
+content:
+  sources:
+    - url: .
+      branches: HEAD
+      start_path: docs
+ui:
+  bundle:
+    url: https://gitlab.com/antora/antora-ui-default/-/jobs/artifacts/HEAD/raw/build/ui-bundle.zip?job=bundle-stable
+    snapshot: true
+runtime:
+  cache_dir: .cache/antora
+output:
+  dir: ./build/site

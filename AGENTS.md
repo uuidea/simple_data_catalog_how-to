@@ -17,18 +17,29 @@ this documentation concerns the following repositories:
 - `README.md` - Main project documentation
 - `LICENSE` - Creative Commons Attribution 4.0 International license
 - `AGENTS.md` - Guidelines for agentic coding agents
+- `antora-playbook.yml` - Main Antora playbook configuration
+- `docs/` - Antora documentation source directory
+  - `antora.yml` - Component descriptor
+  - `modules/` - Documentation modules (ROOT, getting-started, dcat, dqv, prov, odrl)
 
-This is a documentation-only repository with no build system, tests, or source code. All content is in markdown format and served directly by GitHub Pages.
+This is an Antora-based documentation repository with modular structure. All content is in AsciiDoc format and published to GitHub Pages via Antora static site generation.
 
 ## Commands
 
-Since this is a documentation repository, there are no build, lint, or test commands. The following commands are relevant:
+Since this is an Antora documentation repository, the following commands are relevant:
+
+### Antora Build Commands
+- Build documentation locally: `npx antora antora.yml --to-dir public`
+- Build with clean output: `npx antora antora.yml --clean --to-dir public`
+- Serve locally for testing: `cd public && python -m http.server 8000`
+- Build and serve in one command: `npx antora antora.yml --to-dir public && cd public && python -m http.server 8000`
 
 ### Documentation Commands
 - View documentation: `cat README.md`
 - Check license: `cat LICENSE`
-- Validate markdown: `find . -name "*.md" -exec markdownlint {} \;` or use online validators
-- Check links: `find . -name "*.md" -exec markdown-link-check {} \;`
+- Validate AsciiDoc: `find . -name "*.adoc" -exec asciidoctor {} \;` or use online validators
+- Check Antora syntax: `npx antora antora.yml --dry-run`
+- Preview specific module: `npx antora antora.yml --to-dir public`
 
 ### Git Operations
 - Check status: `git status`
@@ -48,18 +59,18 @@ This repository uses GitHub Pages for documentation publishing. Changes are auto
 ## Code Style Guidelines
 
 ### Documentation Style
-- Use GitHub-flavored markdown with [CommonMark](https://commonmark.org/) compliance
-- Maintain proper heading hierarchy (# ## ### ####) with no skipping levels
-- Include internal links using relative paths (e.g., `[Chapter 1](#chapter-1)`)
-- Include external links to standards: [DCAT 3](https://www.w3.org/TR/vocab-dcat-3/), [PROV-O](https://www.w3.org/TR/prov-o/), [DQV](https://www.w3.org/TR/vocab-dqv/), [ODRL 2.2](https://www.w3.org/TR/odrl-model/)
+- Use AsciiDoc format with Antora extensions
+- Maintain proper heading hierarchy (= == === ====) with no skipping levels
+- Include internal links using Antora xref syntax (e.g., `xref:dcat:intro.adoc[DCAT Introduction]`)
+- Include external links to standards: https://www.w3.org/TR/vocab-dcat-3/, https://www.w3.org/TR/prov-o/, https://www.w3.org/TR/vocab-dqv/, https://www.w3.org/TR/odrl-model/
 - Use clear, concise language suitable for technical documentation
-- Include code examples with proper syntax highlighting using triple backticks for inline and triple backticks for blocks
+- Include code examples with proper syntax highlighting using `[source,language]` blocks
 - Add line breaks before headings for readability
-- Use bullet points and numbered lists for structured information
+- Use bullet points (`*`) and numbered lists (`.`) for structured information
 
 ### File Organization
 - Keep documentation files in the repository docs/ directory
-- Use descriptive filenames in lowercase with underscores (e.g., `getting_started.md`)
+- Use descriptive filenames in lowercase with underscores (e.g., `getting_started.adoc`)
 - Maintain logical file structure with related content grouped
 - Create `README.md` as main entry point with table of contents
 
@@ -128,19 +139,15 @@ All contributions should be compatible with Creative Commons Attribution 4.0 Int
 
 When creating new documentation files, follow this template:
 
-```markdown
-# Title
+```asciidoc
+= Title
 
 Brief description of what this document covers.
 
-## Table of Contents
-1. [Section 1](#section-1)
-2. [Section 2](#section-2)
-
-## Section 1
+== Section 1
 Content with examples.
 
-## Section 2
+== Section 2
 More content.
 ```
 
@@ -152,6 +159,13 @@ More content.
 - Links: `[Text](url)` or `[Text](#anchor)`
 - Tables: Use pipes `|` for alignment
 - Lists: Use `-` for bullet, `1.` for numbered
+
+### Common AsciiDoc Patterns
+- Inline code: `` `code` ``
+- Code blocks: `[source,language] ...`
+- Links: `link:url[Text]` or `xref:page.adoc[Text]`
+- Tables: `|===` format for tables
+- Lists: Use `*` for bullet, `.` for numbered
 
 ### Standard Prefixes
 ```yaml
@@ -174,16 +188,16 @@ xsd: http://www.w3.org/2001/XMLSchema#
 ```
 
 ### File Naming Conventions
-- Use lowercase with underscores: `data_catalog_guide.md`
-- Be descriptive but concise: `getting_started.md`
-- Include version numbers for major updates: `migration_guide_v2.md`
+- Use lowercase with underscores: `data_catalog_guide.adoc`
+- Be descriptive but concise: `getting_started.adoc`
+- Include version numbers for major updates: `migration_guide_v2.adoc`
 
 ## Contributing Guidelines
 
 1. Fork the repository
 2. Create a feature branch: `git checkout -b new-feature`
 3. Make documentation changes
-4. Validate markdown: `find . -name "*.md" -exec markdownlint {} \;` or use online validators
+4. Validate AsciiDoc: `find . -name "*.adoc" -exec asciidoctor {} \;` or use online validators
 5. Ensure all links are valid and relevant
 6. Test any code examples or commands provided
 7. Submit a pull request with clear description of changes
@@ -192,7 +206,7 @@ xsd: http://www.w3.org/2001/XMLSchema#
 ## Quality Assurance
 
 - Verify all external links are accessible
-- Check markdown syntax validity using `markdownlint` or online validators
+- Check AsciiDoc syntax validity using `asciidoctor` or online validators
 - Ensure consistent formatting and heading hierarchy
 - Review for clarity and accuracy
 - Test any code examples or commands provided
