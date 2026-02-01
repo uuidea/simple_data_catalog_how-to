@@ -42,99 +42,71 @@ The Data Catalog Vocabulary (DCAT) is a W3C standard that provides a common lang
 [mermaid, dcat-class-structure, svg]
 ----
 classDiagram
-    class DataCatalog {
-        +identifier*
-        +title
-        +description
-        +publisher
-        +contactPoint
-        +license
-        +theme[]
-        +version
-        +status
-        +issued
-        +modified
-        +dataset[]
+    class Resource {  
+        identifier
+        title
+        description
+        publisher
+        contactPoint
+        license
+        theme
+        version
+        status
+        issued
+        modified
     }
     
     class Dataset {
-        +identifier*
-        +title
-        +description
-        +publisher
-        +contactPoint
-        +license
-        +theme[]
-        +version
-        +status
-        +issued
-        +modified
-        +temporal
-        +inSeries
-        +distribution[]
+        temporal
+        inSeries
+        distribution
+    }
+    
+    class DataCatalog {
+        dataset
     }
     
     class DatasetSeries {
-        +identifier*
-        +title
-        +description
-        +publisher
-        +contactPoint
-        +license
-        +theme[]
-        +version
-        +status
-        +issued
-        +modified
-        +temporal
-        +inSeries
-        +distribution[]
     }
     
     class Distribution {
-        +identifier*
-        +title
-        +description
-        +accessURL
-        +format
-        +version
-        +issued
-        +modified
+        identifier
+        title
+        description
+        accessURL
+        format
+        version
+        issued
+        modified
     }
     
     class DataService {
-        +identifier*
-        +title
-        +description
-        +publisher
-        +contactPoint
-        +license
-        +theme[]
-        +version
-        +status
-        +issued
-        +modified
-        +endpointURL
-        +servesDataset[]
+        endpointURL
+        servesDataset
     }
     
     class Concept {
-        +identifier*
-        +prefLabel
-        +definition
-        +altLabel
-        +example
+        identifier
+        prefLabel
+        definition
+        altLabel
+        example
     }
     
     class PeriodOfTime {
-        +hasBeginning
-        +hasEnd
+        hasBeginning
+        hasEnd
     }
 
+    Resource <|-- Dataset
+    Dataset <|-- DataCatalog
+    Dataset <|-- DatasetSeries
+    Resource <|-- DataService
+    
     DataCatalog --> Dataset : dataset
     Dataset --> Distribution : distribution
     Dataset --> Concept : theme
-    Dataset --> DataService : accessed via
+
     Dataset --> DatasetSeries : inSeries
     Dataset --> PeriodOfTime : temporal
     DataService --> Dataset : servesDataset
