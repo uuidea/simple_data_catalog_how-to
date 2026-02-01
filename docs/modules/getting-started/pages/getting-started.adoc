@@ -160,10 +160,10 @@ python -m http.server 8000
 
 Congratulations! You now have a basic working data catalog. Continue with these chapters to expand your catalog:
 
-* xref:dcat:ROOT:dcat-intro.adoc[Data Catalog Metadata (DCAT)] - Learn comprehensive cataloging
-* xref:dqv:ROOT:dqv-intro.adoc[Data Quality (DQV)] - Add quality metrics
-* xref:prov:ROOT:prov-intro.adoc[Data Lineage (PROV)] - Track data provenance  
-* xref:odrl:ROOT:odrl-intro.adoc[Data Policy (ODRL)] - Manage usage rights
+* xref:dcat:dcat-intro.adoc[Data Catalog Metadata (DCAT)] - Learn comprehensive cataloging
+* xref:dqv:dqv-intro.adoc[Data Quality (DQV)] - Add quality metrics
+* xref:prov:prov-intro.adoc[Data Lineage (PROV)] - Track data provenance  
+* xref:odrl:odrl-intro.adoc[Data Policy (ODRL)] - Manage usage rights
 
 == Troubleshooting
 

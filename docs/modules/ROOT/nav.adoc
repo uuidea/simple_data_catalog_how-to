@@ -7,7 +7,7 @@
 ** xref:dcat:dcat-intro.adoc[Data Catalog (DCAT)]
 ** xref:dqv:dqv-intro.adoc[Data Quality (DQV)]
 ** xref:prov:prov-intro.adoc[Data Lineage (PROV)]
-** Data Policy (ODRL)
+** xref:odrl:odrl-intro.adoc[Data Policy (ODRL)]
 
 * Resources
 ** Related Projects
