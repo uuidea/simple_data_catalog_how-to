@@ -1,5 +1,5 @@
 name: docs
-version: master
+version: main
 title: Simple Data Catalog Documentation
 nav:
   - modules/ROOT/nav.adoc

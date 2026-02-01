@@ -4,7 +4,7 @@ site:
   start_page: docs:ROOT:index.adoc
 content:
   sources:
-    - url: .
+    - url: ./docs
       branches: HEAD
 ui: 
   bundle:
