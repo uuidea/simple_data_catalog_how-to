@@ -40,10 +40,10 @@ The Data Catalog Vocabulary (DCAT) is a W3C standard that provides a common lang
 
 .Main DCAT Elements Used in This Document
 [mermaid, dcat-class-structure, svg]
+
 ----
 classDiagram
     class Resource {
-        <<abstract>>
         identifier*
         title
         description
@@ -56,20 +56,17 @@ classDiagram
         issued
         modified
     }
-    
     class Dataset {
         temporal
         inSeries
         distribution[]
     }
-    
     class DataCatalog {
         dataset[]
     }
-    
     class DatasetSeries {
+        --
     }
-    
     class Distribution {
         identifier*
         title
@@ -98,19 +95,21 @@ classDiagram
         hasBeginning
         hasEnd
     }
-
     Resource <|-- Dataset
     Dataset <|-- DataCatalog
     Dataset <|-- DatasetSeries
     Resource <|-- DataService
     
-    DataCatalog --> Dataset : dataset
     Dataset --> Distribution : distribution
     Dataset --> Concept : theme
     Dataset --> DatasetSeries : inSeries
     Dataset --> PeriodOfTime : temporal
     DataService --> Dataset : servesDataset
 ----
+    
+
+    
+
 
 DCAT provides the building blocks for cataloging, but this chapter focuses on *how to apply those building blocks effectively* to create useful, discoverable data catalogs.
 
