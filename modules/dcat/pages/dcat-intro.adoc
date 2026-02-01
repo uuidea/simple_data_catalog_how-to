@@ -42,14 +42,15 @@ The Data Catalog Vocabulary (DCAT) is a W3C standard that provides a common lang
 [mermaid, dcat-class-structure, svg]
 ----
 classDiagram
-    class Resource {  
-        identifier
+    class Resource {
+        <<abstract>>
+        identifier*
         title
         description
         publisher
         contactPoint
         license
-        theme
+        theme[]
         version
         status
         issued
@@ -59,18 +60,18 @@ classDiagram
     class Dataset {
         temporal
         inSeries
-        distribution
+        distribution[]
     }
     
     class DataCatalog {
-        dataset
+        dataset[]
     }
     
     class DatasetSeries {
     }
     
     class Distribution {
-        identifier
+        identifier*
         title
         description
         accessURL
@@ -82,11 +83,11 @@ classDiagram
     
     class DataService {
         endpointURL
-        servesDataset
+        servesDataset[]
     }
     
     class Concept {
-        identifier
+        identifier*
         prefLabel
         definition
         altLabel
@@ -106,7 +107,6 @@ classDiagram
     DataCatalog --> Dataset : dataset
     Dataset --> Distribution : distribution
     Dataset --> Concept : theme
-
     Dataset --> DatasetSeries : inSeries
     Dataset --> PeriodOfTime : temporal
     DataService --> Dataset : servesDataset
