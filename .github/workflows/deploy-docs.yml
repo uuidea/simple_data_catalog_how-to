@@ -3,7 +3,7 @@ on:
   workflow_dispatch:
   push:
     branches:
-      - antora
+      - main
 concurrency:
   group: github-pages
   cancel-in-progress: false
