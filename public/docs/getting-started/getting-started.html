@@ -382,48 +382,76 @@ dcat:Dataset:
 <div class="paragraph">
 <p>Open the generated HTML file in your browser:</p>
 </div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash"># If you have a local web server
+python -m http.server 8000
+# Then visit http://localhost:8000/catalog.html</code></pre>
+</div>
+</div>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_if_you_have_a_local_web_server"><a class="anchor" href="#_if_you_have_a_local_web_server"></a>If you have a local web server</h2>
+<h2 id="_next_steps"><a class="anchor" href="#_next_steps"></a>Next Steps</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>python -m http.server 8000
-# Then visit <a href="http://localhost:8000/catalog.html" class="bare">http://localhost:8000/catalog.html</a></p>
+<p>Congratulations! You now have a basic working data catalog. Continue with these chapters to expand your catalog:</p>
 </div>
-<div class="listingblock">
-<div class="content">
-<pre>== Next Steps
-
-Congratulations! You now have a basic working data catalog. Continue with these chapters to expand your catalog:
-
-* xref:dcat:ROOT:dcat-intro.adoc[Data Catalog Metadata (DCAT)] - Learn comprehensive cataloging
-* xref:dqv:ROOT:dqv-intro.adoc[Data Quality (DQV)] - Add quality metrics
-* xref:prov:ROOT:prov-intro.adoc[Data Lineage (PROV)] - Track data provenance
-* xref:odrl:ROOT:odrl-intro.adoc[Data Policy (ODRL)] - Manage usage rights
-
-== Troubleshooting
-
-=== Common Issues
-
-**Issue:** Python version not supported
-*Solution:* Install Python 3.8+ from https://python.org/downloads/
-
-**Issue:** Copier command not found
-*Solution:* Ensure pip install copier completed successfully and your PATH includes pip packages
-
-**Issue:** Template generation fails
-*Solution:* Check your internet connection and ensure the GitHub repository is accessible
-
-**Issue:** RDF generation errors
-*Solution:* Validate your YAML syntax and ensure all required fields are present
-
-=== Getting Help
-
-* Check the link:https://github.com/uuidea/simple_data_catalog[main repository] for documentation
-* Review the link:https://github.com/uuidea/simple_data_catalog_model[data model specification]
-* Open an issue on GitHub for specific problems</pre>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="#dcat:ROOT:dcat-intro.adoc" class="xref unresolved">Data Catalog Metadata (DCAT)</a> - Learn comprehensive cataloging</p>
+</li>
+<li>
+<p><a href="#dqv:ROOT:dqv-intro.adoc" class="xref unresolved">Data Quality (DQV)</a> - Add quality metrics</p>
+</li>
+<li>
+<p><a href="#prov:ROOT:prov-intro.adoc" class="xref unresolved">Data Lineage (PROV)</a> - Track data provenance</p>
+</li>
+<li>
+<p><a href="#odrl:ROOT:odrl-intro.adoc" class="xref unresolved">Data Policy (ODRL)</a> - Manage usage rights</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_troubleshooting"><a class="anchor" href="#_troubleshooting"></a>Troubleshooting</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_common_issues"><a class="anchor" href="#_common_issues"></a>Common Issues</h3>
+<div class="paragraph">
+<p><strong>Issue:</strong> Python version not supported
+<strong>Solution:</strong> Install Python 3.8+ from <a href="https://python.org/downloads/" class="bare">https://python.org/downloads/</a></p>
+</div>
+<div class="paragraph">
+<p><strong>Issue:</strong> Copier command not found
+<strong>Solution:</strong> Ensure pip install copier completed successfully and your PATH includes pip packages</p>
+</div>
+<div class="paragraph">
+<p><strong>Issue:</strong> Template generation fails
+<strong>Solution:</strong> Check your internet connection and ensure the GitHub repository is accessible</p>
+</div>
+<div class="paragraph">
+<p><strong>Issue:</strong> RDF generation errors
+<strong>Solution:</strong> Validate your YAML syntax and ensure all required fields are present</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_getting_help"><a class="anchor" href="#_getting_help"></a>Getting Help</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Check the <a href="https://github.com/uuidea/simple_data_catalog">main repository</a> for documentation</p>
+</li>
+<li>
+<p>Review the <a href="https://github.com/uuidea/simple_data_catalog_model">data model specification</a></p>
+</li>
+<li>
+<p>Open an issue on GitHub for specific problems</p>
+</li>
+</ul>
 </div>
 </div>
 </div>
