@@ -43,45 +43,101 @@ The Data Catalog Vocabulary (DCAT) is a W3C standard that provides a common lang
 ----
 classDiagram
     class DataCatalog {
-        title
-        description
-        publisher
-        contactPoint
-        theme
+        +identifier*
+        +title
+        +description
+        +publisher
+        +contactPoint
+        +license
+        +theme[]
+        +version
+        +status
+        +issued
+        +modified
+        +dataset[]
     }
+    
     class Dataset {
-        identifier
-        title
-        description
-        theme
-        temporal
-        version
+        +identifier*
+        +title
+        +description
+        +publisher
+        +contactPoint
+        +license
+        +theme[]
+        +version
+        +status
+        +issued
+        +modified
+        +temporal
+        +inSeries
+        +distribution[]
     }
+    
+    class DatasetSeries {
+        +identifier*
+        +title
+        +description
+        +publisher
+        +contactPoint
+        +license
+        +theme[]
+        +version
+        +status
+        +issued
+        +modified
+        +temporal
+        +inSeries
+        +distribution[]
+    }
+    
     class Distribution {
-        downloadURL
-        accessURL
-        mediaType
-        format
-        byteSize
+        +identifier*
+        +title
+        +description
+        +accessURL
+        +format
+        +version
+        +issued
+        +modified
     }
+    
     class DataService {
-        endpointURL
-        servesDataset
+        +identifier*
+        +title
+        +description
+        +publisher
+        +contactPoint
+        +license
+        +theme[]
+        +version
+        +status
+        +issued
+        +modified
+        +endpointURL
+        +servesDataset[]
     }
+    
     class Concept {
-        prefLabel
-        definition
+        +identifier*
+        +prefLabel
+        +definition
+        +altLabel
+        +example
     }
-    class Series {
-        temporalResolution
-        spatialResolutionInMeters
+    
+    class PeriodOfTime {
+        +hasBeginning
+        +hasEnd
     }
 
-    DataCatalog --> Dataset : contains
-    Dataset --> Distribution : has
+    DataCatalog --> Dataset : dataset
+    Dataset --> Distribution : distribution
     Dataset --> Concept : theme
     Dataset --> DataService : accessed via
-    Dataset --> Series : inSeries
+    Dataset --> DatasetSeries : inSeries
+    Dataset --> PeriodOfTime : temporal
+    DataService --> Dataset : servesDataset
 ----
 
 DCAT provides the building blocks for cataloging, but this chapter focuses on *how to apply those building blocks effectively* to create useful, discoverable data catalogs.
