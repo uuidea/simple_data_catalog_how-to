@@ -1,0 +1,1667 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Chapter 1: Data Cataloging with DCAT :: Data Management for Data Publishers</title>
+    <link rel="canonical" href="https://uuidea.github.io/simple_data_catalog_how-to/docs/dcat/dcat-intro.html">
+    <meta name="generator" content="Antora 3.1.12">
+    <link rel="stylesheet" href="../../_/css/site.css">
+  </head>
+  <body class="article">
+<header class="header">
+  <nav class="navbar">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="https://uuidea.github.io/simple_data_catalog_how-to">Data Management for Data Publishers</a>
+      <button class="navbar-burger" aria-controls="topbar-nav" aria-expanded="false" aria-label="Toggle main menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+    <div id="topbar-nav" class="navbar-menu">
+      <div class="navbar-end">
+        <a class="navbar-item" href="#">Home</a>
+        <div class="navbar-item has-dropdown is-hoverable">
+          <a class="navbar-link" href="#">Products</a>
+          <div class="navbar-dropdown">
+            <a class="navbar-item" href="#">Product A</a>
+            <a class="navbar-item" href="#">Product B</a>
+            <a class="navbar-item" href="#">Product C</a>
+          </div>
+        </div>
+        <div class="navbar-item has-dropdown is-hoverable">
+          <a class="navbar-link" href="#">Services</a>
+          <div class="navbar-dropdown">
+            <a class="navbar-item" href="#">Service A</a>
+            <a class="navbar-item" href="#">Service B</a>
+            <a class="navbar-item" href="#">Service C</a>
+          </div>
+        </div>
+        <div class="navbar-item">
+          <span class="control">
+            <a class="button is-primary" href="#">Download</a>
+          </span>
+        </div>
+      </div>
+    </div>
+  </nav>
+</header>
+<div class="body">
+<div class="nav-container" data-component="docs" data-version="master">
+  <aside class="nav">
+    <div class="panels">
+<div class="nav-panel-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <button class="nav-menu-toggle" aria-label="Toggle expand/collapse all" style="display: none"></button>
+    <h3 class="title"><a href="../index.html">Simple Data Catalog Documentation</a></h3>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../index.html">Introduction</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Getting Started</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../getting-started/getting-started.html">Getting Started Guide</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Documentation Modules</span>
+<ul class="nav-list">
+  <li class="nav-item is-current-page" data-depth="2">
+    <a class="nav-link" href="dcat-intro.html">Data Catalog (DCAT)</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../dqv/dqv-intro.html">Data Quality (DQV)</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../prov/prov-intro.html">Data Lineage (PROV)</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <span class="nav-text">Data Policy (ODRL)</span>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Resources</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <span class="nav-text">Related Projects</span>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <span class="nav-text">W3C Standards</span>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../getting-started/getting-started.html">Getting Started with Simple Data Catalog</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item is-current-page" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="dcat-intro.html">Data Cataloging with DCAT</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <span class="nav-text">DCAT Concepts and Theory</span>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <span class="nav-text">DCAT Practical Examples</span>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../dqv/dqv-intro.html">Data Quality with DQV</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../prov/prov-intro.html">Data Lineage with PROV</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../odrl/odrl-intro.html">Data Policy with ODRL</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+<div class="nav-panel-explore" data-panel="explore">
+  <div class="context">
+    <span class="title">Simple Data Catalog Documentation</span>
+    <span class="version">master</span>
+  </div>
+  <ul class="components">
+    <li class="component is-current">
+      <div class="title"><a href="../index.html">Simple Data Catalog Documentation</a></div>
+      <ul class="versions">
+        <li class="version is-current is-latest">
+          <a href="../index.html">master</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
+    </div>
+  </aside>
+</div>
+<main class="article">
+<div class="toolbar" role="navigation">
+<button class="nav-toggle"></button>
+  <a href="../index.html" class="home-link"></a>
+<nav class="breadcrumbs" aria-label="breadcrumbs">
+  <ul>
+    <li><a href="../index.html">Simple Data Catalog Documentation</a></li>
+    <li>Documentation Modules</li>
+    <li><a href="dcat-intro.html">Data Catalog (DCAT)</a></li>
+  </ul>
+</nav>
+<div class="edit-this-page"><a href="file:///home/joep/Documents/uuidea/git/simple_data_catalog_how-to/docs/modules/dcat/pages/dcat-intro.adoc">Edit this Page</a></div>
+</div>
+  <div class="content">
+<aside class="toc sidebar" data-title="Contents" data-levels="2">
+  <div class="toc-menu"></div>
+</aside>
+<article class="doc">
+<h1 class="page">Chapter 1: Data Cataloging with DCAT</h1>
+<div class="sect1">
+<h2 id="_1_1_introduction_to_data_cataloging"><a class="anchor" href="#_1_1_introduction_to_data_cataloging"></a>1.1 Introduction to Data Cataloging</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Data cataloging is the systematic practice of describing your data resources so that others can discover, understand, and use them effectively. Think of it as creating a comprehensive library catalog for your datasets - without proper descriptions, even the most valuable data remains hidden and unusable to potential users. In today&#8217;s data-driven organizations, data catalogs have evolved from simple inventories into strategic tools that enable effective data management, support governance frameworks, and drive business value through better data utilization.</p>
+</div>
+<div class="sect2">
+<h3 id="_the_role_of_data_catalogs_in_modern_organizations"><a class="anchor" href="#_the_role_of_data_catalogs_in_modern_organizations"></a>The Role of Data Catalogs in Modern Organizations</h3>
+<div class="paragraph">
+<p>In contemporary data ecosystems, organizations generate and consume vast amounts of data across various systems, departments, and projects. This proliferation creates significant challenges in understanding what data exists, where it resides, who owns it, and how it can be used. Data catalogs address these challenges by serving as centralized metadata repositories that provide a single source of truth about an organization&#8217;s data assets.</p>
+</div>
+<div class="paragraph">
+<p>Data catalogs play a crucial role in data management by establishing structured metadata frameworks that enable consistent documentation, classification, and organization of data resources. They help organizations move beyond siloed data environments by creating shared understanding and visibility across the entire data landscape. This visibility is essential for effective data governance, as it allows organizations to track data lineage, enforce quality standards, manage access controls, and demonstrate compliance with regulatory requirements such as GDPR, HIPAA, or industry-specific data protection regulations.</p>
+</div>
+<div class="paragraph">
+<p>From a governance perspective, data catalogs provide the foundation for implementing robust data policies and procedures. They enable organizations to assign clear ownership and stewardship responsibilities, establish data quality metrics, and create audit trails that demonstrate responsible data management practices. This governance infrastructure becomes particularly valuable as organizations scale their data operations and need to maintain consistency, reliability, and trustworthiness across increasingly complex data environments.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_data_catalogs_and_the_fair_principles"><a class="anchor" href="#_data_catalogs_and_the_fair_principles"></a>Data Catalogs and the FAIR Principles</h3>
+<div class="paragraph">
+<p>The FAIR principles (Findable, Accessible, Interoperable, and Reusable) have become the cornerstone of modern data management practices, providing a framework for maximizing the value of data assets. Data catalogs serve as the primary mechanism for implementing these principles within organizations and for sharing data with external communities.</p>
+</div>
+<div class="paragraph">
+<p>The <strong>Findable</strong> aspect requires that data be easily discoverable by both humans and machines. Data catalogs achieve this through rich metadata descriptions, standardized identifiers, comprehensive keyword systems, and hierarchical classification schemes. When datasets are properly cataloged with appropriate titles, descriptions, temporal and spatial coverage, and thematic classifications, they become searchable through multiple interfaces and discoverable across federated catalog systems.</p>
+</div>
+<div class="paragraph">
+<p>For <strong>Accessibility</strong>, data catalogs document not only where data resides but also the conditions and procedures for obtaining it. This includes detailed descriptions of access mechanisms, authentication requirements, usage restrictions, and contact information for data custodians. By making access information transparent and well-documented, catalogs reduce barriers to data use while ensuring appropriate governance controls are maintained.</p>
+</div>
+<div class="paragraph">
+<p><strong>Interoperability</strong> is achieved through data catalogs by documenting data formats, schemas, standards compliance, and semantic definitions. When catalogs include information about data models, controlled vocabularies, and mapping to standard ontologies, they enable automated systems to understand and process data from diverse sources. This semantic interoperability is essential for data integration, cross-domain analysis, and machine-to-machine data exchange.</p>
+</div>
+<div class="paragraph">
+<p>The <strong>Reusable</strong> principle depends on clear documentation of data provenance, quality assessments, usage licenses, and attribution requirements. Data catalogs capture this information through detailed provenance records, quality metrics, licensing information, and recommended citation practices. This transparency enables data consumers to evaluate fitness for purpose, understand limitations, and properly acknowledge data creators, thereby fostering responsible data sharing and scientific reproducibility.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_why_catalog_your_data"><a class="anchor" href="#_why_catalog_your_data"></a>Why Catalog Your Data?</h3>
+<div class="paragraph">
+<p>When you systematically catalog your data resources, you enable comprehensive data management that transforms raw data into valuable organizational assets. Effective cataloging allows users to discover relevant datasets through targeted searches, quickly assess whether data meets their specific requirements, understand exactly how to obtain and properly use the data, verify data quality, provenance, and usage rights to build trust, and properly attribute data creators when using their work in research or applications.</p>
+</div>
+<div class="paragraph">
+<p>Beyond these immediate benefits, data cataloging creates the foundation for data-driven decision making, collaboration across organizational boundaries, and compliance with emerging data sharing mandates. It establishes the metadata infrastructure necessary for modern data architectures, supports advanced analytics initiatives, and enables organizations to derive maximum value from their data investments.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_dcat_the_standard_that_makes_cataloging_work"><a class="anchor" href="#_dcat_the_standard_that_makes_cataloging_work"></a>DCAT: The Standard That Makes Cataloging Work</h3>
+<div class="paragraph">
+<p>The Data Catalog Vocabulary (DCAT) is a W3C standard that provides a common language for describing datasets. By using DCAT, your data catalog becomes:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Interoperable</strong>: Other systems can understand and process your metadata</p>
+</li>
+<li>
+<p><strong>Searchable</strong>: Your data can be found through federated search across multiple catalogs</p>
+</li>
+<li>
+<p><strong>Future-proof</strong>: Your catalog follows established best practices that won&#8217;t become obsolete</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="title">Main DCAT Elements Used in This Document</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-mermaid hljs" data-lang="mermaid">classDiagram
+    class DataCatalog {
+        title
+        description
+        publisher
+        contactPoint
+        theme
+    }
+    class Dataset {
+        identifier
+        title
+        description
+        theme
+        temporal
+        version
+    }
+    class Distribution {
+        downloadURL
+        accessURL
+        mediaType
+        format
+        byteSize
+    }
+    class DataService {
+        endpointURL
+        servesDataset
+    }
+    class Concept {
+        prefLabel
+        definition
+    }
+    class Series {
+        temporalResolution
+        spatialResolutionInMeters
+    }
+
+    DataCatalog --&gt; Dataset : contains
+    Dataset --&gt; Distribution : has
+    Dataset --&gt; Concept : theme
+    Dataset --&gt; DataService : accessed via
+    Dataset --&gt; Series : inSeries</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>DCAT provides the building blocks for cataloging, but this chapter focuses on <strong>how to apply those building blocks effectively</strong> to create useful, discoverable data catalogs.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_1_2_getting_started_your_first_dataset"><a class="anchor" href="#_1_2_getting_started_your_first_dataset"></a>1.2 Getting Started: Your First Dataset</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Let&#8217;s start with the simplest possible dataset description. We&#8217;ll catalog a collection of air quality measurements collected from urban monitoring stations.</p>
+</div>
+<div class="sect2">
+<h3 id="_minimal_viable_dataset"><a class="anchor" href="#_minimal_viable_dataset"></a>Minimal Viable Dataset</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml"># dataset.yaml - Individual dataset description
+- identifier: "air-quality-data"
+  title: "Urban Air Quality Measurements"
+  description: "Air quality index measurements from urban monitoring stations"</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><strong>What this provides:</strong></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong><code>identifier</code></strong>: A unique identifier that distinguishes this dataset from others</p>
+</li>
+<li>
+<p><strong><code>title</code></strong>: A human-readable name that appears in search results</p>
+</li>
+<li>
+<p><strong><code>description</code></strong>: A brief explanation of what the data contains</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p><strong>Why this matters:</strong>
+Even this minimal description makes your dataset discoverable. Users searching for "air quality" or "urban measurements" can now find your data and understand what it contains. This focused approach lets us concentrate on describing individual datasets effectively before we worry about organizing them into catalogs.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_1_3_enriching_your_dataset_description"><a class="anchor" href="#_1_3_enriching_your_dataset_description"></a>1.3 Enriching Your Dataset Description</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Now let&#8217;s enhance our dataset description to make it more discoverable and useful:</p>
+</div>
+<div class="paragraph">
+<p>First, let&#8217;s define reusable concepts for our themes that we can use across multiple datasets:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml"># concepts.yaml - Reusable theme definitions
+concepts:
+  - identifier: "air-quality"
+    prefLabel: "Air Quality"
+    definition: "The degree to which air is suitable for breathing and other uses"
+  - identifier: "pollution"
+    prefLabel: "Pollution"
+    definition: "The introduction of contaminants into natural environment"
+  - identifier: "urban"
+    prefLabel: "Urban"
+    definition: "Relating to or characteristic of a city or town"
+  - identifier: "environmental-monitoring"
+    prefLabel: "Environmental Monitoring"
+    definition: "The systematic collection of environmental data"
+
+# dataset.yaml - Enhanced dataset description
+- identifier: "air-quality-data"
+  title: "Urban Air Quality Measurements"
+  description: "Air quality index measurements from urban monitoring stations collected hourly"
+  theme:
+    - "air-quality"
+    - "pollution"
+    - "urban"
+    - "environmental-monitoring"
+  publisher:
+    name: "Environmental Protection Agency"
+  temporal:
+    hasBeginning: "2023-01-01"
+    hasEnd: "2023-12-31"
+  contactPoint:
+    hasEmail: "air-quality@epa.gov"
+  license:
+    title: "https://creativecommons.org/licenses/by/4.0/"</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><strong>New elements and what they enable:</strong></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong><code>concepts</code></strong>: Reusable theme definitions that can be used across multiple datasets</p>
+<div class="ulist">
+<ul>
+<li>
+<p><strong><code>identifier</code></strong>: Unique key for referencing concepts</p>
+</li>
+<li>
+<p><strong><code>prefLabel</code></strong>: Human-readable display name for the concept</p>
+</li>
+<li>
+<p><strong><code>definition</code></strong>: Clear explanation of what the concept means</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong><code>theme</code></strong>: References to concept identifiers instead of inline strings</p>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Reusability</strong>: Same concepts can theme multiple datasets</p>
+</li>
+<li>
+<p><strong>Consistency</strong>: All datasets use exact same concept definitions</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong><code>temporal</code></strong>: Uses LinkML-compliant <code>hasBeginning</code>/<code>hasEnd</code> structure</p>
+</li>
+<li>
+<p><strong><code>contactPoint</code></strong>: Uses LinkML-compliant <code>Kind</code> class with <code>hasEmail</code></p>
+</li>
+<li>
+<p><strong><code>license</code></strong>: Uses LinkML-compliant <code>LicenseDocument</code> object with <code>title</code></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p><strong>Why these additions matter:</strong>
+A researcher looking for air quality data from 2023 can now quickly determine that this dataset meets their needs. They know who to contact with questions, understand their usage rights, and the concepts used for themes are properly defined and reusable across the catalog.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_1_4_providing_data_access_adding_distributions"><a class="anchor" href="#_1_4_providing_data_access_adding_distributions"></a>1.4 Providing Data Access: Adding Distributions</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>A dataset description is useful, but users need actual access to the data. This is where distributions come in - they represent the different ways users can obtain your dataset.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml"># dataset.yaml - Dataset with distributions
+- identifier: "air-quality-data"
+  title: "Urban Air Quality Measurements"
+  description: "Air quality index measurements from urban monitoring stations collected hourly"
+  theme:
+    - "air-quality"
+    - "pollution"
+    - "urban"
+    - "environmental-monitoring"
+  publisher:
+    name: "Environmental Protection Agency"
+  temporal:
+    hasBeginning: "2023-01-01"
+    hasEnd: "2023-12-31"
+  contactPoint:
+    hasEmail: "air-quality@epa.gov"
+  license:
+    title: "https://creativecommons.org/licenses/by/4.0/"
+  distribution:
+    - identifier: "csv-download"
+      title: "CSV Download"
+      description: "Complete dataset in CSV format for analysis"
+      downloadURL: "https://data.epa.gov/air-quality/2023.csv"
+      mediaType: "text/csv"
+      byteSize: "50000000"
+      format: "csv"
+    - identifier: "api-access"
+      title: "REST API"
+      description: "Programmatic access to current and historical data"
+      accessURL: "https://api.epa.gov/air-quality/v1"
+      mediaType: "application/json"
+      conformsTo: "https://api.epa.gov/docs/air-quality"</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><strong>What distributions provide:</strong></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong><code>csv-download</code></strong>: Direct file access for users who want to download and analyze data locally</p>
+<div class="ulist">
+<ul>
+<li>
+<p><strong><code>downloadURL</code></strong>: Direct link to the file</p>
+</li>
+<li>
+<p><strong><code>mediaType</code></strong>: File format information so users know what they&#8217;re getting</p>
+</li>
+<li>
+<p><strong><code>byteSize</code></strong>: File size helps users estimate download time and storage needs</p>
+</li>
+<li>
+<p><strong><code>format</code></strong>: Additional format specification</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong><code>api-access</code></strong>: Programmatic access for developers and automated systems</p>
+<div class="ulist">
+<ul>
+<li>
+<p><strong><code>accessURL</code></strong>: Endpoint for making API requests</p>
+</li>
+<li>
+<p><strong><code>conformsTo</code></strong>: Link to API documentation so users know how to use it</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p><strong>Why multiple distributions matter:</strong>
+Different users have different needs. Researchers might want the complete CSV file for offline analysis, while application developers prefer API access for real-time data integration. Providing multiple access methods makes your dataset useful to a broader audience. Using proper LinkML structure ensures compatibility with any compliant data catalog system.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_1_5_managing_multiple_datasets_and_services"><a class="anchor" href="#_1_5_managing_multiple_datasets_and_services"></a>1.5 Managing Multiple Datasets and Services</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>As your data collection grows, you&#8217;ll want to organize related datasets and provide services that serve multiple datasets. This is where introducing a catalog structure becomes valuable - it provides a container for managing your growing collection of related datasets and services.</p>
+</div>
+<div class="paragraph">
+<p>Let&#8217;s expand our collection to include related environmental datasets and organize them within a catalog:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml"># data-catalog.yaml - LinkML compliant Container structure
+concepts:
+  - identifier: "air-quality"
+    prefLabel: "Air Quality"
+    definition: "The degree to which air is suitable for breathing and other uses"
+  - identifier: "water-quality"
+    prefLabel: "Water Quality"
+    definition: "The chemical, physical, and biological characteristics of water"
+  - identifier: "pollution"
+    prefLabel: "Pollution"
+    definition: "The introduction of contaminants into natural environment"
+  - identifier: "environmental"
+    prefLabel: "Environmental"
+    definition: "Relating to natural world and impact of human activity on it"
+
+dataCatalog:
+  title: "Environmental Data Catalog"
+  description: "Catalog of environmental monitoring datasets"
+  publisher:
+    name: "Environmental Protection Agency"
+  contactPoint:
+    hasEmail: "catalog@epa.gov"
+
+datasets:
+  - identifier: "air-quality-data"
+    title: "Urban Air Quality Measurements"
+    description: "Air quality index measurements from urban monitoring stations"
+    theme:
+      - "air-quality"
+      - "pollution"
+      - "environmental"
+    temporal:
+      hasBeginning: "2023-01-01"
+      hasEnd: "2023-12-31"
+    distribution:
+      - identifier: "air-quality-csv"
+        title: "Air Quality CSV"
+        accessURL: "https://data.epa.gov/air-quality/2023.csv"
+
+  - identifier: "water-quality-data"
+    title: "Water Quality Monitoring"
+    description: "Water quality parameters from river and lake monitoring stations"
+    theme:
+      - "water-quality"
+      - "pollution"
+      - "environmental"
+    temporal:
+      hasBeginning: "2023-01-01"
+      hasEnd: "2023-12-31"
+    distribution:
+      - identifier: "water-quality-csv"
+        title: "Water Quality CSV"
+        accessURL: "https://data.epa.gov/water-quality/2023.csv"
+
+dataServices:
+  - identifier: "environmental-api"
+    title: "Environmental Data API"
+    description: "Unified access to all environmental monitoring datasets"
+    endpointURL: "https://api.epa.gov/environmental/v1"
+    servesDataset:
+      - "air-quality-data"
+      - "water-quality-data"
+    publisher:
+      name: "Environmental Protection Agency"
+  contactPoint:
+    hasEmail: "api@epa.gov"</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><strong>What this adds:</strong></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Multiple datasets</strong>: Related datasets are grouped together, making it easier for users to find comprehensive environmental data</p>
+</li>
+<li>
+<p><strong><code>concepts</code></strong>: Reusable theme definitions used by both datasets</p>
+</li>
+<li>
+<p><strong><code>dataServices</code></strong>: A service that provides access to multiple datasets through a single interface</p>
+<div class="ulist">
+<ul>
+<li>
+<p><strong><code>servesDataset</code></strong>: References dataset identifiers, not inline objects</p>
+</li>
+<li>
+<p><strong><code>endpointURL</code></strong>: The base URL for the API service</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p><strong>Why this organization matters:</strong>
+Users interested in environmental data can now find all related datasets in one place. Concepts are reusable across datasets, ensuring consistent theming. The unified API service makes it easy for developers to access multiple datasets without learning different interfaces for each one. This creates a coherent data ecosystem rather than isolated datasets, all following proper LinkML structure.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_1_6_advanced_catalog_features"><a class="anchor" href="#_1_6_advanced_catalog_features"></a>1.6 Advanced Catalog Features</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Once you have a functional catalog, you can add advanced features to improve data management and user experience.</p>
+</div>
+<div class="sect2">
+<h3 id="_version_management"><a class="anchor" href="#_version_management"></a>Version Management</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">datasets:
+  - identifier: "air-quality-data"
+    title: "Urban Air Quality Measurements"
+    version: "2.0"
+    wasDerivedFrom: "air-quality-data-v1"
+    description: "Air quality index measurements from urban monitoring stations (2023 data, updated methodology)"
+    # ... other metadata from previous example</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><strong>Version information helps users:</strong></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong><code>version</code></strong>: Identify which version they&#8217;re using</p>
+</li>
+<li>
+<p><strong><code>wasDerivedFrom</code></strong>: Track evolution of dataset by linking to previous version</p>
+</li>
+<li>
+<p><strong>Consistent identifiers</strong>: Same identifier pattern used across versions (air-quality-data-v1, air-quality-data)</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p><strong>Note</strong>: While LinkML model supports various version relationships, <code>wasDerivedFrom</code> is the most common for showing dataset evolution. Previous versions can be cataloged as separate datasets with their own identifiers.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_dataset_series"><a class="anchor" href="#_dataset_series"></a>Dataset Series</h3>
+<div class="paragraph">
+<p>For ongoing data collection, you can organize datasets into series. Series are defined at root level and referenced by datasets:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">series:
+  - identifier: "air-quality-series"
+    title: "Urban Air Quality Time Series"
+    description: "Long-term air quality monitoring program"
+    temporalResolution: "P1D"  # Daily measurements
+    spatialResolutionInMeters: "100.0"
+
+datasets:
+  - identifier: "air-quality-2023"
+    title: "Urban Air Quality Measurements - 2023"
+    description: "Air quality measurements for 2023"
+    inSeries: "air-quality-series"
+    # ... other metadata
+
+  - identifier: "air-quality-2022"
+    title: "Urban Air Quality Measurements - 2022"
+    description: "Air quality measurements for 2022"
+    inSeries: "air-quality-series"
+    # ... other metadata</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><strong>Series management enables:</strong></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong><code>inSeries</code></strong>: Connects individual datasets to their parent series via identifier</p>
+</li>
+<li>
+<p><strong><code>series</code> container</strong>: Defines series-level metadata at root level for reuse</p>
+</li>
+<li>
+<p><strong><code>temporalResolution</code></strong>: How frequently data is collected</p>
+</li>
+<li>
+<p><strong><code>spatialResolutionInMeters</code></strong>: Spatial precision of measurements</p>
+</li>
+<li>
+<p><strong>Reusability</strong>: Single series definition can be referenced by many datasets</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_standards_compliance"><a class="anchor" href="#_standards_compliance"></a>Standards Compliance</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">datasets:
+  - identifier: "air-quality-data"
+    title: "Urban Air Quality Measurements"
+    # ... basic metadata
+    conformsTo:
+      - "https://www.w3.org/TR/vocab-dcat-3/"
+      - "https://www.epa.gov/air-quality-standards"</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><strong>Standards information provides:</strong></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong><code>conformsTo</code></strong>: Standards and methodologies followed</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p><strong>Why this matters:</strong>
+Professional data catalogs need to document adherence to standards. This enables:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Interoperability</strong>: Users understand what standards your data follows</p>
+</li>
+<li>
+<p><strong>Regulatory compliance</strong>: Document adherence to requirements</p>
+</li>
+<li>
+<p><strong>Trust building</strong>: Users know your data meets established quality benchmarks</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_1_7_complete_example_putting_it_all_together"><a class="anchor" href="#_1_7_complete_example_putting_it_all_together"></a>1.7 Complete Example: Putting It All Together</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Here&#8217;s our complete environmental data catalog with all the features we&#8217;ve discussed:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml"># data-catalog.yaml - LinkML compliant complete example
+concepts:
+  - identifier: "air-quality"
+    prefLabel: "Air Quality"
+    definition: "The degree to which air is suitable for breathing and other uses"
+  - identifier: "pollution"
+    prefLabel: "Pollution"
+    definition: "The introduction of contaminants into natural environment"
+  - identifier: "urban"
+    prefLabel: "Urban"
+    definition: "Relating to or characteristic of a city or town"
+  - identifier: "environmental-monitoring"
+    prefLabel: "Environmental Monitoring"
+    definition: "The systematic collection of environmental data"
+  - identifier: "public-health"
+    prefLabel: "Public Health"
+    definition: "The health of population as a whole"
+
+dataCatalog:
+  title: "Environmental Data Catalog"
+  description: "Comprehensive catalog of environmental monitoring datasets and services"
+  publisher:
+    name: "Environmental Protection Agency"
+  contactPoint:
+    hasEmail: "catalog@epa.gov"
+
+datasets:
+  - identifier: "air-quality-2023"
+    title: "Urban Air Quality Measurements - 2023"
+    description: "Air quality index measurements from urban monitoring stations collected hourly"
+    version: "2.0"
+    theme:
+      - "air-quality"
+      - "pollution"
+      - "urban"
+      - "environmental-monitoring"
+      - "public-health"
+    publisher:
+      name: "Environmental Protection Agency"
+    temporal:
+      hasBeginning: "2023-01-01"
+      hasEnd: "2023-12-31"
+    contactPoint:
+      hasEmail: "air-quality@epa.gov"
+    license:
+      title: "https://creativecommons.org/licenses/by/4.0/"
+    inSeries: "air-quality-series"
+
+series:
+  - identifier: "air-quality-series"
+    title: "Urban Air Quality Time Series"
+    description: "Long-term air quality monitoring program in metropolitan areas"
+
+distributions:
+  - identifier: "air-quality-csv"
+    title: "Complete Air Quality Dataset (CSV)"
+    description: "Full year of air quality measurements in CSV format"
+    accessURL: "https://data.epa.gov/air-quality/2023.csv"
+    format: "csv"
+
+  - identifier: "air-quality-api"
+    title: "Air Quality API"
+    description: "Real-time and historical air quality data via REST API"
+    accessURL: "https://api.epa.gov/air-quality/v1"
+    conformsTo: "https://api.epa.gov/docs/air-quality"
+
+dataServices:
+  - identifier: "environmental-api"
+    title: "Environmental Data API"
+    description: "Unified access to all environmental monitoring datasets"
+    endpointURL: "https://api.epa.gov/environmental/v1"
+    servesDataset:
+      - "air-quality-2023"
+    publisher:
+      name: "Environmental Protection Agency"
+  contactPoint:
+    hasEmail: "api@epa.gov"</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This comprehensive catalog demonstrates:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Rich metadata</strong> for discoverability and understanding</p>
+</li>
+<li>
+<p><strong>Multiple access methods</strong> for different user needs</p>
+</li>
+<li>
+<p><strong>Quality and compliance</strong> information for trust building</p>
+</li>
+<li>
+<p><strong>Series management</strong> for ongoing data programs</p>
+</li>
+<li>
+<p><strong>Unified services</strong> for streamlined access</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_1_9_managing_skos_concepts_as_dataset_themes"><a class="anchor" href="#_1_9_managing_skos_concepts_as_dataset_themes"></a>1.9 Managing SKOS Concepts as Dataset Themes</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>SKOS (Simple Knowledge Organization System) concepts provide a powerful way to organize and categorize your datasets using standardized, reusable themes. By defining concepts at the root level of your catalog and referencing them in dataset themes, you create a consistent, maintainable classification system that enhances discoverability and interoperability.</p>
+</div>
+<div class="sect2">
+<h3 id="_1_9_1_concept_definition_best_practices"><a class="anchor" href="#_1_9_1_concept_definition_best_practices"></a>1.9.1 Concept Definition Best Practices</h3>
+<div class="paragraph">
+<p>When defining SKOS concepts for your catalog, follow these guidelines:</p>
+</div>
+<div class="sect3">
+<h4 id="_complete_concept_definitions"><a class="anchor" href="#_complete_concept_definitions"></a>Complete Concept Definitions</h4>
+<div class="paragraph">
+<p>Each concept should include all essential attributes to ensure clarity and reusability:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">concepts:
+  - identifier: "air-quality"
+    prefLabel: "Air Quality"
+    definition: "The degree to which air is suitable for breathing and other uses"
+    altLabel: "Atmospheric Quality"
+    example: "Air Quality Index (AQI) measurements"
+  - identifier: "water-quality"
+    prefLabel: "Water Quality"
+    definition: "The chemical, physical, and biological characteristics of water"
+    example: "pH levels, dissolved oxygen, contaminant concentrations"</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><strong>Key attributes:</strong></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong><code>identifier</code></strong>: Required unique key for referencing the concept</p>
+</li>
+<li>
+<p><strong><code>prefLabel</code></strong>: Required human-readable display name</p>
+</li>
+<li>
+<p><strong><code>definition</code></strong>: Required clear explanation of what the concept means</p>
+</li>
+<li>
+<p><strong><code>altLabel</code></strong>: Optional alternative terms or synonyms</p>
+</li>
+<li>
+<p><strong><code>example</code></strong>: Optional example usage to clarify meaning</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_hierarchical_concept_organization"><a class="anchor" href="#_hierarchical_concept_organization"></a>Hierarchical Concept Organization</h4>
+<div class="paragraph">
+<p>Organize concepts in logical hierarchies to support browsing and discovery:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">concepts:
+  # Level 1: Broad categories
+  - identifier: "environmental"
+    prefLabel: "Environmental"
+    definition: "Relating to the natural world and human impact on it"
+
+  - identifier: "social"
+    prefLabel: "Social"
+    definition: "Relating to human society and social relationships"
+
+  # Level 2: Specific domains
+  - identifier: "air-quality"
+    prefLabel: "Air Quality"
+    definition: "The degree to which air is suitable for breathing and other uses"
+
+  - identifier: "water-quality"
+    prefLabel: "Water Quality"
+    definition: "The chemical, physical, and biological characteristics of water"
+
+  - identifier: "demographics"
+    prefLabel: "Demographics"
+    definition: "Statistical data relating to population and population groups"
+
+  # Level 3: Detailed topics
+  - identifier: "pollution"
+    prefLabel: "Pollution"
+    definition: "The introduction of contaminants into the natural environment"
+
+  - identifier: "climate-monitoring"
+    prefLabel: "Climate Monitoring"
+    definition: "Systematic observation and measurement of climate variables"</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_concept_consistency_standards"><a class="anchor" href="#_concept_consistency_standards"></a>Concept Consistency Standards</h4>
+<div class="paragraph">
+<p>Maintain consistency across your concept definitions:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Naming conventions</strong>: Use lowercase with hyphens for identifiers (e.g., "air-quality")</p>
+</li>
+<li>
+<p><strong>Definition style</strong>: Write clear, concise definitions that avoid circular references</p>
+</li>
+<li>
+<p><strong>Label consistency</strong>: Use consistent capitalization and terminology</p>
+</li>
+<li>
+<p><strong>Scope clarity</strong>: Define clear boundaries between related concepts</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_1_9_2_concept_reuse_strategies"><a class="anchor" href="#_1_9_2_concept_reuse_strategies"></a>1.9.2 Concept Reuse Strategies</h3>
+<div class="sect3">
+<h4 id="_cross_dataset_theme_application"><a class="anchor" href="#_cross_dataset_theme_application"></a>Cross-Dataset Theme Application</h4>
+<div class="paragraph">
+<p>Once defined, concepts can be reused across multiple datasets:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">concepts:
+  - identifier: "air-quality"
+    prefLabel: "Air Quality"
+    definition: "The degree to which air is suitable for breathing and other uses"
+  - identifier: "urban"
+    prefLabel: "Urban"
+    definition: "Relating to or characteristic of a city or town"
+
+datasets:
+  - identifier: "urban-air-quality-2023"
+    title: "Urban Air Quality Measurements - 2023"
+    theme:
+      - "air-quality"
+      - "urban"
+
+  - identifier: "urban-air-quality-2022"
+    title: "Urban Air Quality Measurements - 2022"
+    theme:
+      - "air-quality"
+      - "urban"
+
+  - identifier: "air-quality-trends"
+    title: "Historical Air Quality Trends"
+    theme:
+      - "air-quality"</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_multi_domain_concept_combination"><a class="anchor" href="#_multi_domain_concept_combination"></a>Multi-Domain Concept Combination</h4>
+<div class="paragraph">
+<p>Datasets often span multiple domains, requiring combination of concepts:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">concepts:
+  - identifier: "environmental"
+    prefLabel: "Environmental"
+    definition: "Relating to the natural world and human impact on it"
+  - identifier: "health"
+    prefLabel: "Health"
+    definition: "Relating to physical and mental well-being"
+  - identifier: "public-policy"
+    prefLabel: "Public Policy"
+    definition: "Government policies and regulations affecting the public"
+
+datasets:
+  - identifier: "environmental-health-impact"
+    title: "Environmental Impact on Public Health"
+    theme:
+      - "environmental"
+      - "health"
+
+  - identifier: "environmental-policy-analysis"
+    title: "Environmental Policy Impact Analysis"
+    theme:
+      - "environmental"
+      - "public-policy"</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_1_9_3_concept_management_workflow"><a class="anchor" href="#_1_9_3_concept_management_workflow"></a>1.9.3 Concept Management Workflow</h3>
+<div class="sect3">
+<h4 id="_establish_a_concept_governance_process"><a class="anchor" href="#_establish_a_concept_governance_process"></a>Establish a Concept Governance Process</h4>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong>Concept Proposal</strong>: Define process for proposing new concepts</p>
+</li>
+<li>
+<p><strong>Review</strong>: Evaluate concepts for clarity, necessity, and fit</p>
+</li>
+<li>
+<p><strong>Approval</strong>: Formal approval process for concept adoption</p>
+</li>
+<li>
+<p><strong>Documentation</strong>: Maintain concept registry with version history</p>
+</li>
+<li>
+<p><strong>Communication</strong>: Notify catalog maintainers of concept changes</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_version_control_for_concepts"><a class="anchor" href="#_version_control_for_concepts"></a>Version Control for Concepts</h4>
+<div class="paragraph">
+<p>When concepts need to evolve, maintain backward compatibility:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">concepts:
+  - identifier: "air-quality-v2"
+    prefLabel: "Air Quality (2023 Standard)"
+    definition: "Air quality measured according to 2023 EPA standards"
+    altLabel: "air-quality"
+
+  - identifier: "air-quality-v1"
+    prefLabel: "Air Quality (Legacy Standard)"
+    definition: "Air quality measured according to pre-2023 standards"
+    status: "deprecated"</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_concept_quality_assurance"><a class="anchor" href="#_concept_quality_assurance"></a>Concept Quality Assurance</h4>
+<div class="paragraph">
+<p>Regularly review your concept library for:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Orphaned concepts</strong>: Concepts not used by any datasets</p>
+</li>
+<li>
+<p><strong>Underutilized concepts</strong>: Concepts used by very few datasets</p>
+</li>
+<li>
+<p><strong>Concept gaps</strong>: Missing concepts that would improve organization</p>
+</li>
+<li>
+<p><strong>Inconsistent definitions</strong>: Overlapping or conflicting definitions</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_1_9_4_integration_with_external_vocabularies"><a class="anchor" href="#_1_9_4_integration_with_external_vocabularies"></a>1.9.4 Integration with External Vocabularies</h3>
+<div class="sect3">
+<h4 id="_link_to_established_standards"><a class="anchor" href="#_link_to_established_standards"></a>Link to Established Standards</h4>
+<div class="paragraph">
+<p>Extend your concepts by referencing external vocabularies:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">concepts:
+  - identifier: "air-quality"
+    prefLabel: "Air Quality"
+    definition: "The degree to which air is suitable for breathing and other uses"
+    # Reference to external standard
+    exactMatch: "http://www.eionet.europa.eu/gemet/concept/7452"
+
+  - identifier: "temperature"
+    prefLabel: "Temperature"
+    definition: "The degree of hotness or coldness of a body or environment"
+    # Reference to standard unit
+    relatedMatch: "http://qudt.org/vocab/unit/DEG_C"</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_adopt_domain_specific_vocabularies"><a class="anchor" href="#_adopt_domain_specific_vocabularies"></a>Adopt Domain-Specific Vocabularies</h4>
+<div class="paragraph">
+<p>Incorporate established domain vocabularies where available:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Environmental</strong>: GEMET, ENVO, Environment Agency classifications</p>
+</li>
+<li>
+<p><strong>Health</strong>: MeSH, SNOMED CT, ICD classifications</p>
+</li>
+<li>
+<p><strong>Geographic</strong>: INSPIRE, Geonames, administrative hierarchies</p>
+</li>
+<li>
+<p><strong>Scientific</strong>: AGROVOC, NASA Thesaurus, discipline-specific terms</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_1_9_5_practical_examples_of_concept_organization"><a class="anchor" href="#_1_9_5_practical_examples_of_concept_organization"></a>1.9.5 Practical Examples of Concept Organization</h3>
+<div class="sect3">
+<h4 id="_environmental_data_catalog"><a class="anchor" href="#_environmental_data_catalog"></a>Environmental Data Catalog</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">concepts:
+  # Environmental domains
+  - identifier: "air-quality"
+    prefLabel: "Air Quality"
+    definition: "Characteristics of air that affect human health and ecosystems"
+
+  - identifier: "water-quality"
+    prefLabel: "Water Quality"
+    definition: "Chemical, physical, and biological characteristics of water"
+
+  - identifier: "climate"
+    prefLabel: "Climate"
+    definition: "Long-term weather patterns and atmospheric conditions"
+
+  # Environmental processes
+  - identifier: "pollution"
+    prefLabel: "Pollution"
+    definition: "Introduction of contaminants into the natural environment"
+
+  - identifier: "monitoring"
+    prefLabel: "Monitoring"
+    definition: "Systematic observation and measurement of environmental conditions"
+
+  # Geographic contexts
+  - identifier: "urban"
+    prefLabel: "Urban"
+    definition: "Relating to cities and densely populated areas"
+
+  - identifier: "rural"
+    prefLabel: "Rural"
+    definition: "Relating to countryside and sparsely populated areas"
+
+datasets:
+  - identifier: "urban-air-quality"
+    title: "Urban Air Quality Monitoring"
+    theme:
+      - "air-quality"
+      - "urban"
+      - "monitoring"
+
+  - identifier: "water-pollution-sources"
+    title: "Water Pollution Source Identification"
+    theme:
+      - "water-quality"
+      - "pollution"</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_1_9_6_common_pitfalls_and_solutions"><a class="anchor" href="#_1_9_6_common_pitfalls_and_solutions"></a>1.9.6 Common Pitfalls and Solutions</h3>
+<div class="sect3">
+<h4 id="_overly_granular_concepts"><a class="anchor" href="#_overly_granular_concepts"></a>Overly Granular Concepts</h4>
+<div class="paragraph">
+<p><strong>Problem</strong>: Creating concepts that are too specific leads to fragmentation.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml"># Too granular
+- identifier: "particulate-matter-2-5-micrograms"
+  prefLabel: "PM2.5 Concentration"
+  definition: "Concentration of particles 2.5 micrometers or smaller"
+
+# Better approach
+- identifier: "air-pollution"
+  prefLabel: "Air Pollution"
+  definition: "Presence of harmful substances in the atmosphere"</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><strong>Solution</strong>: Use broader concepts and let dataset descriptions provide specifics.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_inconsistent_concept_usage"><a class="anchor" href="#_inconsistent_concept_usage"></a>Inconsistent Concept Usage</h4>
+<div class="paragraph">
+<p><strong>Problem</strong>: Similar datasets use different concept combinations.</p>
+</div>
+<div class="paragraph">
+<p><strong>Solution</strong>: Establish concept usage guidelines and review catalog regularly for consistency.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_missing_concept_definitions"><a class="anchor" href="#_missing_concept_definitions"></a>Missing Concept Definitions</h4>
+<div class="paragraph">
+<p><strong>Problem</strong>: Using concept identifiers in themes without defining the concepts.</p>
+</div>
+<div class="paragraph">
+<p><strong>Solution</strong>: Always define concepts at root level before using them in dataset themes.</p>
+</div>
+<div class="paragraph">
+<p>By implementing these SKOS concept management practices, you create a robust, scalable system for organizing your datasets that enhances discoverability, supports consistent metadata practices, and integrates well with external data ecosystems.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_1_10_understanding_catalogs_as_datasets"><a class="anchor" href="#_1_10_understanding_catalogs_as_datasets"></a>1.10 Understanding Catalogs as Datasets</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Throughout this chapter, we&#8217;ve progressed from describing individual datasets to organizing them within catalogs. But here&#8217;s a fundamental insight: <strong>a catalog is itself a dataset</strong>. This concept is crucial for understanding how DCAT enables interoperability at scale.</p>
+</div>
+<div class="sect2">
+<h3 id="_the_catalog_as_dataset_concept"><a class="anchor" href="#_the_catalog_as_dataset_concept"></a>The Catalog-as-Dataset Concept</h3>
+<div class="paragraph">
+<p>In DCAT, a catalog isn&#8217;t just a container - it&#8217;s a first-class dataset that describes other datasets. This recursive relationship means:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml"># A catalog describes itself using the same structure as any dataset
+dataCatalog:
+  identifier: "environmental-catalog"
+  title: "Environmental Data Catalog"
+  description: "A catalog of environmental monitoring datasets"
+  publisher:
+    name: "Environmental Protection Agency"
+  contactPoint:
+    hasEmail: "catalog@epa.gov"
+  theme:
+    - "environmental-data"
+    - "government-catalog"
+  license:
+    title: "https://creativecommons.org/licenses/by/4.0/"
+  # This catalog contains other datasets
+  dataset:
+    - "air-quality-data"
+    - "water-quality-data"</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_why_this_matters"><a class="anchor" href="#_why_this_matters"></a>Why This Matters</h3>
+<div class="sect3">
+<h4 id="_interoperability_and_federation"><a class="anchor" href="#_interoperability_and_federation"></a>Interoperability and Federation</h4>
+<div class="paragraph">
+<p>When catalogs are themselves datasets, they can be:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Indexed by other catalogs</strong>: National catalogs can discover and index organizational catalogs</p>
+</li>
+<li>
+<p><strong>Linked across systems</strong>: Cross-references enable federated search across multiple catalogs</p>
+</li>
+<li>
+<p><strong>Standardized exchange</strong>: All catalogs use the same metadata structure regardless of content</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_hierarchical_organization"><a class="anchor" href="#_hierarchical_organization"></a>Hierarchical Organization</h4>
+<div class="paragraph">
+<p>The catalog-as-dataset model enables natural hierarchies:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>National Data Portal
+├── EPA Data Catalog
+│   ├── Air Quality Sub-catalog
+│   └── Water Quality Sub-catalog
+└── NOAA Data Catalog
+    ├── Climate Data Sub-catalog
+    └── Weather Data Sub-catalog</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Each level in this hierarchy is a catalog that is itself a dataset, searchable and discoverable by catalogs above it.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_metadata_inheritance_and_overriding"><a class="anchor" href="#_metadata_inheritance_and_overriding"></a>Metadata Inheritance and Overriding</h4>
+<div class="paragraph">
+<p>Since catalogs are datasets, they can:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Define default values</strong>: Publisher, license, or contact information that applies to contained datasets</p>
+</li>
+<li>
+<p><strong>Establish standards</strong>: Specify required metadata fields for all datasets within the catalog</p>
+</li>
+<li>
+<p><strong>Provide context</strong>: Domain-specific themes and concepts that apply to catalog contents</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_catalog_metadata_best_practices"><a class="anchor" href="#_catalog_metadata_best_practices"></a>Catalog Metadata Best Practices</h3>
+<div class="paragraph">
+<p>When treating your catalog as a dataset, follow these guidelines:</p>
+</div>
+<div class="sect3">
+<h4 id="_complete_catalog_description"><a class="anchor" href="#_complete_catalog_description"></a>Complete Catalog Description</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">dataCatalog:
+  identifier: "city-data-portal"
+  title: "City of Springfield Open Data Portal"
+  description: "Official catalog of datasets published by the City of Springfield, including city services, geographic data, and performance metrics"
+  publisher:
+    name: "City of Springfield"
+    contactPoint:
+      hasEmail: "opendata@springfield.gov"
+  license:
+    title: "https://creativecommons.org/licenses/by/4.0/"
+  issued: "2023-01-15"
+  modified: "2024-03-10"
+  language: "en"
+  theme:
+    - "municipal-data"
+    - "open-government"
+    - "city-services"</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_catalog_scope_and_coverage"><a class="anchor" href="#_catalog_scope_and_coverage"></a>Catalog Scope and Coverage</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">dataCatalog:
+  # ... basic metadata
+  spatial:
+    - identifier: "springfield-city-limits"
+      title: "Springfield City Limits"
+  temporal:
+    hasBeginning: "2020-01-01"
+    description: "Contains data from 2020 onwards, with selected historical datasets included"</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_catalog_services_and_apis"><a class="anchor" href="#_catalog_services_and_apis"></a>Catalog Services and APIs</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">dataCatalog:
+  # ... other metadata
+  service:
+    - identifier: "catalog-api"
+      title: "Catalog API"
+      description: "RESTful API for accessing catalog metadata and dataset listings"
+      endpointURL: "https://data.springfield.gov/api/v1"
+      conformsTo: "https://api.springfield.gov/docs/catalog"</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_practical_implementation"><a class="anchor" href="#_practical_implementation"></a>Practical Implementation</h3>
+<div class="sect3">
+<h4 id="_step_1_define_your_catalog_identity"><a class="anchor" href="#_step_1_define_your_catalog_identity"></a>Step 1: Define Your Catalog Identity</h4>
+<div class="paragraph">
+<p>Start by treating your catalog as a dataset with clear identification:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">dataCatalog:
+  identifier: "research-lab-catalog"
+  title: "Climate Research Laboratory Data Catalog"
+  description: "Catalog of datasets produced by the Climate Research Laboratory, including experimental results, model outputs, and observational data"</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_step_2_establish_catalog_wide_standards"><a class="anchor" href="#_step_2_establish_catalog_wide_standards"></a>Step 2: Establish Catalog-Wide Standards</h4>
+<div class="paragraph">
+<p>Set expectations for all contained datasets:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">dataCatalog:
+  # ... identification
+  conformsTo:
+    - "https://www.w3.org/TR/vocab-dcat-3/"
+    - "https://research-lab.edu/metadata-standards/v2"
+  theme:
+    - "climate-research"
+    - "experimental-data"
+    - "model-outputs"</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_step_3_link_to_external_catalogs"><a class="anchor" href="#_step_3_link_to_external_catalogs"></a>Step 3: Link to External Catalogs</h4>
+<div class="paragraph">
+<p>Enable discovery by broader catalog ecosystems:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">dataCatalog:
+  # ... catalog metadata
+  isPartOf:
+    - "https://data.gov/"
+    - "https://researchdata.org/"</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_catalog_evolution_and_management"><a class="anchor" href="#_catalog_evolution_and_management"></a>Catalog Evolution and Management</h3>
+<div class="paragraph">
+<p>Since catalogs are datasets, they follow the same lifecycle management practices:</p>
+</div>
+<div class="sect3">
+<h4 id="_version_management_2"><a class="anchor" href="#_version_management_2"></a>Version Management</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">dataCatalog:
+  identifier: "research-catalog-v3"
+  title: "Climate Research Laboratory Data Catalog v3.0"
+  version: "3.0"
+  wasDerivedFrom: "research-catalog-v2"
+  modificationReason: "Added new datasets and improved metadata quality"</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_quality_assessment"><a class="anchor" href="#_quality_assessment"></a>Quality Assessment</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">dataCatalog:
+  # ... other metadata
+  hasQualityAnnotation:
+    - assertedBy: "metadata-auditor@university.edu"
+      qualityMeasure: "metadata-completeness"
+      value: "0.95"  # 95% completeness
+    - assertedBy: "user-feedback@university.edu"
+      qualityMeasure: "user-satisfaction"
+      value: "4.2/5.0"</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_1_8_best_practices_for_data_cataloging"><a class="anchor" href="#_1_8_best_practices_for_data_cataloging"></a>1.8 Best Practices for Data Cataloging</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Based on our progressive example, here are the key principles for effective data cataloging:</p>
+</div>
+<div class="sect2">
+<h3 id="_start_simple_build_incrementally"><a class="anchor" href="#_start_simple_build_incrementally"></a>Start Simple, Build Incrementally</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Begin with basic identification (id, title, description)</p>
+</li>
+<li>
+<p>Add discoverability features (keywords, publisher, temporal/spatial coverage)</p>
+</li>
+<li>
+<p>Include access information (distributions, licensing)</p>
+</li>
+<li>
+<p>Enhance with advanced features (versioning, quality, series)</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_focus_on_user_needs"><a class="anchor" href="#_focus_on_user_needs"></a>Focus on User Needs</h3>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Discovery</strong>: Use descriptive titles and relevant keywords</p>
+</li>
+<li>
+<p><strong>Understanding</strong>: Provide clear descriptions and context</p>
+</li>
+<li>
+<p><strong>Access</strong>: Offer multiple distribution formats for different users</p>
+</li>
+<li>
+<p><strong>Trust</strong>: Include publisher, contact, and quality information</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_maintain_consistency"><a class="anchor" href="#_maintain_consistency"></a>Maintain Consistency</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Use unique, stable identifiers across your catalog</p>
+</li>
+<li>
+<p>Apply consistent naming conventions</p>
+</li>
+<li>
+<p>Keep contact information up to date</p>
+</li>
+<li>
+<p>Follow the same metadata structure for related datasets</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_document_everything"><a class="anchor" href="#_document_everything"></a>Document Everything</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Explain what your data contains and how it was collected</p>
+</li>
+<li>
+<p>Specify usage rights and licensing clearly</p>
+</li>
+<li>
+<p>Provide contact points for questions and issues</p>
+</li>
+<li>
+<p>Include quality assessments and limitations</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_plan_for_the_future"><a class="anchor" href="#_plan_for_the_future"></a>Plan for the Future</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Use version management for evolving datasets</p>
+</li>
+<li>
+<p>Organize ongoing data into series</p>
+</li>
+<li>
+<p>Follow established standards (DCAT) for interoperability</p>
+</li>
+<li>
+<p>Design your catalog to scale as your data collection grows</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_technical_considerations"><a class="anchor" href="#_technical_considerations"></a>Technical Considerations</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Test all distribution URLs regularly</p>
+</li>
+<li>
+<p>Use appropriate media types for all formats</p>
+</li>
+<li>
+<p>Include file sizes to help users plan downloads</p>
+</li>
+<li>
+<p>Provide checksums for data integrity verification</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>By following these practices and building your catalog incrementally as demonstrated in this chapter, you&#8217;ll create a data catalog that serves both current users and future needs effectively.</p>
+</div>
+</div>
+</div>
+</div>
+</article>
+  </div>
+</main>
+</div>
+<footer class="footer">
+  <p>This page was built using the Antora default UI.</p>
+  <p>The source code for this UI is licensed under the terms of the MPL-2.0 license.</p>
+</footer>
+<script id="site-script" src="../../_/js/site.js" data-ui-root-path="../../_"></script>
+<script async src="../../_/js/vendor/highlight.js"></script>
+  </body>
+</html>
