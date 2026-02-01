@@ -1,0 +1,778 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Chapter 3: Data Lineage (PROV) :: Data Management for Data Publishers</title>
+    <link rel="canonical" href="https://uuidea.github.io/simple_data_catalog_how-to/docs/main/prov/prov-intro.html">
+    <link rel="prev" href="../dqv/dqv-intro.html">
+    <link rel="next" href="../odrl/odrl-intro.html">
+    <meta name="generator" content="Antora 3.1.12">
+    <link rel="stylesheet" href="../../../_/css/site.css">
+    <link rel="stylesheet" href="../../../_/css/extra.css">
+    <!--link rel="stylesheet" href="../../../_/css/medium-zoom.css"-->
+  </head>
+  <body class="article">
+<script type="module">import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs'; mermaid.initialize({"startOnLoad":true});</script><header class="header">
+  <nav class="navbar">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="https://uuidea.github.io/simple_data_catalog_how-to" style="display: flex; align-items: center; gap: 0.5rem;">
+        <img src="../../../_/img/logoLarge.svg" alt="Data Management for Data Publishers Logo" style="height: 2rem; width: auto;">
+        <span>Data Management for Data Publishers</span>
+      </a>
+      <div class="navbar-item search hide-for-print">
+        <div id="search-field" class="field">
+          <input id="search-input" type="text" placeholder="Search the docs">
+          <label class="filter checkbox">
+            <input type="checkbox" data-facet-filter="!component:docs" unchecked> In this project
+          </label>
+        </div>
+      </div>
+      <button class="navbar-burger" data-target="topbar-nav">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+    <div id="topbar-nav" class="navbar-menu">
+      <div class="navbar-end">
+        <a class="navbar-item" href="#">Home</a>
+        <a class="navbar-item" href="https://github.com/uuidea/simple_data_catalog_how-to">GitHub</a>
+      </div>
+    </div>
+  </nav>
+</header>
+<div class="body">
+<div class="nav-container" data-component="docs" data-version="main">
+  <aside class="nav">
+    <div class="panels">
+<div class="nav-panel-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <button class="nav-menu-toggle" aria-label="Toggle expand/collapse all" style="display: none"></button>
+    <h3 class="title"><a href="../index.html">Simple Data Catalog Documentation</a></h3>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../index.html">Introduction</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Getting Started</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../getting-started/getting-started.html">Getting Started Guide</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Documentation Modules</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../dcat/dcat-intro.html">Data Catalog (DCAT)</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../dqv/dqv-intro.html">Data Quality (DQV)</a>
+  </li>
+  <li class="nav-item is-current-page" data-depth="2">
+    <a class="nav-link" href="prov-intro.html">Data Lineage (PROV)</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../odrl/odrl-intro.html">Data Policy (ODRL)</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Resources</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <span class="nav-text">Related Projects</span>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <span class="nav-text">W3C Standards</span>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../getting-started/getting-started.html">Getting Started with Simple Data Catalog</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../dcat/dcat-intro.html">Data Cataloging with DCAT</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <span class="nav-text">DCAT Concepts and Theory</span>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <span class="nav-text">DCAT Practical Examples</span>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../dqv/dqv-intro.html">Data Quality with DQV</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item is-current-page" data-depth="1">
+    <a class="nav-link" href="prov-intro.html">Data Lineage with PROV</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../odrl/odrl-intro.html">Data Policy with ODRL</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+<div class="nav-panel-explore" data-panel="explore">
+  <div class="context">
+    <span class="title">Simple Data Catalog Documentation</span>
+    <span class="version">main</span>
+  </div>
+  <ul class="components">
+    <li class="component is-current">
+      <div class="title"><a href="../index.html">Simple Data Catalog Documentation</a></div>
+      <ul class="versions">
+        <li class="version is-current is-latest">
+          <a href="../index.html">main</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
+    </div>
+  </aside>
+</div>
+<main class="article">
+<div class="toolbar" role="navigation">
+<button class="nav-toggle"></button>
+<nav class="breadcrumbs" aria-label="breadcrumbs">
+  <ul>
+    <li><a href="../index.html">Simple Data Catalog Documentation</a></li>
+    <li>Documentation Modules</li>
+    <li><a href="prov-intro.html">Data Lineage (PROV)</a></li>
+  </ul>
+</nav>
+</div>
+
+  <div class="content">
+<aside class="toc sidebar" data-title="Contents" data-levels="2">
+  <div class="toc-menu"></div>
+</aside>
+<article class="doc">
+<h1 class="page">Chapter 3: Data Lineage (PROV)</h1>
+<div class="sect1">
+<h2 id="_3_1_theory_and_concepts"><a class="anchor" href="#_3_1_theory_and_concepts"></a>3.1 Theory and Concepts</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Data lineage tells the story of how datasets come into existence, how they transform over time, and how they relate to one another through derivation chains. The Provenance Ontology (PROV-O) provides a standardized framework for capturing this narrative, enabling data consumers to understand the origins and transformations of datasets.</p>
+</div>
+<div class="sect2">
+<h3 id="_what_is_prov"><a class="anchor" href="#_what_is_prov"></a>What is PROV?</h3>
+<div class="paragraph">
+<p>The Provenance Ontology (PROV-O) is a W3C Recommendation that defines a set of classes and properties for representing and exchanging provenance information. PROV captures the relationships between entities, activities, and agents that participate in the creation and evolution of data. PROV answers the fundamental questions about data: where did it come from, how was it transformed, and what is its relationship to other data?</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_core_prov_concepts"><a class="anchor" href="#_core_prov_concepts"></a>Core PROV Concepts</h3>
+<div class="paragraph">
+<p>PROV is built around three fundamental concepts that work together to create a complete provenance story. <strong>Entities</strong> represent the data artifacts themselves - datasets, distributions, or any data-bearing resources. <strong>Activities</strong> describe the processes that transform these artifacts, though these are not currently implemented in the simple_data_catalog_model. <strong>Agents</strong> are the entities responsible for carrying out those activities, also not yet implemented in our model.</p>
+</div>
+<div class="imageblock"><div class="mermaid content" style=" ">graph TD
+    A[Entity] -->|wasDerivedFrom| A[Entity]
+    D[Activity] -->|used| A
+    A -->|wasGeneratedBy| D
+    A -->|wasAttributedTo| C[Agent]
+    C -->|actedOnBehalfOf| C
+    D -->|wasAssociatedWith| C
+
+
+    style A fill:#e8f5e8
+    style C fill:#e1f5fe
+    style D fill:#e1f5fe</div></div>
+<div class="paragraph">
+<p>The current simple_data_catalog_model implements a subset of PROV concepts, focusing on entity-to-entity relationships. The <code>wasDerivedFrom</code> relationship captures how one dataset relied on another, even when the specific transformation activity is unknown. Think of this as references and the bibliography in scientific literature. This forms the foundation of provenance tracking in our data catalog, enabling the reconstruction of data processing histories.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_provenance_for_data_trust"><a class="anchor" href="#_provenance_for_data_trust"></a>Provenance for Data Trust</h3>
+<div class="paragraph">
+<p>The importance of provenance for data trust cannot be overstated. In data-driven decision making, understanding the origins and transformations of data is essential for assessing reliability and fitness for purpose. Provenance information enables data consumers to evaluate data quality, identify potential biases, and make informed decisions about data usage. It also supports regulatory compliance, scientific reproducibility, and data governance requirements.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_prov_integration_with_dcat"><a class="anchor" href="#_prov_integration_with_dcat"></a>PROV Integration with DCAT</h3>
+<div class="paragraph">
+<p>PROV can be combined DCAT to provide comprehensive metadata about datasets. While DCAT describes what datasets are available and how to access them, PROV explains where those datasets came from and how they relate to other datasets. This integration creates a complete picture of data resources, combining descriptive metadata with provenance information. In our implementation, this means every dataset can optionally include provenance relationships that trace its derivation from other datasets in the catalog.</p>
+</div>
+<div class="paragraph">
+<p>In the previous chapter, we explored how to create datasets with rich descriptive metadata. Now we extend those datasets with provenance information that shows their place in the broader data ecosystem. A dataset that describes temperature readings might be derived from raw sensor data, which itself might be derived from weather station logs. This derivation chain helps users understand the processing history and assess data quality.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_3_2_prov_in_simple_data_catalog"><a class="anchor" href="#_3_2_prov_in_simple_data_catalog"></a>3.2 PROV in Simple Data Catalog</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Simple Data Catalog implements a focused subset of PROV. The current implementation prioritizes practical usability while maintaining compatibility with the PROV-O standard. The framework provides a straightforward interface for defining derivation relationships between datasets, making provenance capture accessible without requiring deep expertise in semantic web technologies.</p>
+</div>
+<div class="paragraph">
+<p>The current implementation includes one primary PROV property: <code>wasDerivedFrom</code>, which links datasets to their source datasets. This property follows the PROV-O specification exactly, using the standard namespace and semantics. The mapping preserves the semantic meaning of PROV while providing a user-friendly YAML format that integrates seamlessly with existing dataset metadata.</p>
+</div>
+<div class="paragraph">
+<p>The implementation focuses on the most common provenance use case: tracking how datasets are derived from other datasets. This approach covers the majority of real-world scenarios where data consumers need to understand data origins, while keeping the complexity manageable. Future versions of the data model may expand to include full PROV support with activities and agents, but the current implementation provides a solid foundation for provenance tracking.</p>
+</div>
+<div class="sect2">
+<h3 id="_current_prov_support"><a class="anchor" href="#_current_prov_support"></a>Current PROV Support</h3>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 25%;">
+<col style="width: 50%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">YAML Element</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">PROV Property</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Description</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>wasDerivedFrom</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>prov:wasDerivedFrom</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Links a dataset to its source datasets</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>generatedAtTime</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>prov:generatedAtTime</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Timestamp when an entity was generated (available in QualityMeasurement)</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect2">
+<h3 id="_integration_with_dcat"><a class="anchor" href="#_integration_with_dcat"></a>Integration with DCAT</h3>
+<div class="paragraph">
+<p>The PROV properties extend the DCAT dataset definitions from Chapter 1. Every dataset can optionally include provenance information that traces its derivation chain. This provenance information is stored alongside the descriptive metadata, creating a comprehensive view of each dataset that includes both what it contains and where it came from.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_2_2_1_lineage_visualization_and_supply_chain_analysis"><a class="anchor" href="#_2_2_1_lineage_visualization_and_supply_chain_analysis"></a>2.2.1 Lineage Visualization and Supply Chain Analysis</h3>
+<div class="paragraph">
+<p>The simple_data_catalog integrates with the <a href="https://github.com/uuidea/simple-data-catalog-generator/">simple-data-catalog-generator</a> library to automatically generate lineage visualizations and supply chain analysis from PROV relationships. These visualizations help users understand data dependencies and assess data quality across the entire data supply chain.</p>
+</div>
+<div class="sect3">
+<h4 id="_lineage_diagrams"><a class="anchor" href="#_lineage_diagrams"></a>Lineage Diagrams</h4>
+<div class="paragraph">
+<p>When datasets include <code>wasDerivedFrom</code> relationships, the generator creates Mermaid flowchart diagrams that visualize the complete data lineage. These diagrams show how datasets are connected through derivation relationships, making it easy to trace data transformations and identify upstream dependencies.</p>
+</div>
+<div class="imageblock"><div class="mermaid content" style=" ">graph TD
+    B[cleaned-sensor-data] --> A[raw-sensor-data]
+    C[aggregated-climate-data] --> B[cleaned-sensor-data]
+    D[climate-trends-analysis] --> C[aggregated-climate-data]
+    F[climate-index] --> E[temperature-series]
+    F[climate-index] --> G[precipitation-series]
+    D[climate-trends-analysis] --> F[climate-index]</div></div>
+<div class="paragraph">
+<p>The lineage diagrams are automatically generated from the YAML provenance relationships and displayed on dataset detail pages. Each node represents a dataset, and arrows indicate derivation relationships following the <code>wasDerivedFrom</code> property.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_supply_chain_analysis"><a class="anchor" href="#_supply_chain_analysis"></a>Supply Chain Analysis</h4>
+<div class="paragraph">
+<p>The generator also performs supply chain analysis by examining upstream data quality annotations. This analysis helps users understand the quality landscape of their data dependencies by aggregating quality measurements from all source datasets.</p>
+</div>
+<div class="imageblock"><div class="mermaid content" style=" ">pie title Input Datasets Quality Measurements
+    "with quality measurements" : 3
+    "without quality measurements" : 2</div></div>
+<div class="paragraph">
+<p>The supply chain analysis provides insights into <strong>Quality Coverage</strong>. It shows the percentage of upstream datasets that have quality measurements</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_implementation_example"><a class="anchor" href="#_implementation_example"></a>Implementation Example</h4>
+<div class="paragraph">
+<p>To enable lineage visualization and supply chain analysis, simply include <code>wasDerivedFrom</code> relationships in your dataset definitions:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">datasets:
+  - id: climate-trends-analysis
+    title: "Climate Trends Analysis Report"
+    description: "Statistical analysis of long-term climate trends"
+    wasDerivedFrom:
+      - aggregated-climate-data
+      - climate-index
+    hasQualityAnnotation: true
+    qualityMeasurements:
+      - metric: completeness
+        value: 0.95
+        method: automated_check
+
+  - id: aggregated-climate-data
+    title: "Monthly Aggregated Climate Data"
+    wasDerivedFrom:
+      - cleaned-sensor-data
+    hasQualityAnnotation: true
+    qualityMeasurements:
+      - metric: accuracy
+        value: 0.88
+        method: manual_validation
+
+  - id: cleaned-sensor-data
+    title: "Cleaned Weather Station Data"
+    wasDerivedFrom:
+      - raw-sensor-data</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>When processed by the simple-data-catalog-generator, this configuration will:
+1. Generate a lineage diagram showing the derivation chain
+2. Create a supply chain analysis showing that 2 out of 3 upstream datasets have quality measurements
+3. Provide clickable navigation between related datasets</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_benefits_for_data_governance"><a class="anchor" href="#_benefits_for_data_governance"></a>Benefits for Data Governance</h4>
+<div class="paragraph">
+<p>The lineage visualization and supply chain analysis capabilities provide several benefits for data governance:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Transparency</strong>: Clear visualization of data dependencies and transformations</p>
+</li>
+<li>
+<p><strong>Quality Assessment</strong>: Quick identification of data quality gaps in the supply chain</p>
+</li>
+<li>
+<p><strong>Impact Analysis</strong>: Understanding how changes in upstream datasets affect downstream products</p>
+</li>
+<li>
+<p><strong>Compliance Support</strong>: Documentation of data provenance for regulatory requirements</p>
+</li>
+<li>
+<p><strong>Trust Building</strong>: Visual evidence of data processing and quality controls</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>These features make the simple_data_catalog particularly valuable for organizations that need to demonstrate data governance, track data quality across complex data ecosystems, and provide stakeholders with clear understanding of data origins and reliability.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_3_3_practical_examples"><a class="anchor" href="#_3_3_practical_examples"></a>3.3 Practical Examples</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_3_3_1_basic_derivation_tracking"><a class="anchor" href="#_3_3_1_basic_derivation_tracking"></a>3.3.1 Basic Derivation Tracking</h3>
+<div class="paragraph">
+<p>The simplest provenance scenario involves a dataset that is directly derived from a single source dataset. This example demonstrates the fundamental PROV concept in action, showing how to document the basic story of data transformation.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml"># Basic derivation example
+datasets:
+  - id: temperature-readings
+    title: "Daily Temperature Readings"
+    description: "Temperature measurements collected from weather station"
+    keywords:
+      - temperature
+      - climate
+      - weather
+    publisher:
+      name: "Weather Service"
+      email: "data@weather.gov"
+    issued: "2024-01-15"
+    modified: "2024-01-20"
+    distributions:
+      - id: csv-data
+        title: "CSV format"
+        description: "Temperature data in CSV format"
+        downloadURL: "https://data.gov.climate/temperature.csv"
+        mediaType: "text/csv"
+        byteSize: "15000000"
+
+  - id: processed-temperature-data
+    title: "Quality-Controlled Temperature Data"
+    description: "Temperature measurements after quality control processing"
+    keywords:
+      - temperature
+      - climate
+      - quality-controlled
+    publisher:
+      name: "Climate Data Center"
+      email: "data@climate.gov"
+    issued: "2024-01-21"
+    modified: "2024-01-21"
+    wasDerivedFrom:
+      - temperature-readings</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This example shows how processed temperature data is derived from raw temperature readings. The <code>wasDerivedFrom</code> property creates a clear link between the two datasets, enabling users to trace the data processing history. The derived dataset maintains its own metadata while explicitly referencing its source, creating a transparent provenance chain.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_3_3_2_multi_source_derivation"><a class="anchor" href="#_3_3_2_multi_source_derivation"></a>3.3.2 Multi-Source Derivation</h3>
+<div class="paragraph">
+<p>A common scenario involves datasets that are created by combining multiple source datasets. This example demonstrates how to document complex derivation relationships where a single dataset draws from multiple sources.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml"># Multi-source derivation example
+datasets:
+  - id: temperature-series
+    title: "Historical Temperature Series"
+    description: "Monthly temperature measurements from 1990-2020"
+    keywords:
+      - temperature
+      - historical
+      - climate
+    temporal:
+      start: "1990-01-01"
+      end: "2020-12-31"
+    publisher:
+      name: "National Weather Service"
+      email: "data@weather.gov"
+
+  - id: precipitation-series
+    title: "Historical Precipitation Series"
+    description: "Monthly precipitation measurements from 1990-2020"
+    keywords:
+      - precipitation
+      - historical
+      - climate
+    temporal:
+      start: "1990-01-01"
+      end: "2020-12-31"
+    publisher:
+      name: "National Weather Service"
+      email: "data@weather.gov"
+
+  - id: climate-index
+    title: "Combined Climate Index"
+    description: "Climate index calculated from temperature and precipitation data"
+    keywords:
+      - climate-index
+      - temperature
+      - precipitation
+      - combined
+    temporal:
+      start: "1990-01-01"
+      end: "2020-12-31"
+    publisher:
+      name: "Climate Research Institute"
+      email: "data@climate-institute.gov"
+    wasDerivedFrom:
+      - temperature-series
+      - precipitation-series</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This example shows how a climate index dataset is derived from both temperature and precipitation series. The multi-valued <code>wasDerivedFrom</code> property creates links to both source datasets, documenting the complete provenance of the derived dataset. Users can trace back to understand exactly what data sources contributed to the climate index calculation.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_3_3_3_derivation_chains"><a class="anchor" href="#_3_3_3_derivation_chains"></a>3.3.3 Derivation Chains</h3>
+<div class="paragraph">
+<p>Complex data processing workflows often create chains of derived datasets, where each step builds upon the previous one. This example demonstrates how to document multi-level derivation chains that show the complete data processing history.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml"># Derivation chain example
+datasets:
+  - id: raw-sensor-data
+    title: "Raw Weather Station Sensor Data"
+    description: "Direct readings from weather station sensors"
+    keywords:
+      - raw
+      - sensor
+      - weather
+    publisher:
+      name: "Weather Station Network"
+      email: "data@stations.weather.gov"
+
+  - id: cleaned-sensor-data
+    title: "Cleaned Weather Station Data"
+    description: "Sensor data after automated cleaning and validation"
+    keywords:
+      - cleaned
+      - validated
+      - weather
+    publisher:
+      name: "Weather Data Processing Center"
+      email: "processing@weather.gov"
+    wasDerivedFrom:
+      - raw-sensor-data
+
+  - id: aggregated-climate-data
+    title: "Monthly Aggregated Climate Data"
+    description: "Climate data aggregated to monthly resolution"
+    keywords:
+      - aggregated
+      - monthly
+      - climate
+    publisher:
+      name: "Climate Data Center"
+      email: "data@climate.gov"
+    wasDerivedFrom:
+      - cleaned-sensor-data
+
+  - id: climate-trends-analysis
+    title: "Climate Trends Analysis Report"
+    description: "Statistical analysis of long-term climate trends"
+    keywords:
+      - trends
+      - analysis
+      - climate
+    publisher:
+      name: "Climate Research Institute"
+      email: "research@climate-institute.gov"
+    wasDerivedFrom:
+      - aggregated-climate-data</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This example demonstrates a complete derivation chain from raw sensor data to final climate trends analysis. Each dataset in the chain explicitly references its immediate predecessor, creating a clear trail of data transformations. Users can follow this chain backward to understand the complete processing history, or forward to see how the data evolves through each processing step.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_3_3_4_integration_with_dcat_metadata"><a class="anchor" href="#_3_3_4_integration_with_dcat_metadata"></a>3.3.4 Integration with DCAT Metadata</h3>
+<div class="paragraph">
+<p>Provenance information integrates seamlessly with the DCAT metadata structures from Chapter 1. This example shows how derivation relationships complement the descriptive metadata to create a comprehensive dataset description.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml"># Complete dataset with DCAT metadata and PROV provenance
+datasets:
+  - id: national-air-quality-index
+    title: "National Air Quality Index"
+    description: "Daily air quality index calculated from multiple pollutant measurements"
+    keywords:
+      - air-quality
+      - pollution
+      - environmental
+      - health
+    temporal:
+      start: "2023-01-01"
+      end: "2023-12-31"
+    spatial:
+      - "Country of Exampleland"
+    accrualPeriodicity: "daily"
+    publisher:
+      name: "Environmental Protection Agency"
+      email: "data@epa.gov"
+      type: "organization"
+    theme:
+      - environment
+      - health
+      - air-quality
+    license: "https://creativecommons.org/licenses/by/4.0/"
+    wasDerivedFrom:
+      - pm25-measurements
+      - no2-measurements
+      - o3-measurements
+    distributions:
+      - id: aqi-daily-csv
+        title: "Daily AQI CSV Data"
+        description: "Air quality index values in CSV format"
+        downloadURL: "https://data.epa.gov/aqi/daily/2023.csv"
+        mediaType: "text/csv"
+        byteSize: "5000000"
+      - id: aqi-api
+        title: "AQI REST API"
+        description: "Real-time air quality index API"
+        accessURL: "https://api.epa.gov/aqi/v1"
+        mediaType: "application/json"
+        conformsTo: "https://api.epa.gov/docs/aqi/v1"
+
+  - id: pm25-measurements
+    title: "PM2.5 Concentration Measurements"
+    description: "Particulate matter 2.5 micrometer measurements from monitoring stations"
+    keywords:
+      - pm25
+      - particulate-matter
+      - pollution
+    publisher:
+      name: "Air Quality Monitoring Network"
+      email: "data@air-quality.gov"
+
+  - id: no2-measurements
+    title: "NO2 Concentration Measurements"
+    description: "Nitrogen dioxide measurements from monitoring stations"
+    keywords:
+      - no2
+      - nitrogen-dioxide
+      - pollution
+    publisher:
+      name: "Air Quality Monitoring Network"
+      email: "data@air-quality.gov"
+
+  - id: o3-measurements
+    title: "Ozone Concentration Measurements"
+    description: "Ground-level ozone measurements from monitoring stations"
+    keywords:
+      - ozone
+      - o3
+      - pollution
+    publisher:
+      name: "Air Quality Monitoring Network"
+      email: "data@air-quality.gov"</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This comprehensive example shows how provenance information enhances the rich DCAT metadata from Chapter 1. The national air quality index dataset includes complete descriptive metadata while also documenting its derivation from three pollutant measurement datasets. This integration creates a complete picture that tells users both what the dataset contains and where it came from.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_3_3_6_cross_referencing_provenance"><a class="anchor" href="#_3_3_6_cross_referencing_provenance"></a>3.3.6 Cross-Referencing Provenance</h3>
+<div class="paragraph">
+<p>When documenting provenance across multiple datasets, you may need to reference datasets that are defined in separate YAML files or in other catalogs. PROV supports this through the use of full dataset identifiers.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml"># Cross-referencing provenance example
+datasets:
+  - id: https://data.weather.gov/datasets/temperature-series
+    title: "Historical Temperature Series"
+    description: "Global temperature measurements from 1880-2020"
+    publisher:
+      name: "Global Climate Organization"
+      email: "data@globalclimate.org"
+
+  - id: local-climate-analysis
+    title: "Regional Climate Impact Analysis"
+    description: "Regional analysis based on global temperature data"
+    publisher:
+      name: "Regional Climate Center"
+      email: "data@regional-climate.gov"
+    wasDerivedFrom:
+      - https://data.weather.gov/datasets/temperature-series</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This example shows how to reference datasets in external catalogs using their full identifiers. This approach enables provenance tracking across organizational boundaries, supporting federated data catalogs and collaborative data ecosystems.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_3_4_current_limitations_and_future_enhancements"><a class="anchor" href="#_3_4_current_limitations_and_future_enhancements"></a>3.4 Current Limitations and Future Enhancements</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_current_implementation_limitations"><a class="anchor" href="#_current_implementation_limitations"></a>Current Implementation Limitations</h3>
+<div class="paragraph">
+<p>The current simple_data_catalog_model implements a focused subset of PROV that prioritizes practical usability over comprehensive provenance tracking. This approach has several limitations that users should understand:</p>
+</div>
+<div class="paragraph">
+<p><strong>Missing PROV Concepts</strong>: The current implementation does not include:
+- <strong>Activities</strong>: Processing steps that transform data
+- <strong>Agents</strong>: People, organizations, or software responsible for activities
+- <strong>Temporal properties</strong>: <code>startedAtTime</code>, <code>endedAtTime</code> for activities
+- <strong>Qualified relationships</strong>: Detailed attribution, usage, or generation information
+- <strong>Complex derivation types</strong>: Specialization, revision, quotation relationships</p>
+</div>
+<div class="paragraph">
+<p><strong>Limited Provenance Depth</strong>: Current implementation only supports:
+- Simple entity-to-entity derivation relationships
+- Basic attribution through dataset publishers.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_future_enhancement_roadmap"><a class="anchor" href="#_future_enhancement_roadmap"></a>Future Enhancement Roadmap</h3>
+<div class="paragraph">
+<p>The simple_data_catalog_model roadmap includes plans for progressive PROV enhancement:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Import of full LinkML PROV schema</p>
+</li>
+<li>
+<p>Activity definitions with temporal properties</p>
+</li>
+<li>
+<p>Agent classes (Person, Organization, SoftwareAgent)</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_migration_strategy"><a class="anchor" href="#_migration_strategy"></a>Migration Strategy</h3>
+<div class="paragraph">
+<p>When future enhancements are implemented, existing YAML configurations will remain backward compatible. New properties will be added as optional elements, allowing gradual adoption of enhanced provenance features.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_best_practices"><a class="anchor" href="#_best_practices"></a>Best Practices</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Effective provenance documentation with current capabilities requires attention to several key principles:</p>
+</div>
+<div class="paragraph">
+<p><strong>Document Derivations Clearly</strong>: Always include <code>wasDerivedFrom</code> relationships when datasets are created from other datasets. This creates essential provenance chains that users can follow to understand data origins.</p>
+</div>
+<div class="paragraph">
+<p><strong>Maintain Consistent Identifiers</strong>: Use stable, unique identifiers for all datasets that may be referenced in provenance relationships. Consider using persistent URLs or DOI-style identifiers for important datasets.</p>
+</div>
+<div class="paragraph">
+<p><strong>Balance Detail and Usability</strong>: While provenance information is valuable, avoid creating overly complex derivation chains that might confuse users. Focus on the most important source datasets that users would want to understand.</p>
+</div>
+<div class="paragraph">
+<p><strong>Update Provenance Regularly</strong>: When datasets are updated or reprocessed, update their <code>wasDerivedFrom</code> relationships to reflect current processing history. Outdated provenance information can mislead users about data quality and reliability.</p>
+</div>
+<div class="paragraph">
+<p><strong>Consider Cross-Organizational Needs</strong>: When working with data from multiple organizations, use full identifier URLs that can be resolved across domains. This supports federated provenance tracking and collaboration.</p>
+</div>
+<div class="paragraph">
+<p><strong>Document Processing Context</strong>: Even though activities are not currently supported in the data model, include relevant processing information in dataset descriptions or documentation to help users understand derivation context.</p>
+</div>
+</div>
+</div>
+<nav class="pagination">
+  <span class="prev"><a href="../dqv/dqv-intro.html">Data Quality (DQV)</a></span>
+  <span class="next"><a href="../odrl/odrl-intro.html">Data Policy (ODRL)</a></span>
+</nav>
+</article>
+  </div>
+</main>
+</div>
+<footer class="footer">
+    <p>simple_data_catalog <p>Licensed under <a href="https://www.apache.org/licenses/LICENSE-2.0.txt">Apache 2.0</a></p>
+</footer>
+<script id="site-script" src="../../../_/js/site.js" data-ui-root-path="../../../_"></script>
+<script src="../../../_/js/add-back-to-home-nav-item.js"></script>
+<script async src="../../../_/js/vendor/highlight.js"></script>
+<script async src="../../../_/js/wrap-tables.js"></script>
+<script src="../../../_/js/vendor/lunr.js"></script>
+<script src="../../../_/js/search-ui.js" id="search-ui-script" data-site-root-path="../../.." data-snippet-length="100" data-stylesheet="../../../_/css/search.css"></script>
+<script async src="../../../search-index.js"></script>
+<!--script async src="../../../_/js/vendor/medium-zoom.min.js"></script>
+<script async src="../../../_/js/medium-zoom.config.js"></script-->
+  </body>
+</html>
