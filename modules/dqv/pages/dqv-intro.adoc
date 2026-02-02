@@ -1,55 +1,76 @@
 = Chapter 2: Data Quality (DQV)
 
-
 == 2.1 Theory and Concepts
 
-Data quality represents the cornerstone of trustworthy data ecosystems. While previous chapters explored how to describe datasets and trace their provenance, this chapter addresses the critical question of how good that data actually is. The Data Quality Vocabulary (DQV) provides a standardized framework for assessing, documenting, and communicating data quality information in a way that enables data consumers to make informed decisions about data usage.
+Data quality represents the cornerstone of trustworthy data ecosystems. While the previous chapter explored how to describe datasets, this chapter addresses the critical question of how good that data actually is. Creators and publishers of data often have a pretty good understanding of the quality of their data, but this knowledge usually does not leave the team/organizational boundaries. This makes it much more difficult for (potential) users of the data to determine whether the data meets their quality needs. 
+
+Publishing data quality data as part of the data catalog is a good way to give consumers a sense of what to expect. This can be a start of a conversation between publishers and consumers when the data quality falls short for new usecases.
+
+Finally, some publishers feel some aprehension about being open about data quality and prefer to keep this information confidential. While this is understandable, and in some cases unavoidable, consumers of data will experience this data quality, whether you share it or not. They will often design systems to evaluate the quality of the incoming data for them selves. Being open about it up front tends to lead to better outcomes and more constructive interactions with the users of your data. So this is highly recommonded.
 
 === What is DQV?
 
-The Data Quality Vocabulary (DQV) is a W3C Recommendation that defines a set of classes and properties for representing data quality information. DQV enables data publishers to express quality assessments, measurements, and annotations in a standardized format that can be understood and processed by both humans and machines. The vocabulary supports a wide range of quality assessment approaches, from automated metrics to human evaluations, from single measurements to comprehensive quality certificates.
+The Data Quality Vocabulary (DQV) provides a standardized framework for communicating data quality information in a way that enables data consumers to make informed decisions about data usage.
 
-DQV addresses the fundamental challenge of data quality communication: how do we express that data is good or bad, complete or incomplete, accurate or inaccurate, in a way that is meaningful, comparable, and actionable? The vocabulary provides the semantic foundation for answering these questions while maintaining flexibility to accommodate diverse quality assessment methodologies and domain-specific requirements.
+DQV is a W3C Recommendation that defines a set of classes and properties for representing data quality information. DQV enables data publishers to express quality assessments, measurements, and annotations in a standardized format that can be understood and processed by both humans and machines. The vocabulary supports a wide range of quality assessment approaches, from automated metrics to human evaluations, from single measurements to comprehensive quality certificates.
+
+Just as with the other standards referenced in this work, the DQV model can also be seen as an anatomy of data quality. It helps us think about what we might need to know about data quality and in doing so, helps us think about and scope the actions we should take to obtain and share this information. 
+
+DQV provides concepts and terminology to addresses the fundamental challenge of data quality communication: how do we express that data is good or bad, complete or incomplete, accurate or inaccurate, in a way that is meaningful, comparable, and (idally) actionable? The vocabulary provides the semantic foundation for answering these questions while maintaining flexibility to accommodate diverse quality assessment methodologies and domain-specific requirements.
 
 === Core DQV Concepts
 
-DQV is built around a hierarchical framework that organizes quality information into meaningful categories. At the foundation are *Metrics*, which define specific measurable aspects of data quality such as completeness, accuracy, or availability. These metrics are applied to datasets through *QualityMeasurements*, which capture the actual observed values and the context in which they were measured.
+DQV is built around a framework that organizes quality information into meaningful categories. At the foundation are *Metrics*, which define specific measurable aspects of data quality such as completeness, accuracy, or availability. These metrics are applied to datasets through *QualityMeasurements*, which capture the actual observed values and the context in which they were measured. When adding these metrics to your data catalog, you facilitate reusing them (where appropriate) across datasets/services. 
 
 The metrics themselves are organized into *Dimensions*, which group related metrics into broader quality categories. Common dimensions include completeness (how much data is missing), accuracy (how correct the data is), availability (whether the data can be accessed), and timeliness (how current the data is). These dimensions can be further organized into *Categories* that represent high-level quality frameworks such as ISO 25012 or domain-specific quality models.
 
 [mermaid, dqv-quality-framework, svg]
 ----
-graph TD
-    A[QualityMeasurement] -->|isMeasurementOf| B[Metric]
-    B -->|inDimension| C[Dimension]
-    C -->|inCategory| D[Category]
-    A -->|computedOn| E[Dataset]
-    A -->|generatedAtTime| F[Timestamp]
+classDiagram
+    class QualityMeasurement {
+        +identifier: string
+        +computedOn: Resource
+        +isMeasurementOf: Metric
+        +value: float
+        +generatedAtTime: date
+    }
     
-    style A fill:#e8f5e8
-    style B fill:#e1f5fe
-    style C fill:#fff3e0
-    style D fill:#fce4ec
-    style E fill:#f3e5f5
+    class Metric {
+        +identifier: string
+        +definition: string
+        +prefLabel: string
+        +expectedDataType: Any
+        +inDimension: string
+    }
+    
+    class Resource 
+    
+    class Dataset
+    
+    QualityMeasurement "1" -- "1" Metric : isMeasurementOf
+    QualityMeasurement "1" -- "1" Resource : computedOn
+    Dataset --|> Resource : inherits
 ----
 
-This hierarchical structure enables both detailed quality assessments and high-level quality summaries. Data consumers can drill down to specific metric values for detailed analysis, or examine dimension-level summaries for quick quality assessments. The framework also supports quality annotations that capture user feedback, expert evaluations, and quality certificates that provide formal attestations of data quality.
+This structure enables both detailed quality assessments and high-level quality summaries. Data consumers can drill down to specific metric values for detailed analysis, or examine dimension-level summaries for quick quality assessments. The framework also supports quality annotations that capture user feedback, expert evaluations, and quality certificates that provide formal attestations of data quality.
 
 === Quality Dimensions and Their Importance
 
-Different applications and domains prioritize different quality dimensions. Understanding these dimensions helps data publishers focus their quality assessment efforts on the aspects that matter most to their users.
+Different applications and domains prioritize different quality dimensions. Understanding these dimensions helps data publishers focus their quality assessment efforts on the aspects that matter most to their users. Annotating matrics with the dimensions they try to measure also helps others understand their meaning and purpose.
 
-*Completeness* measures the presence of expected data elements. Incomplete data can lead to biased analyses and incorrect conclusions. For example, a dataset with missing demographic information may not be suitable for population studies.
+*Completeness* represents the idea that all data that is intended to be captured is also captured. Incomplete data can lead to biased analyses and incorrect conclusions. For example, a dataset with missing demographic information may not be suitable for population studies. 
 
-*Accuracy* measures how closely data values represent the real-world phenomena they describe. Inaccurate data can undermine decision making and lead to costly errors. GPS coordinates with systematic bias, for instance, could misguide navigation systems.
+*Accuracy* is the idea that data should represent reality. Inaccurate data can undermine decision making and lead to costly errors. GPS coordinates with systematic bias, for instance, could misguide navigation systems. The challenge with this particular quality dimension is that while it is by many considered the most important, if not the ultimate, qualuty metric, it is also the hardest to evaluate (in a scalable/affordable matter). One effectively needs to have a witness: someone who goes out into the real world and verifies that what the data claims is in fact so. 
 
-*Availability* measures whether data can be accessed when needed. Even high-quality data is useless if it cannot be retrieved. This dimension includes both technical accessibility and licensing accessibility.
+*Consistency* represents the idea that data should not contradict itself. Intuitively: if data contradicts itself, something is wrong. This makes it a good proxy for accuracy: if data is consistent, it doesn't automatically mean it is accurate, but if it is inconsistent, we know something is innacurate. This can help us find inaccuracies and investigate them further. 
 
-*Timeliness* measures how current the data is relative to the needs of the application. Financial market data from yesterday may be too old for trading decisions, while historical climate data from decades ago may be perfectly suitable for climate change studies.
 
-*Consistency* measures the absence of contradictions within and across datasets. Inconsistent data can confuse automated systems and lead to incorrect inferences. A customer database with different addresses for the same customer in different tables exemplifies consistency issues.
+*Availability* represents the idea that data shouldnt just exist, it should also be available to those who (legitimately) use it. Even high-quality data is useless if it cannot be retrieved. This dimension includes both technical accessibility and licensing accessibility.
 
-=== DQV Integration with DCAT and PROV
+*Timeliness* represents the idea that data has an expiration date. Data makes statements about reality, and the facts on the ground can change. When data is used when they are no longer accurate, the outcomes of that use may also be innacurate.  For instance, Financial market data from yesterday may be too old for trading decisions, while historical climate data from decades ago may be perfectly suitable for climate change studies.
+
+
+=== DQV Integration with DCAT
 
 DQV builds upon the foundations established in previous chapters. While xref:dcat:dcat-intro.adoc[DCAT (Chapter 1)] describes what datasets are available and how to access them, DQV tells us how good those datasets are for their intended purposes. This integration creates a comprehensive view of data resources that includes descriptive metadata and quality assessments. Provenance information will be covered in xref:prov:prov-intro.adoc[Chapter 3].
 

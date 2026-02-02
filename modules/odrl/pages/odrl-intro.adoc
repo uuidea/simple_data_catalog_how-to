@@ -28,6 +28,8 @@ This role-based approach to policy management creates clear accountability struc
 
 The Open Digital Rights Language (ODRL) is a W3C Recommendation that defines a flexible, interoperable framework for expressing digital rights and policies. ODRL enables organizations to specify usage rules, access conditions, and compliance requirements in a machine-readable format that can be interpreted and enforced by automated systems. The language supports a wide range of policy scenarios, from simple open data licenses to complex data sharing agreements with multiple parties and conditional permissions.
 
+Just as with the other standards referenced in this work, the ODRL model can also be seen as an anatomy of data quality. It helps us think about what we might need to know about data policy and govcernance and in doing so, helps us think about and scope the actions we should take to obtain and share this information. 
+
 ODRL addresses the fundamental challenge of policy expression: how do we communicate what users can and cannot do with data, under what conditions, and with what obligations, in a way that is both legally sound and technically enforceable? The language provides the semantic foundation for answering these questions while accommodating diverse policy models including open licensing, restricted access, conditional use, and data sovereignty requirements.
 
 === Core ODRL Concepts

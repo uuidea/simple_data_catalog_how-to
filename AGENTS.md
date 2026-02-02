@@ -59,10 +59,10 @@ Antora-based documentation repository for simple_data_catalog project - a LinkML
 - Maintain proper heading hierarchy (= == === ====) with no skipping levels
 - Include internal links using Antora xref syntax (e.g., `xref:dcat:intro.adoc[DCAT Introduction]`)
 - Include external links to standards: https://www.w3.org/TR/vocab-dcat-3/, https://www.w3.org/TR/prov-o/, https://www.w3.org/TR/vocab-dqv/, https://www.w3.org/TR/odrl-model/
-- Use clear, concise language suitable for technical documentation
+- Use clear, concise, simple language with a down to earth tone suitable for technical documentation
 - Include code examples with proper syntax highlighting using `[source,language]` blocks
 - Add line breaks before headings for readability
-- Use bullet points (`*`) and numbered lists (`.`) for structured information
+- Use bullet points (`*`) and numbered lists (`.`) for structured information, but avoid using those escessively
 
 ### File Organization
 - Keep documentation files in the repository modules/ directory
