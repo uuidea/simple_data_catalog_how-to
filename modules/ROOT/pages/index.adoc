@@ -133,4 +133,9 @@ This guide is designed for progressive learning:
 
 ---
 
-**Ready to get started?** Continue with the xref:dcat:dcat-intro.adoc[Data Catalog Metadata (DCAT)] chapter to begin building your data catalog management skills.
+**Ready to get started?** Continue with the xref:dcat:dcat-intro.adoc[Data Catalog Metadata] chapter to begin building your data catalog management skills.
+
+
+== Finally
+
+If you found this website/book useful, please consider supporting its development through the sponsorship button in the top right corner of the page.
