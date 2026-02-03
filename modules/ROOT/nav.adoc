@@ -9,6 +9,3 @@
 ** xref:prov:prov-intro.adoc[Data Lineage (PROV)]
 ** xref:odrl:odrl-intro.adoc[Data Policy (ODRL)]
 
-* Resources
-** Related Projects
-** W3C Standards

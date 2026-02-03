@@ -1,5 +1,0 @@
-name: dqv
-version: main
-title: Data Quality (DQV)
-nav:
-  - modules/dqv/nav.adoc

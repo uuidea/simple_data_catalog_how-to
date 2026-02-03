@@ -1,5 +1,0 @@
-name: prov
-version: main
-title: Data Lineage (PROV)
-nav:
-  - modules/prov/nav.adoc

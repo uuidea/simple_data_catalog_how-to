@@ -1,3 +1,0 @@
-* xref:dcat-intro.adoc[Data Cataloging with DCAT]
-** DCAT Concepts and Theory
-** DCAT Practical Examples

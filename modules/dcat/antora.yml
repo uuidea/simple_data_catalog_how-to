@@ -1,5 +1,0 @@
-name: dcat
-version: main
-title: Data Catalog (DCAT)
-nav:
-  - modules/dcat/nav.adoc
