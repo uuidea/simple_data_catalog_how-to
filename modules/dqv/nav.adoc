@@ -1,3 +1,0 @@
-* xref:dqv-intro.adoc[Data Quality with DQV]
-** DQV Measurement and Assessment
-** DQV Implementation Strategies
