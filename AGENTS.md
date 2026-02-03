@@ -14,7 +14,7 @@ Antora-based documentation repository for simple_data_catalog project - a LinkML
 
 ## Repository Structure
 
-`modules/` contains Antora documentation modules (ROOT, getting-started, dcat, dqv, prov, odrl). All content is in AsciiDoc format. Key files: `antora-playbook.yml`, `package.json`, `AGENTS.md`.
+`modules/` contains Antora documentation modules (ROOT, getting-started, dcat, dqv, prov, odrl). All content is in AsciiDoc format. Key files: `antora-playbook.yml`, `antora-pdf-playbook.yml`, `antora-epub-playbook.yml`, `package.json`, `AGENTS.md`.
 
 ## Commands
 
@@ -24,6 +24,22 @@ Antora-based documentation repository for simple_data_catalog project - a LinkML
 - Validate playbook: `npx antora antora-playbook.yml --dry-run`
 - Serve locally: `cd build/site && python -m http.server 8000`
 - Build and serve: `npx antora antora-playbook.yml --to-dir build/site && cd build/site && python -m http.server 8000`
+
+### PDF and EPUB Generation Commands
+- Build PDF: `npm run build:pdf` (HTML + PDF)
+- Build EPUB: `npm run build:epub` (HTML + EPUB)
+- Build all formats (HTML, PDF, EPUB): `npm run build:all` (HTML + PDF + EPUB)
+- PDF only (no HTML): `npm run build:pdf-only`
+- EPUB only (no HTML): `npm run build:epub-only`
+- Clean all outputs: `npm run clean:all`
+
+### Multi-Format Generation Features
+- **Extension-based**: Uses custom Antora extension to aggregate content from all modules
+- **Navigation order**: Content follows navigation structure exactly as defined in nav files
+- **Error resilience**: HTML generation continues even if PDF/EPUB generation fails
+- **Separate outputs**: PDF files in `pdf/` directory, EPUB files in `epub/` directory
+- **Format control**: Use environment variable `MULTI_FORMATS=pdf,epub` to specify formats
+- **Standalone builds**: Build PDF/EPUB only without HTML generation using `-only` scripts
 
 ### Documentation Validation
 - Validate AsciiDoc: `find modules/ -name "*.adoc" -exec asciidoctor {} \;`

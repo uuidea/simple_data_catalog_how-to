@@ -1,0 +1,5 @@
+name: odrl
+version: main
+title: Data Policy (ODRL)
+nav:
+  - modules/odrl/nav.adoc

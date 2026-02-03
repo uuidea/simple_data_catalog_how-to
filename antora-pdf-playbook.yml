@@ -1,0 +1,29 @@
+site:
+  title: Data Management for Data Publishers (PDF)
+  url: https://uuidea.github.io/simple_data_catalog_how-to
+
+content:
+  sources:
+    - url: .
+      branches: HEAD
+
+asciidoc:
+  attributes:
+    page-pagination: ''
+    experimental: ''
+    kroki-fetch-diagram: true
+    kroki-default-format: svg@
+    kroki-server-url: http://kroki.uuidea.eu:8000/
+    pdf-theme: default
+    pdf-fonts-dir: ''
+    pdf-fontsdir: ''
+    pdf-themesdir: ''
+  extensions:
+    - asciidoctor-kroki
+    - '@djencks/asciidoctor-mathjax'
+
+# Note: Use npm run build:pdf instead of this playbook
+# This playbook is kept for reference but we use asciidoctor-pdf directly
+
+output:
+  dir: ./pdf

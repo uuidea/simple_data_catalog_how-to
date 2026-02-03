@@ -1,0 +1,5 @@
+name: getting-started
+version: main
+title: Getting Started with Simple Data Catalog
+nav:
+  - modules/getting-started/nav.adoc

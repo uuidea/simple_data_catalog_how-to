@@ -1,1 +1,3 @@
 * xref:odrl-intro.adoc[Data Policy with ODRL]
+** ODRL Rights Expression
+** ODRL Policy Implementation
