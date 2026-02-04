@@ -7,6 +7,44 @@ const { promisify } = require('util')
 
 const execAsync = promisify(exec)
 
+// SVG generation function (shared with mermaid-preprocessor)
+async function generateSvg(diagramId, diagramCode, diagramsDir, logger) {
+  const svgPath = path.join(diagramsDir, `${diagramId}.svg`)
+  const tempMermaidPath = path.join(diagramsDir, `temp-${diagramId}.mmd`)
+  
+  try {
+    // Write temporary Mermaid file
+    await fs.writeFile(tempMermaidPath, diagramCode, 'utf8')
+    
+    // Generate SVG using mmdc (Mermaid CLI)
+    const cmd = `npx mmdc -i "${tempMermaidPath}" -o "${svgPath}" -t neutral -b white -w 1024 -H 768`
+    
+    try {
+      await execAsync(cmd, { timeout: 30000 })
+    } catch (execError) {
+      // Try alternative command format
+      const altCmd = `npx @mermaid-js/mermaid-cli -i "${tempMermaidPath}" -o "${svgPath}" -t neutral -b white -w 1024 -H 768`
+      await execAsync(altCmd, { timeout: 30000 })
+    }
+    
+    // Verify the SVG was created
+    const svgExists = await fs.access(svgPath).then(() => true).catch(() => false)
+    if (!svgExists) {
+      throw new Error('SVG file was not created')
+    }
+    
+    return svgPath
+    
+  } finally {
+    // Clean up temporary file
+    try {
+      await fs.unlink(tempMermaidPath)
+    } catch (cleanupError) {
+      // Ignore cleanup errors
+    }
+  }
+}
+
 module.exports.register = function ({ config, playbook }) {
   const logger = this.getLogger('multi-format-generator')
   
@@ -34,8 +72,8 @@ module.exports.register = function ({ config, playbook }) {
     logger.info(`Multi-format generator enabled for: ${formats.join(', ')}`)
   }
   
-  // Hook after documents are converted but before navigation is built
-  this.on('documentsConverted', async ({ contentCatalog }) => {
+  // Hook after navigation is built to access all content
+  this.on('navigationBuilt', async ({ contentCatalog, siteAsciiDocConfig }) => {
     if (formats.length === 0) return
     
     // Collect all modules respecting navigation order
@@ -45,11 +83,11 @@ module.exports.register = function ({ config, playbook }) {
     
     // Generate each format independently with error isolation
     if (formats.includes('pdf')) {
-      await generateConsolidatedPdf(allModules, contentCatalog, playbook.asciidoc || {}, config.pdf || {}, logger)
+      await generateConsolidatedPdf(allModules, contentCatalog, siteAsciiDocConfig, config.pdf || {}, logger)
     }
     
     if (formats.includes('epub')) {
-      await generateConsolidatedEpub(allModules, contentCatalog, playbook.asciidoc || {}, config.epub || {}, logger)
+      await generateConsolidatedEpub(allModules, contentCatalog, siteAsciiDocConfig, config.epub || {}, logger)
     }
   })
 }
@@ -138,27 +176,35 @@ function flattenNavigation(items, result = [], order = 0) {
 
 async function generateConsolidatedPdf(modules, contentCatalog, siteAsciiDocConfig, pdfConfig, logger) {
   try {
-    const masterDoc = await createMasterDocument(modules, 'pdf', pdfConfig, logger)
+    // Process diagrams before creating master document
+    await processDiagrams(modules, contentCatalog, logger)
+    
+    const masterDoc = createMasterDocument(modules, 'pdf', pdfConfig)
     const tempPath = path.join(process.cwd(), 'build', 'temp-master-pdf.adoc')
     const outputDir = path.join(process.cwd(), pdfConfig.output_dir || 'pdf')
     const outputFile = path.join(outputDir, 'simple-data-catalog.pdf')
+    const diagramsDir = path.join(process.cwd(), 'build', 'diagrams')
     
     // Ensure directories exist
     await fs.mkdir(path.dirname(tempPath), { recursive: true })
     await fs.mkdir(outputDir, { recursive: true })
     
-    // Write master document to project root for direct processing
-    const masterDocPath = path.join(process.cwd(), 'master-pdf.adoc')
-    await fs.writeFile(masterDocPath, masterDoc)
+    // Write master document
+    await fs.writeFile(tempPath, masterDoc)
     
-    // Generate PDF using master document at project root
-    const cmd = `asciidoctor-pdf -a pdf-theme=${pdfConfig.theme || 'default'} -a imagesdir=modules "${masterDocPath}" -o "${outputFile}"`
+    // Copy diagrams to PDF output directory
+    if (await directoryExists(diagramsDir)) {
+      await copyDirectory(diagramsDir, path.join(outputDir, 'diagrams'))
+    }
+    
+    // Generate PDF with diagrams support
+    const cmd = `asciidoctor-pdf -a pdf-theme=${pdfConfig.theme || 'default'} -a imagesdir=${outputDir}/diagrams "${tempPath}" -o "${outputFile}"`
     await execAsync(cmd)
     
     logger.info(`PDF generated successfully: ${outputFile}`)
     
-    // Cleanup temp files (but not master doc for debugging)
-    // await fs.unlink(tempPath)
+    // Cleanup
+    await fs.unlink(tempPath)
     
   } catch (error) {
     logger.warn(`PDF generation failed: ${error.message}`)
@@ -168,10 +214,14 @@ async function generateConsolidatedPdf(modules, contentCatalog, siteAsciiDocConf
 
 async function generateConsolidatedEpub(modules, contentCatalog, siteAsciiDocConfig, epubConfig, logger) {
   try {
-    const masterDoc = await createMasterDocument(modules, 'epub', epubConfig, logger)
-    const tempPath = path.join(process.cwd(), 'master-epub.adoc')  // Generate at project root
+    // Process diagrams before creating master document
+    await processDiagrams(modules, contentCatalog, logger)
+    
+    const masterDoc = createMasterDocument(modules, 'epub', epubConfig)
+    const tempPath = path.join(process.cwd(), 'build', 'temp-master-epub.adoc')
     const outputDir = path.join(process.cwd(), epubConfig.output_dir || 'epub')
     const outputFile = path.join(outputDir, 'simple-data-catalog.epub')
+    const diagramsDir = path.join(process.cwd(), 'build', 'diagrams')
     
     // Ensure directories exist
     await fs.mkdir(path.dirname(tempPath), { recursive: true })
@@ -180,14 +230,19 @@ async function generateConsolidatedEpub(modules, contentCatalog, siteAsciiDocCon
     // Write master document
     await fs.writeFile(tempPath, masterDoc)
     
-    // Generate EPUB with enhanced image path handling
-    const cmd = `asciidoctor-epub3 -a imagesdir=modules -a allow-uri-read "${tempPath}" -o "${outputFile}"`
+    // Copy diagrams to EPUB output directory
+    if (await directoryExists(diagramsDir)) {
+      await copyDirectory(diagramsDir, path.join(outputDir, 'diagrams'))
+    }
+    
+    // Generate EPUB with diagrams support
+    const cmd = `asciidoctor-epub3 -a imagesdir=${outputDir}/diagrams "${tempPath}" -o "${outputFile}"`
     await execAsync(cmd)
     
     logger.info(`EPUB generated successfully: ${outputFile}`)
     
-    // Cleanup temp file (master document is now at project root)
-    // await fs.unlink(tempPath)
+    // Cleanup
+    await fs.unlink(tempPath)
     
   } catch (error) {
     logger.warn(`EPUB generation failed: ${error.message}`)
@@ -195,76 +250,39 @@ async function generateConsolidatedEpub(modules, contentCatalog, siteAsciiDocCon
   }
 }
 
-async function createMasterDocument(modules, format, config, logger) {
+function createMasterDocument(modules, format, config) {
   const sections = []
   const moduleOrder = ['ROOT', 'getting-started', 'dcat', 'dqv', 'prov', 'odrl']
   
-  for (const moduleName of moduleOrder) {
+  moduleOrder.forEach(moduleName => {
     const pages = modules[moduleName] || []
-    if (pages.length === 0) continue
+    if (pages.length === 0) return
     
     sections.push(`\n\n== ${getModuleTitle(moduleName)}`)
     
-    for (const page of pages) {
+    pages.forEach(page => {
+      // Read the source AsciiDoc content directly from the file
       let content
       try {
-        // ALWAYS read from source file to get raw AsciiDoc
+        // Read the source file directly to get raw AsciiDoc
         content = require('fs').readFileSync(page.src.abspath, 'utf8')
-        
-        // Debug: verify we have AsciiDoc, not HTML
-        if (content.includes('<div') || content.includes('<h2')) {
-          logger.warn(`Page ${page.src.basename} contains HTML tags - should be raw AsciiDoc`)
-        }
       } catch (error) {
         console.warn(`Could not read source file for page ${page.src.basename}: ${error.message}`)
-        continue
+        return
       }
       
       // Skip if content is empty or invalid
-      if (!content || content.trim() === '') continue
-      
-      // Process Mermaid diagrams if present (inline processing)
-      if (content.includes('[mermaid')) {
-        content = await processMermaidDiagrams(content, page, logger)
-      }
+      if (!content || content.trim() === '') return
       
       // Remove leading document title if it's a standalone page (to avoid duplicate titles)
       content = content.replace(/^= .+?\n\n/, '')
-      
-      // Fix image paths for consolidated document - ensure full module paths
-      content = content.replace(/image::(.+?)\[/g, (match, imagePath) => {
-        // If image path doesn't start with http
-        if (!imagePath.startsWith('http')) {
-          const pageModuleName = getModuleNameFromPage(page)
-          
-          // If path already starts with 'modules/', strip it (will be added back by imagesdir)
-          if (imagePath.startsWith('modules/')) {
-            const cleanPath = imagePath.substring(8) // Remove 'modules/' prefix
-            logger.info(`Stripping modules/ prefix from: ${imagePath} -> ${cleanPath}`)
-            return `image::${cleanPath}[`
-          }
-          // For imagesdir: modules, we need paths like dcat/images/_generated/file.svg
-          else if (imagePath.startsWith('images/_generated/')) {
-            const fullPath = `${pageModuleName}/${imagePath}`
-            logger.info(`Generated full module path for image: ${imagePath} -> ${fullPath}`)
-            return `image::${fullPath}[`
-          }
-          // Check if path already includes module name
-          else if (!imagePath.startsWith(pageModuleName + '/')) {
-            const fullPath = `${pageModuleName}/${imagePath}`
-            logger.info(`Adding module prefix to image path: ${imagePath} -> ${fullPath}`)
-            return `image::${fullPath}[`
-          }
-        }
-        return match
-      })
       
       // Adjust heading levels: increment by 1 for proper hierarchy (since modules are level 2 ==)
       content = content.replace(/^(=+)/gm, (match, p1) => '=' + p1)
       
       sections.push(`\n\n${content}`)
-    }
-  }
+    })
+  })
   
   const header = `= Data Management for Data Publishers
 :doctype: book
@@ -273,8 +291,6 @@ async function createMasterDocument(modules, format, config, logger) {
 :sectnums:
 :source-highlighter: rouge
 :kroki-fetch-diagram: true
-:allow-uri-read:
-:imagesdir: modules
 ${format === 'pdf' ? ':pdf-theme: ' + (config.theme || 'default') : ''}
 ${format === 'epub' ? ':ebook-format: ' + (config.format || 'epub3') : ''}
 
@@ -283,98 +299,108 @@ ${format === 'epub' ? ':ebook-format: ' + (config.format || 'epub3') : ''}
   return header + sections.join('\n\n')
 }
 
-
-
-async function processMermaidDiagrams(content, page, logger) {
-  // Find all Mermaid blocks
-  const mermaidRegex = /\[mermaid,\s*([^,\]]+),\s*svg\]\s*\n----\s*\n([\s\S]*?)\n----/g
-  const matches = []
-  let match
+async function processDiagrams(modules, contentCatalog, logger) {
+  const diagramsDir = path.join(process.cwd(), 'build', 'diagrams')
+  await fs.mkdir(diagramsDir, { recursive: true })
   
-  while ((match = mermaidRegex.exec(content)) !== null) {
-    matches.push({
-      fullMatch: match[0],
-      diagramId: match[1].trim(),
-      diagramCode: match[2].trim()
-    })
-  }
+  const processedPages = new Set()
   
-  if (matches.length === 0) {
-    return content // No Mermaid diagrams found
-  }
-  
-  let modifiedContent = content
-  const moduleName = getModuleNameFromPage(page)
-  
-  // Create module-specific images/_generated directory
-  const moduleImagesDir = path.join(process.cwd(), 'modules', moduleName, 'images', '_generated')
-  await fs.mkdir(moduleImagesDir, { recursive: true })
-  
-  // Process each Mermaid diagram
-  for (const { fullMatch, diagramId, diagramCode } of matches) {
-    try {
-      const svgPath = await generateSvg(diagramId, diagramCode, moduleImagesDir, logger)
-      
-// Replace Mermaid block with standard Antora image directive with absolute paths
-        const title = diagramId.replace(/-/g, ' ').replace(/\b\w/g, l => l.toUpperCase())
-        const absolutePath = path.join(process.cwd(), 'modules', moduleName, 'images', '_generated', `${diagramId}.svg`)
-        const relativePath = path.relative(process.cwd(), absolutePath)
-        const imageDirective = `.${title}
-image::${relativePath}[${title}]`
-        logger.info(`Generated image directive for ${moduleName}: ${imageDirective}`)
-      
-      modifiedContent = modifiedContent.replace(fullMatch, imageDirective)
-      logger.info(`  Generated SVG: ${moduleName}/${diagramId}`)
-    } catch (error) {
-      logger.warn(`Failed to generate SVG for ${diagramId}: ${error.message}`)
-      // Keep original Mermaid block as fallback
+  // Process all pages to generate diagrams
+  for (const moduleName of Object.keys(modules)) {
+    const pages = modules[moduleName] || []
+    
+    for (const page of pages) {
+      if (!processedPages.has(page.src.path)) {
+        await processPageForDiagrams(page, diagramsDir, logger)
+        processedPages.add(page.src.path)
+      }
     }
   }
-  
-  return modifiedContent
 }
 
-async function generateSvg(diagramId, diagramCode, moduleImagesDir, logger) {
-  const svgPath = path.join(moduleImagesDir, `${diagramId}.svg`)
-  const tempMermaidPath = path.join(moduleImagesDir, `temp-${diagramId}.mmd`)
-  
+async function processPageForDiagrams(page, diagramsDir, logger) {
   try {
-    // Write temporary Mermaid file
-    await fs.writeFile(tempMermaidPath, diagramCode, 'utf8')
-    
-    // Generate SVG using mmdc (Mermaid CLI) with native text config
-    const configPath = path.join(process.cwd(), 'mermaid-config.json')
-    const cmd = `npx mmdc -i "${tempMermaidPath}" -o "${svgPath}" -c "${configPath}" -b white -w 1024 -H 768`
-    
+    let content
     try {
-      await execAsync(cmd, { timeout: 30000 })
-    } catch (execError) {
-      // Try alternative command format
-      const altCmd = `npx @mermaid-js/mermaid-cli -i "${tempMermaidPath}" -o "${svgPath}" -c "${configPath}" -b white -w 1024 -H 768`
-      await execAsync(altCmd, { timeout: 30000 })
+      content = require('fs').readFileSync(page.src.abspath, 'utf8')
+    } catch (error) {
+      logger.warn(`Could not read source file for page ${page.src.basename}: ${error.message}`)
+      return
     }
     
-    // Verify the SVG was created
-    const svgExists = await fs.access(svgPath).then(() => true).catch(() => false)
-    if (!svgExists) {
-      throw new Error('SVG file was not created')
+    if (!content.includes('[mermaid')) {
+      return
     }
     
-    return svgPath
+    logger.info(`Processing Mermaid diagrams in: ${page.src.relative}`)
     
-  } finally {
-    // Clean up temporary file
-    try {
-      await fs.unlink(tempMermaidPath)
-    } catch (cleanupError) {
-      // Ignore cleanup errors
+    // Find all Mermaid blocks
+    const mermaidRegex = /\[mermaid,\s*([^,\]]+),\s*svg\]\s*\n----\s*\n([\s\S]*?)\n----/g
+    const matches = []
+    let match
+    
+    while ((match = mermaidRegex.exec(content)) !== null) {
+      matches.push({
+        fullMatch: match[0],
+        diagramId: match[1].trim(),
+        diagramCode: match[2].trim()
+      })
     }
+    
+    if (matches.length === 0) {
+      return
+    }
+    
+    let modifiedContent = content
+    
+    // Process each Mermaid diagram
+    for (const { fullMatch, diagramId, diagramCode } of matches) {
+      try {
+        const svgPath = await generateSvg(diagramId, diagramCode, diagramsDir, logger)
+        
+        // Replace Mermaid block with image directive
+        const imageDirective = `.${diagramId.replace(/-/g, ' ').replace(/\b\w/g, l => l.toUpperCase())}
+image::diagrams/${diagramId}.svg[${diagramId}]`
+        
+        modifiedContent = modifiedContent.replace(fullMatch, imageDirective)
+        logger.info(`  Generated SVG: ${diagramId}`)
+      } catch (error) {
+        logger.warn(`Failed to generate SVG for ${diagramId}: ${error.message}`)
+        // Keep original Mermaid block as fallback
+      }
+    }
+    
+    // Update page content in memory for master document generation
+    page.contents = Buffer.from(modifiedContent)
+    
+  } catch (error) {
+    logger.warn(`Error processing page ${page.src.relative}: ${error.message}`)
   }
 }
 
-function getModuleNameFromPage(page) {
-  const moduleMatch = page.src.path.match(/modules\/([^\/]+)/)
-  return moduleMatch ? moduleMatch[1] : 'ROOT'
+async function directoryExists(dirPath) {
+  try {
+    const stats = await fs.stat(dirPath)
+    return stats.isDirectory()
+  } catch {
+    return false
+  }
+}
+
+async function copyDirectory(src, dest) {
+  await fs.mkdir(dest, { recursive: true })
+  const entries = await fs.readdir(src, { withFileTypes: true })
+  
+  for (const entry of entries) {
+    const srcPath = path.join(src, entry.name)
+    const destPath = path.join(dest, entry.name)
+    
+    if (entry.isDirectory()) {
+      await copyDirectory(srcPath, destPath)
+    } else {
+      await fs.copyFile(srcPath, destPath)
+    }
+  }
 }
 
 function getModuleTitle(moduleName) {
