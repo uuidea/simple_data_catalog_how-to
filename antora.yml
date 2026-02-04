@@ -3,8 +3,3 @@ version: main
 title: Simple Data Catalog Documentation
 nav:
   - modules/ROOT/nav.adoc
-  - modules/getting-started/nav.adoc
-  - modules/dcat/nav.adoc
-  - modules/dqv/nav.adoc
-  - modules/prov/nav.adoc
-  - modules/odrl/nav.adoc

@@ -1,0 +1,6 @@
+Isolated Test
+[Isolated Test] | modules/dcat/images/_generated/dcat-class-structure.svg
+
+1
+
+

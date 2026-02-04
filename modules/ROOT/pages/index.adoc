@@ -63,9 +63,9 @@ This guide is organized into chapters covering each metadata area:
 3. **Data Lineage (PROV)** - Tracking data provenance and transformations
 4. **Data Policy (ODRL)** - Managing usage rights and permissions
 
-== 📚 Documentation Chapters
+== Documentation Chapters
 
-=== 📊 xref:dcat:dcat-intro.adoc[1. Data Catalog Metadata (DCAT)]
+=== xref:dcat:dcat-intro.adoc[1. Data Catalog Metadata (DCAT)]
 
 Learn the fundamentals of data cataloging using DCAT 3 standards.
 
@@ -75,7 +75,7 @@ Learn the fundamentals of data cataloging using DCAT 3 standards.
 * Catalog organization and structure
 * Best practices for metadata completeness
 
-=== ✅ xref:dqv:dqv-intro.adoc[2. Data Quality (DQV)]
+=== xref:dqv:dqv-intro.adoc[2. Data Quality (DQV)]
 
 Implement data quality measurement and reporting using DQV.
 
@@ -85,7 +85,7 @@ Implement data quality measurement and reporting using DQV.
 * Quality annotation and reporting
 * Continuous quality improvement
 
-=== 🔗 xref:prov:prov-intro.adoc[3. Data Lineage (PROV)]
+=== xref:prov:prov-intro.adoc[3. Data Lineage (PROV)]
 
 Master data provenance tracking using PROV-O standards.
 
@@ -95,7 +95,7 @@ Master data provenance tracking using PROV-O standards.
 * Building lineage graphs
 * Provenance documentation strategies
 
-=== 🛡️ 4. Data Policy (ODRL)
+=== 4. Data Policy (ODRL)
 
 Manage usage rights and permissions using ODRL 2.2.
 
@@ -105,7 +105,7 @@ Manage usage rights and permissions using ODRL 2.2.
 * Usage constraint management
 * Policy implementation strategies
 
-== 🎯 Learning Path
+== Learning Path
 
 This guide is designed for progressive learning:
 
@@ -113,7 +113,7 @@ This guide is designed for progressive learning:
 2. **Intermediate** → Progress through xref:dcat:dcat-intro.adoc[DCAT] and xref:dqv:dqv-intro.adoc[DQV] for core cataloging skills  
 3. **Advanced** → Explore xref:prov:prov-intro.adoc[PROV] and ODRL for comprehensive catalog management
 
-== 🔧 Related Resources
+== Related Resources
 
 === Framework Documentation
 * link:https://github.com/uuidea/simple_data_catalog[simple_data_catalog] - Main data catalog tool
@@ -125,7 +125,7 @@ This guide is designed for progressive learning:
 * link:https://www.w3.org/TR/vocab-dqv/[DQV Specification] - Data Quality Vocabulary
 * link:https://www.w3.org/TR/odrl-model/[ODRL 2.2 Specification] - Open Digital Rights Language
 
-== 📖 How to Navigate
+== How to Navigate
 
 * **Sequential Reading** - Follow chapters in order for comprehensive learning
 * **Topic-Based** - Jump directly to chapters relevant to your immediate needs

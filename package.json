@@ -10,7 +10,7 @@
     "build": "npx antora antora-playbook.yml --to-dir build/site",
     "build:clean": "npx antora antora-playbook.yml --clean --to-dir build/site",
     "build:pdf": "MULTI_FORMATS=pdf npx antora antora-playbook.yml --to-dir build/site",
-    "build:epub": "MULTI_FORMATS=epub npx antora antora-playbook.yml --to-dir build/site", 
+    "build:epub": "MULTI_FORMATS=epub npx antora antora-playbook.yml --to-dir build/site",
     "build:all": "MULTI_FORMATS=pdf,epub npx antora antora-playbook.yml --to-dir build/site",
     "build:pdf-only": "npm run clean && node extensions/build-only.js pdf",
     "build:epub-only": "npm run clean && node extensions/build-only.js epub",
@@ -18,5 +18,8 @@
     "clean:all": "rm -rf build pdf epub",
     "serve": "cd build/site && python -m http.server 8000",
     "validate": "find modules/ -name \"*.adoc\" -exec asciidoctor {} \\;"
+  },
+  "devDependencies": {
+    "@mermaid-js/mermaid-cli": "^11.12.0"
   }
 }

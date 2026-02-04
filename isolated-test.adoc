@@ -1,0 +1,7 @@
+
+
+== Isolated Test
+
+image::modules/dcat/images/_generated/dcat-class-structure.svg[Isolated Test]
+
+

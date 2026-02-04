@@ -1,0 +1,7 @@
+
+
+== Manual Test from Project Root
+
+image::modules/dcat/images/_generated/dcat-class-structure.svg[Manual Test]
+
+
